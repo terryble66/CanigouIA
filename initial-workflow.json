@@ -1,1 +1,10 @@
-{}
+{
+  "nodes": [],
+  "connections": {},
+  "active": false,
+  "settings": {},
+  "versionId": "initial-empty-workflow",
+  "meta": {
+    "instanceId": "place-holder"
+  }
+}
