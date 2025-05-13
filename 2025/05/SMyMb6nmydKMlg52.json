@@ -1,0 +1,86 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Airtable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-09T15:03:54.950Z",
+  "id": "SMyMb6nmydKMlg52",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "CANIGOUIA_NOAH_CLIENT_VIP_POC",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "58aa995e-2bdc-4780-b253-fa4dcec5c051",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "3cc1aefa-fd30-4883-8185-c8acc395cd3b",
+      "name": "Webhook",
+      "webhookId": "58aa995e-2bdc-4780-b253-fa4dcec5c051"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appwzBJaStXL5hlJP",
+          "mode": "list",
+          "cachedResultName": "CRM - CaningouIA V1",
+          "cachedResultUrl": "https://airtable.com/appwzBJaStXL5hlJP"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblSTDnjAvNRiiJ5G",
+          "mode": "list",
+          "cachedResultName": "Clients",
+          "cachedResultUrl": "https://airtable.com/appwzBJaStXL5hlJP/tblSTDnjAvNRiiJ5G"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        220,
+        0
+      ],
+      "id": "a72f768a-4fbd-475d-9b2c-41efc07c3902",
+      "name": "Airtable",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "zYVUtJkQEXl8AiSy",
+          "name": "Airtable catafs.si"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "CanigouIA",
+  "repo_owner": "terryble66",
+  "repo_path": "2025/05/SMyMb6nmydKMlg52.json",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-05-09T15:20:20.294Z",
+  "versionId": "f807eb57-81b7-4ebb-8415-544c10c30259"
+}
