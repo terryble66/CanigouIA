@@ -1,0 +1,1024 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Extraire Variables Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extraire Variables Webhook": {
+      "main": [
+        [
+          {
+            "node": "Rechercher Client",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rechercher Client": {
+      "main": [
+        [
+          {
+            "node": "Client Existe?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Client Existe?": {
+      "main": [
+        [
+          {
+            "node": "Client est NOUVEAU?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ajouter Nouveau Client",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Client est NOUVEAU?": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ajouter Nouveau Client": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Récupérer Brochure": {
+      "main": [
+        [
+          {
+            "node": "Structure données fichier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Définir Corps Email": {
+      "main": [
+        [
+          {
+            "node": "Rechercher Nouveaux Client",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Définir Objet Email": {
+      "main": [
+        [
+          {
+            "node": "Définir Corps Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structure données fichier": {
+      "main": [
+        [
+          {
+            "node": "Télécharger Brochure",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rechercher Nouveaux Client": {
+      "main": [
+        [
+          {
+            "node": "Récupérer Brochure",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Définir Objet Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Télécharger Brochure": {
+      "main": [
+        [
+          {
+            "node": "Envoyer Email1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Envoyer Email1": {
+      "main": [
+        [
+          {
+            "node": "Airtable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-01T09:51:55.936Z",
+  "id": "YDIfPiwDCNEdCzUa",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "CanigouIA.S.Vocal.#1-6 LeadClientRestaurant CanigouIA",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "lead-brochure",
+        "options": {
+          "responseData": "firstEntryJson"
+        }
+      },
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -1260,
+        940
+      ],
+      "webhookId": "lead-brochure-canigouia",
+      "id": "05d1187c-bb4c-4a8d-b9ee-94f61ac5c375"
+    },
+    {
+      "parameters": {
+        "content": "## Réception des données Lead\n* Webhook reçoit: nom, email, call_id, tool_name\n* Point d'entrée pour le lead provenant de Rounded\n* URL: https://votre-instance-n8n.com/webhook/lead-brochure-canigouia",
+        "height": 480,
+        "width": 280
+      },
+      "name": "Webhook Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1360,
+        660
+      ],
+      "id": "82d2b2ba-b9ce-4367-b944-89f5cdab29de"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "827ff6ef-84a7-44b3-ad37-37b99f3ea1bc",
+              "name": "Nom",
+              "type": "string",
+              "value": "={{ $json.body.nom }}"
+            },
+            {
+              "id": "fd58d20a-3a24-4b4a-ac9d-f9e8a7d8f123",
+              "name": "Email",
+              "type": "string",
+              "value": "={{ $json.body.email }}"
+            },
+            {
+              "id": "ea2c7fa3-42d5-4a85-8d34-7e9b01a6b8c9",
+              "name": "call_ID",
+              "type": "string",
+              "value": "={{ $json.body.call_ID }}"
+            },
+            {
+              "id": "89d7e1f0-5a3b-4c17-bec2-f6d4e8c9a0b7",
+              "name": "tool_name",
+              "type": "string",
+              "value": "={{ $json.body.tool_name }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Extraire Variables Webhook",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -940,
+        940
+      ],
+      "id": "ccc1df2d-a268-4188-8a4f-024d66962e25"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appfYhSgpp4bA592e",
+          "mode": "list",
+          "cachedResultName": "Gestion Table Restaurant"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblNmFyBbcXr9DlQA",
+          "mode": "list",
+          "cachedResultName": "Clients",
+          "cachedResultUrl": "https://airtable.com/appfYhSgpp4bA592e/tblNmFyBbcXr9DlQA"
+        },
+        "filterByFormula": "={Email} =  \"{{ $json.email }}\"",
+        "options": {}
+      },
+      "name": "Rechercher Client",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        -660,
+        940
+      ],
+      "id": "eddf5c9c-a220-41f7-8741-e92685432b49",
+      "alwaysOutputData": true,
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "zYVUtJkQEXl8AiSy",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "98f7e02b-5a6c-46d4-9e8c-f9d1a3c2b4e5",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              },
+              "leftValue": "={{ $json }}",
+              "rightValue": ""
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "name": "Client Existe?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -320,
+        940
+      ],
+      "id": "8e828085-9763-48e6-83a7-17280f5f131e"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "32634d47-4e90-4485-8f94-03b11fd26d75",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              },
+              "leftValue": "={{ $json.Status }}",
+              "rightValue": "NOUVEAU"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Client est NOUVEAU?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        740
+      ],
+      "id": "080ba19c-8951-4892-b726-f033acdbf997"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appfYhSgpp4bA592e",
+          "mode": "list",
+          "cachedResultName": "Gestion Table Restaurant",
+          "cachedResultUrl": "https://airtable.com/appfYhSgpp4bA592e"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblNmFyBbcXr9DlQA",
+          "mode": "list",
+          "cachedResultName": "Clients",
+          "cachedResultUrl": "https://airtable.com/appfYhSgpp4bA592e/tblNmFyBbcXr9DlQA"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nom": "={{ $('Extraire Variables Webhook').item.json.Nom }}",
+            "Email": "={{ $('Extraire Variables Webhook').item.json.Email }}",
+            "Status": "NOUVEAU"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "ID_Client",
+              "displayName": "ID_Client",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Nom",
+              "displayName": "Nom",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "VIP",
+                  "value": "VIP"
+                },
+                {
+                  "name": "REGULIER",
+                  "value": "REGULIER"
+                },
+                {
+                  "name": "NOUVEAU",
+                  "value": "NOUVEAU"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Reccurence",
+              "displayName": "Reccurence",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Reservations",
+              "displayName": "Reservations",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "RECORD_ID()",
+              "displayName": "RECORD_ID()",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "name": "Ajouter Nouveau Client",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        1140
+      ],
+      "id": "e8461aac-6240-49d6-9f56-7c6460ac19c7",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "zYVUtJkQEXl8AiSy",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Extraction Variables Webhook\n* Récupère les données du corps du webhook\n* Stocke dans des variables distinctes pour utilisation ultérieure",
+        "height": 360,
+        "width": 280
+      },
+      "name": "Variables Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1040,
+        780
+      ],
+      "id": "c8d43216-ce1a-4de4-823f-e99c08b4abed"
+    },
+    {
+      "parameters": {
+        "content": "## Vérification Client\n* Recherche si le client existe déjà\n* Selon résultat, ajoute nouveau client ou continue",
+        "height": 360,
+        "width": 280
+      },
+      "name": "Recherche Client Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -740,
+        780
+      ],
+      "id": "fe74c69d-6f81-4e0c-9913-28ac36c535a0"
+    },
+    {
+      "parameters": {
+        "content": "## Condition Client\n* Si client existe: vérifier son statut\n* Si client n'existe pas: l'ajouter à la base",
+        "height": 340,
+        "width": 280
+      },
+      "name": "Condition Client Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        780
+      ],
+      "id": "fe5899b5-5170-4742-bd0e-5c2599ea9e2b"
+    },
+    {
+      "parameters": {
+        "content": "## Vérification Status Client\n* Si statut = \"NOUVEAU\": envoyer eBook\n* Si autre statut: pas besoin d'envoyer",
+        "height": 240,
+        "width": 280
+      },
+      "name": "Status Client Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        560
+      ],
+      "id": "62d105da-14b8-4b0b-a07f-381574cea951"
+    },
+    {
+      "parameters": {
+        "content": "## Ajout Client\n* Ajoute un nouveau client dans Airtable\n* Attribue le statut NOUVEAU\n* Stocke nom et email",
+        "height": 400,
+        "width": 280
+      },
+      "name": "Ajout Client Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        960
+      ],
+      "id": "563fb59e-2d28-4bdc-834e-a56ffbec6845"
+    },
+    {
+      "parameters": {
+        "fromEmail": "contact@canigouia.fr",
+        "toEmail": "={{ $('Rechercher Nouveaux Client').item.json.Email }}",
+        "subject": "={{ $('Définir Objet Email').item.json.objet }}",
+        "text": "={{ $('Définir Corps Email').item.json.corps }}",
+        "attachments": "data",
+        "options": {}
+      },
+      "name": "Envoyer Email1",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        2220,
+        920
+      ],
+      "id": "5b4fc078-26fe-46a6-889e-0537717e43dc",
+      "credentials": {
+        "smtp": {
+          "id": "cp0zatHnRJtBnlTG",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Récupération Brochure\n* Recherche dans la table Documentation\n* Filtres: Type = Brochure, Status = Utiliser\n* Extrait les informations du document",
+        "height": 440,
+        "width": 280
+      },
+      "name": "Airtable Brochure Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        680
+      ],
+      "id": "7b6b1d91-c7e0-4009-981d-ff1ed0d071c0"
+    },
+    {
+      "parameters": {
+        "content": "## Téléchargement Brochure\n* Récupère le fichier PDF depuis l'URL Airtable\n* Stocke en binaire pour pouvoir l'envoyer par email",
+        "height": 440,
+        "width": 280,
+        "color": 4
+      },
+      "name": "Download Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1800,
+        680
+      ],
+      "id": "91fe885e-ea73-4933-9a19-612ca65c095d"
+    },
+    {
+      "parameters": {
+        "content": "## Préparation Email\n* Définit l'objet et le corps du message\n* Personnalise avec le nom du client\n* Inclut les coordonnées et signature",
+        "height": 440,
+        "width": 420
+      },
+      "name": "Email Content Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        540,
+        680
+      ],
+      "id": "ca31170a-4dbf-493f-b227-918555581ea0"
+    },
+    {
+      "parameters": {
+        "content": "## Envoi Email avec Pièce Jointe\n* Expéditeur: contact@canigouia.fr\n* Destinataire: email du lead\n* Attachement: PDF brochure",
+        "height": 440,
+        "width": 280
+      },
+      "name": "Send Email Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2140,
+        680
+      ],
+      "id": "8f82ce49-5ede-4caf-b2f9-7aefab398d60"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appfYhSgpp4bA592e",
+          "mode": "list",
+          "cachedResultName": "Gestion Table Restaurant"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblvEGHl3SizlKrGc",
+          "mode": "list",
+          "cachedResultName": "Documentation"
+        },
+        "filterByFormula": "={Status} =  \"Utiliser\"",
+        "options": {}
+      },
+      "name": "Récupérer Brochure",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        1260,
+        920
+      ],
+      "id": "dea656d9-4d32-43af-8f57-08f1cea56c6e",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "zYVUtJkQEXl8AiSy",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d4d7e1d1-07c6-4e4e-a75c-0c0c85cf8d3c",
+              "name": "corps",
+              "type": "string",
+              "value": "=Bonjour Mme ou M {{ $('Extraire Variables Webhook').item.json.Nom }},\nMerci pour votre intérêt pour CanigouIA — notre assistant vocal 24/7 a bien pris en compte votre demande.\n\nVous avez testé notre Restaurant virtuel.\nCe service vous à plu ?\nSinon, n'hésitez pas aussi à nous remonter vos critiques , elles sont toujours constructives pour amélioré ce service 😊\n\nComme promis, voici votre eBook 📘 :\n\nCe guide vous montre comment :\n- Des solutions concretes pour booster l'avtivitées\n- Se désengager des taches pénibles\n- Des choix optimiser pour vos communcations clients\n\n🎯 Bonus : Nous pouvons également analysé votre activité, Mme ou M {{ $('Extraire Variables Webhook').item.json.Nom }}.\nIl est fort probable que **3 de vos processus clés puissent être automatisés dès maintenant** (devis, relances, gestion RDV…).\n\n🗓️ **Envie de voir ce que ça donnerait pour votre entreprise Mme ou M {{ $('Extraire Variables Webhook').item.json.Nom }}?**  \nRéservez un diagnostic 100% offert (30 min) ici : \n{{ $json.Calendry }}\n\nAu plaisir d’échanger avec vous et de libérer du temps pour ce qui compte vraiment.\n\n🛡️ Vos données sont traitées avec soin, hébergées en France et conformes au RGPD.\nBien cordialement,  \nThierry Dion-Fajal\nCanigouIA\nTél: 09 74 99 70 28\nEmail: contact@canigouia.fr\nSite: www.canigouia.fr"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Définir Corps Email",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        820,
+        920
+      ],
+      "id": "9b2b73df-c2d3-4e0d-bc8d-9bc7985658ba"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "827ff6ef-84a7-44b3-ad37-37b99f3ea1bc",
+              "name": "objet",
+              "type": "string",
+              "value": "=🎁 Voici votre eBook + une surprise pour booster votre entreprise 🚀"
+            },
+            {
+              "id": "8b97aa79-c2ae-4624-85cf-2189d14604f0",
+              "name": "Calendry",
+              "value": "https://calendly.com/canigouia/30min?",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Définir Objet Email",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        600,
+        920
+      ],
+      "id": "b7965a40-8bb7-4556-ad03-ad6bc39d9367"
+    },
+    {
+      "parameters": {
+        "content": "## quelle est la structure des données",
+        "height": 460
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1500,
+        680
+      ],
+      "typeVersion": 1,
+      "id": "51fa0cbe-9c98-4222-aa04-b2acf96975f4",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "jsCode": "console.log(\"Structure document complète:\", JSON.stringify($json, null, 2));\nconsole.log(\"URL du document:\", $json.Document && $json.Document[0] ? $json.Document[0].url : \"URL non trouvée\");\nreturn items;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1580,
+        920
+      ],
+      "id": "86f35033-a5d0-4a9a-aad0-08bc02760ef5",
+      "name": "Structure données fichier"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appfYhSgpp4bA592e",
+          "mode": "list",
+          "cachedResultName": "Gestion Table Restaurant"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblNmFyBbcXr9DlQA",
+          "mode": "list",
+          "cachedResultName": "Clients",
+          "cachedResultUrl": "https://airtable.com/appfYhSgpp4bA592e/tblNmFyBbcXr9DlQA"
+        },
+        "filterByFormula": "=AND({Status} = \"NOUVEAU\", {Ebook envoyé} != 1)",
+        "options": {}
+      },
+      "name": "Rechercher Nouveaux Client",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        1020,
+        920
+      ],
+      "id": "11eb098c-edd5-40fa-8d71-d6bac79849f5",
+      "alwaysOutputData": true,
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "zYVUtJkQEXl8AiSy",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.1,
+      "position": [
+        360,
+        920
+      ],
+      "id": "885c0204-27f0-45ee-89bc-1d4ae3bc649e",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.Document[0].url }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "name": "Télécharger Brochure",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1900,
+        920
+      ],
+      "id": "60a67fc0-48a9-459f-9dff-46e326168b0c"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appfYhSgpp4bA592e",
+          "mode": "list",
+          "cachedResultName": "Gestion Table Restaurant",
+          "cachedResultUrl": "https://airtable.com/appfYhSgpp4bA592e"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblNmFyBbcXr9DlQA",
+          "mode": "list",
+          "cachedResultName": "Clients",
+          "cachedResultUrl": "https://airtable.com/appfYhSgpp4bA592e/tblNmFyBbcXr9DlQA"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Ebook envoyé": true,
+            "id": "={{ $('Ajouter Nouveau Client').item.json.id }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "ID_Client",
+              "displayName": "ID_Client",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Nom",
+              "displayName": "Nom",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "VIP",
+                  "value": "VIP"
+                },
+                {
+                  "name": "REGULIER",
+                  "value": "REGULIER"
+                },
+                {
+                  "name": "NOUVEAU",
+                  "value": "NOUVEAU"
+                },
+                {
+                  "name": "CONTACT",
+                  "value": "CONTACT"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Ebook envoyé",
+              "displayName": "Ebook envoyé",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Reccurence",
+              "displayName": "Reccurence",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Reservations",
+              "displayName": "Reservations",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "RECORD_ID()",
+              "displayName": "RECORD_ID()",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Date de création",
+              "displayName": "Date de création",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Relance",
+              "displayName": "Relance",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        2440,
+        920
+      ],
+      "id": "f9e1ce37-898c-478f-bb6b-b4fdbd1e69a5",
+      "name": "Airtable",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "zYVUtJkQEXl8AiSy",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "CanigouIA",
+  "repo_owner": "terryble66",
+  "repo_path": "2025/04/YDIfPiwDCNEdCzUa.json",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-03T12:37:43.968Z",
+  "versionId": "614b1e6b-a645-4a3d-960c-e7dce8017109"
+}
