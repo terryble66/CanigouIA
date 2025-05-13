@@ -1,0 +1,1351 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook2": {
+      "main": [
+        [
+          {
+            "node": "Webhook_Valid",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Available Slots": {
+      "main": [
+        [
+          {
+            "node": "Respond time is available",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Définir Objet Email",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Si numero mobile -> sms",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parsetime": {
+      "main": [
+        [
+          {
+            "node": "SelectTable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parsedate": {
+      "main": [
+        [
+          {
+            "node": "Formatteddate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reservation Data": {
+      "main": [
+        [
+          {
+            "node": "SuitableTables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SuitableTables": {
+      "main": [
+        [
+          {
+            "node": "Parsedate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook_Valid": {
+      "main": [
+        [
+          {
+            "node": "Définir téléphone final",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Formatteddate": {
+      "main": [
+        [
+          {
+            "node": "Parsetime",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SelectTable": {
+      "main": [
+        [
+          {
+            "node": "Available Slots",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Définir Corps Email": {
+      "main": [
+        [
+          {
+            "node": "Récupérer Brochure",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Définir Objet Email": {
+      "main": [
+        [
+          {
+            "node": "Définir Corps Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Télécharger Brochure": {
+      "main": [
+        [
+          {
+            "node": "Envoyer Email Client",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Récupérer Brochure": {
+      "main": [
+        [
+          {
+            "node": "Télécharger Brochure",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Corps_SMS": {
+      "main": [
+        [
+          {
+            "node": "signature_sms",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "signature_sms": {
+      "main": [
+        [
+          {
+            "node": "SmsConfiguration",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Définir téléphone final": {
+      "main": [
+        [
+          {
+            "node": "Reservation Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Préparer Signature SMS": {
+      "main": [
+        [
+          {
+            "node": "Envoyer SMS via OVH",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Envoyer SMS via OVH": {
+      "main": [
+        [
+          {
+            "node": "Statut SMS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Corps_SMS1": {
+      "main": [
+        [
+          {
+            "node": "Préparer Signature SMS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Si numero mobile -> sms": {
+      "main": [
+        [
+          {
+            "node": "Corps_SMS1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Corps_SMS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-09T21:47:30.370Z",
+  "id": "wlEdFiIJj1o2kg9n",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "CANIGOUIA.S.Vocal.#1-3.Valide.Restaurant.PROD",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Convertion de la date\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCe nœud convertit les dates exprimées en langage naturel (ex: \"demain\", \"vendredi prochain\") en un format ISO (YYYY-MM-DD) compatible avec Airtable et les autres systèmes.\n✅ **JavaScript natif dans n8n** : `new Date().toISOString().split(\"T\")[0]` permet d’obtenir **la date actuelle**.  ",
+        "height": 460,
+        "width": 520
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        520,
+        -180
+      ],
+      "id": "118af4a9-90d3-4d7f-8ff3-1bc6532e7f82",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "84b2ae14-1a68-4881-ad40-932a77d058e8",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -320,
+        -100
+      ],
+      "id": "b01034ec-95f6-45c7-919c-446d4fc2c7f9",
+      "name": "Webhook2",
+      "webhookId": "84b2ae14-1a68-4881-ad40-932a77d058e8"
+    },
+    {
+      "parameters": {
+        "content": "## Transform 24h\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n**transforme l'heure au format 24h",
+        "height": 460,
+        "width": 300,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1080,
+        -180
+      ],
+      "id": "9e5862af-2ce5-42d8-b286-1e551b224afc",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "base": {
+          "__rl": true,
+          "value": "appfYhSgpp4bA592e",
+          "mode": "list",
+          "cachedResultName": "Gestion Table Restaurant",
+          "cachedResultUrl": "https://airtable.com/appfYhSgpp4bA592e"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblN1LokzT8cmj4w7",
+          "mode": "list",
+          "cachedResultName": "Reservations",
+          "cachedResultUrl": "https://airtable.com/appfYhSgpp4bA592e/tblN1LokzT8cmj4w7"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Resa_ID": "={{ 'RES' + $('Formatteddate').item.json.Date.replace(/-/g, '') + ($('Reservation Data').item.json.name || '').substring(0, 4).toUpperCase() }}",
+            "Date": "={{ $('Formatteddate').item.json.Date }}",
+            "Invites": "={{ $('Reservation Data').item.json.personnes }}",
+            "Heure": "={{ $('Parsetime').item.json.requestedTime }}",
+            "Nom_Resa": "={{ $('Reservation Data').item.json.name }}",
+            "Email_Resa": "={{ $('Reservation Data').item.json.email }}",
+            "Telephone_Resa": "={{ $('Reservation Data').item.json.telephone }}",
+            "Statut": "Confirmer",
+            "Desirs": "={{ $('Reservation Data').item.json.notes }}",
+            "Table_ID": "={{ $json.table_id }}"
+          },
+          "matchingColumns": [
+            "Resa_ID"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Resa_ID",
+              "displayName": "Resa_ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Heure",
+              "displayName": "Heure",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Table_ID",
+              "displayName": "Table_ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Invites",
+              "displayName": "Invites",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Nom_Resa",
+              "displayName": "Nom_Resa",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Email_Resa",
+              "displayName": "Email_Resa",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Telephone_Resa",
+              "displayName": "Telephone_Resa",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Statut",
+              "displayName": "Statut",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Confirmer",
+                  "value": "Confirmer"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Desirs",
+              "displayName": "Desirs",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Date de mise à jour",
+              "displayName": "Date de mise à jour",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Date de creation",
+              "displayName": "Date de creation",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Table_Disponibilite",
+              "displayName": "Table_Disponibilite",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "RECORD_ID()",
+              "displayName": "RECORD_ID()",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Clients",
+              "displayName": "Clients",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        2440,
+        -40
+      ],
+      "id": "180227ae-daed-4d61-b46b-661b523cfcb3",
+      "name": "Available Slots",
+      "alwaysOutputData": true,
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "zYVUtJkQEXl8AiSy",
+          "name": "Airtable catafs.si"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Choix de Table selon Criteres\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVérifie les criteres et choisie la table en concequence\nOn peut facilement ajouter de nouveaux critères de sélection :\n➡️ Zone (intérieur/extérieur)\n➡️ Proximité fenêtre\n➡️ Préférences VIP\nA ajouter dans la table \"tables\" de airtable en multicriteres\n\n\n\n\n\n",
+        "height": 480
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1400,
+        -200
+      ],
+      "id": "3f782531-3784-4d34-bf50-4461c0181fd6",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "jsCode": "function formatTime(timeStr) {\n    timeStr = timeStr.toLowerCase().replace(/\\s/g, '');\n    let hours, minutes;\n    \n    if (timeStr.includes('pm')) {\n        timeStr = timeStr.replace('pm', '');\n        let [h, m] = timeStr.split(':').map(Number);\n        hours = (h === 12 ? 12 : h + 12);\n        minutes = m || 0;\n    } else if (timeStr.includes('am')) {\n        timeStr = timeStr.replace('am', '');\n        let [h, m] = timeStr.split(':').map(Number);\n        hours = (h === 12 ? 0 : h);\n        minutes = m || 0;\n    } else {\n        let [h, m] = timeStr.split(':').map(Number);\n        hours = (h >= 12) ? h : h + 12;\n        minutes = m || 0;\n    }\n    \n    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;\n}\n\n// Récupérer l'heure depuis le webhook ou une autre source de données\nlet requestedTime = $('Webhook_Valid').first().json.heure;\nrequestedTime = formatTime(requestedTime);\nreturn {\n    json: {\n        requestedTime\n    }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1780,
+        -100
+      ],
+      "id": "df4216e0-0edd-484e-9438-3f3d976e0e93",
+      "name": "Parsetime"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"results\": [\n    {\n      \"toolCallId\": \"{{ $('Webhook_Valid').first().json.call_id }}\",\n      \"result\": \"available:true\"\n    }\n  ]\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        2840,
+        -220
+      ],
+      "id": "395e7bae-cd5c-4215-8a39-9f80b56cd5da",
+      "name": "Respond time is available"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are a date parsing assistant. Today's date is {{ (() => { const d = new Date(); d.setHours(d.getHours() + 1); return d.toISOString().split(\"T\")[0]; })() }}.\nYour task is to convert natural language date expressions into YYYY-MM-DD format.\n\n**Rules:**\n- Always output only the date in **YYYY-MM-DD** format.\n- If the year isn't specified, assume the **nearest future date**.\n- For `\"next [day]\"`, select the next occurrence **after** the upcoming one.\n- For **relative dates** (\"tomorrow\", \"day after tomorrow\"), calculate from **today’s date**.\n- For **numeric dates** (e.g., \"15th\"), assume the **nearest future occurrence**.\n- For **month names**, use the **next occurrence** if the day has passed.\n\n### **Input examples and expected outputs (assuming today is {{ (() => { const d = new Date(); d.setHours(d.getHours() + 1); return d.toISOString().split(\"T\")[0]; })() }}):**\n- `\"tomorrow\"` → [calculate tomorrow’s date]\n- `\"next monday\"` → [calculate second Monday from today]\n- `\"this friday\"` → [calculate next Friday]\n- `\"day after tomorrow\"` → [calculate date after tomorrow]\n- `\"in 3 days\"` → [calculate date 3 days from today]\n- `\"next week tuesday\"` → [calculate next Tuesday]\n- `\"december 25th\"` → [calculate next December 25th]\n- `\"25/12\"` → [calculate next December 25th]\n- `\"25th of next month\"` → [calculate 25th of next month]\n- `\"first Tuesday of next month\"` → [calculate accordingly]\n- `\"end of this month\"` → [calculate last day of the current month]\n- `\"2024-12-25\"` → 2024-12-25\n\n💡 **Only respond with the date in YYYY-MM-DD format.** No explanations or additional text.\n\n**Date to process:**\n```json\n{{ $('Reservation Data').item.json.date }}\n"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        1080,
+        -100
+      ],
+      "id": "72c73b32-33f7-4fc5-8ec1-4d413f6aac5e",
+      "name": "Parsedate",
+      "credentials": {
+        "openAiApi": {
+          "id": "34CHH48MlmPBcrFa",
+          "name": "OpenAi account personel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "personnes",
+              "type": "numberValue",
+              "numberValue": "={{ $('Webhook_Valid').item.json.personnes }}"
+            },
+            {
+              "name": "name",
+              "stringValue": "={{ $('Webhook_Valid').item.json.nom }}"
+            },
+            {
+              "name": "date",
+              "stringValue": "={{ $('Webhook_Valid').item.json.date }}"
+            },
+            {
+              "name": "notes",
+              "stringValue": "={{ $('Webhook_Valid').item.json.desirs }}"
+            },
+            {
+              "name": "email",
+              "stringValue": "={{ $('Webhook_Valid').item.json.email }}"
+            },
+            {
+              "name": "time",
+              "stringValue": "={{ $('Webhook_Valid').item.json.heure }}"
+            },
+            {
+              "name": "telephone",
+              "stringValue": "={{ $json.telephone_final }}"
+            },
+            {
+              "name": "call_id",
+              "stringValue": "={{ $('Webhook_Valid').item.json.call_id }}"
+            }
+          ]
+        },
+        "include": "selected",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [
+        580,
+        -100
+      ],
+      "name": "Reservation Data",
+      "id": "3f47631a-e68a-481f-ad9a-a8f035294f6e"
+    },
+    {
+      "parameters": {
+        "jsCode": "const guests = $input.first().json.personnes;\n\n// Fonction pour obtenir les tables adaptées en fonction du nombre de personnes\nfunction getSuitableTables(guests) {\n    if (guests <= 2) return ['T1', 'T2'];\n    if (guests <= 4) return ['T3', 'T4'];\n    if (guests <= 6) return ['T5', 'T6'];\n    return [];\n}\n\nconst suitableTables = getSuitableTables(guests);\n\n// Générer un filtre pour Airtable avec \"Table_ID\"\nconst tableFilter = `OR(${suitableTables.map(table => `{Table_ID} = '${table}'`).join(', ')})`;\n\nreturn {\n    json: {\n        \"suitableTables\": suitableTables,  // Utilise la liste générée dynamiquement\n        \"tableFilter\": tableFilter  // Applique le bon format de champ Airtable\n    }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        800,
+        -100
+      ],
+      "id": "93083b9b-c62f-4700-a266-3b885c445c78",
+      "name": "SuitableTables",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"nom\": \"{{$input.first().json.body.nom}}\",\n  \"email\": \"{{$input.first().json.body.email}}\",\n  \"personnes\": \"{{$input.first().json.body.personnes}}\",\n  \"heure\": \"{{$input.first().json.body.heure}}\",\n  \"date\": \"{{$input.first().json.body.date || 'demain'}}\",\n  \"telephone\": \"{{$input.first().json.body.telephone}}\",\n  \"desirs\": \"{{$input.first().json.body.desirs}}\",\n  \"call_id\": \"{{$input.first().json.body.call_id}}\",\n  \"telephone_origin\": \"{{$input.first().json.body.telephone_origin}}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -40,
+        -100
+      ],
+      "id": "6de92e65-abb6-4981-8c0c-bd9cebaccc06",
+      "name": "Webhook_Valid"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2d495ac9-658d-46f4-9467-b2f430d2ccfa",
+              "name": "Date",
+              "value": "={{ $json.message.content }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1460,
+        -40
+      ],
+      "id": "87e6146c-8f90-4e48-b7fb-0ad6521ce73b",
+      "name": "Formatteddate"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const tables = $('SuitableTables').item.json.suitableTables;\n\nconst preference = $('Reservation Data').item.json.preference || 'indifferent';\n\n// Exemple : filtrer selon la préférence\nlet filteredTables = tables;\n\nif (preference === 'terrasse') {\n    filteredTables = tables.filter(t => t.startsWith('TERRASSE_'));\n}\n\nif (filteredTables.length === 0) {\n    filteredTables = tables; // fallback si rien trouvé\n}\n\nconst selectedTable = filteredTables[0];\n\nreturn {\n    json: {\n        table_id: selectedTable\n    }\n};\n\n\n//On peut facilement ajouter de nouveaux critères de sélection :\n//➡️ Zone (intérieur/extérieur)\n//➡️ Proximité fenêtre\n//➡️ Préférences VIP"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2140,
+        -40
+      ],
+      "id": "b3cd3f36-fb4b-4eba-a25c-9d750ea64658",
+      "name": "SelectTable"
+    },
+    {
+      "parameters": {
+        "content": "## Reservation de la Table\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n**transformer les infos de reservation à Airtable",
+        "height": 460,
+        "width": 200,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1740,
+        -200
+      ],
+      "id": "d8154647-c553-440e-86f5-181fe357861b",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Téléchargement Brochure\n* Récupère le fichier PDF depuis l'URL Airtable\n* Stocke en binaire pour pouvoir l'envoyer par email",
+        "height": 440,
+        "width": 280,
+        "color": 4
+      },
+      "name": "Download Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3560,
+        -40
+      ],
+      "id": "0af3edf1-8c4a-4b38-a3ca-335127c5aec1"
+    },
+    {
+      "parameters": {
+        "content": "## Préparation Email\n* Définit l'objet et le corps du message\n* Personnalise avec le nom du client\n* Inclut les coordonnées et signature",
+        "height": 440,
+        "width": 420
+      },
+      "name": "Email Content Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2800,
+        -20
+      ],
+      "id": "4e55ddd8-c069-40db-99c7-04cae8807c44"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d4d7e1d1-07c6-4e4e-a75c-0c0c85cf8d3c",
+              "name": "corps",
+              "type": "string",
+              "value": "=Bonjour Mme ou M ,{{ $('Webhook2').item.json.body.nom }}\n\nMerci pour votre intérêt pour CanigouIA — notre assistant vocal 24/7 a bien pris en compte votre demande.\n\nVotre réservation pour {{ $('Webhook2').item.json.body.personnes }} personnes le {{ $('Webhook2').item.json.body.date }} à {{ $('Webhook2').item.json.body.heure }} est faite.\nVos demandes spécifiques : {{ $('Webhook2').item.json.body.desirs }}\n\nVoici votre eBook 📘 :\n\nCe guide vous montre :\n- Des solutions concretes pour booster l'avtivitées\n- Se désengager des taches pénibles\n- Des choix optimiser pour vos communcations clients\n\n🎯 Bonus : Nous pouvons également analysé votre activité, Mme ou M  ,{{ $('Webhook2').item.json.body.nom }}.\nIl est fort probable que **3 de vos processus clés puissent être automatisés dès maintenant** (devis, relances, gestion RDV…).\n\n🗓️ **Envie de voir ce que ça donnerait pour votre entreprise Mme ou M ,{{ $('Webhook2').item.json.body.nom }}?**  \nRéservez un diagnostic 100% offert (30 min) ici : \n{{ $json.Calendry }}\n\nAu plaisir d’échanger avec vous et de libérer du temps pour ce qui compte vraiment.\n\n🛡️ Vos données sont traitées avec soin, hébergées en France et conformes au RGPD.\nBien cordialement,  \nThierry Dion-Fajal\nCanigouIA\nTél: 09 74 99 70 28\nEmail: contact@canigouia.fr\nSite: www.canigouia.fr"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Définir Corps Email",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3080,
+        140
+      ],
+      "id": "29918822-9d72-4304-b7ca-1feee80d0e42",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "827ff6ef-84a7-44b3-ad37-37b99f3ea1bc",
+              "name": "objet",
+              "type": "string",
+              "value": "=🎁 Voici votre votre réservation + une surprise pour booster votre entreprise 🚀"
+            },
+            {
+              "id": "8b97aa79-c2ae-4624-85cf-2189d14604f0",
+              "name": "Calendry",
+              "value": "https://calendly.com/canigouia/30min?",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Définir Objet Email",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2860,
+        140
+      ],
+      "id": "c21dfb8f-4ad7-4797-a9ab-9d65d6e5a6a9",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.Document[0].url }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "name": "Télécharger Brochure",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3640,
+        160
+      ],
+      "id": "721659fe-3411-4e2c-b6c2-e13803f0d55d",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appfYhSgpp4bA592e",
+          "mode": "list",
+          "cachedResultName": "Gestion Table Restaurant"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblvEGHl3SizlKrGc",
+          "mode": "list",
+          "cachedResultName": "Documentation"
+        },
+        "filterByFormula": "={Status} =  \"Utiliser\"",
+        "options": {}
+      },
+      "name": "Récupérer Brochure",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        3360,
+        160
+      ],
+      "id": "17cac654-d00d-4f2a-9b5d-2794fba09b5b",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "zYVUtJkQEXl8AiSy",
+          "name": "Airtable catafs.si"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "## Récupérer Brochure\n* Récupère le fichier PDF depuis l'URL Airtable\n* Stocke en binaire pour pouvoir l'envoyer par email \n",
+        "height": 440,
+        "width": 280,
+        "color": 4
+      },
+      "name": "Download Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3240,
+        -20
+      ],
+      "id": "ab610477-951a-4028-bb6d-6a2786e51f03"
+    },
+    {
+      "parameters": {
+        "fromEmail": "contact@canigouia.fr",
+        "toEmail": "={{ $('Webhook_Valid').item.json.email }}",
+        "subject": "={{ $('Définir Objet Email').item.json.objet }}",
+        "text": "={{ $('Définir Corps Email').item.json.corps }}",
+        "attachments": "data",
+        "options": {}
+      },
+      "name": "Envoyer Email Client",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        3940,
+        160
+      ],
+      "id": "436e3797-0fca-49e0-b12b-cec5f2086d7e",
+      "credentials": {
+        "smtp": {
+          "id": "cp0zatHnRJtBnlTG",
+          "name": "SMTP account Hostinger CanigouIA"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "## REPONSE A ROUNDED\n\n",
+        "height": 300
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2020,
+        -140
+      ],
+      "typeVersion": 1,
+      "id": "83146a8b-28bb-45e6-9b2b-d0ad5269707c",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "## Préparation SMS\n* Définit le corps du message\n* Personnalise avec le nom du client\n* Inclut les coordonnées et signature",
+        "height": 440,
+        "width": 420
+      },
+      "name": "Email Content Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3060,
+        460
+      ],
+      "id": "44ff5625-4673-4945-9ad9-ce6f38ce1855"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://eu.api.ovh.com/1.0/sms/smpp-dt250220-1/jobs",
+        "sendHeaders": true,
+        "specifyHeaders": "=X-Ovh-Application: 35b8c54c6e204f67\nX-Ovh-Consumer: c14c1bcd285619f1e814ec96dd23b7fd\nContent-Type: application/json\n",
+        "headerParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "sendBody": true,
+        "contentType": "={\n  \"message\": \"{{ $json.sms }}\",\n  \"receivers\": [\"+33600000000\"],\n  \"priority\": \"high\",\n  \"sender\": \"CanigouIA\"\n}\n",
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3640,
+        620
+      ],
+      "id": "137a927a-4000-4cd1-8c4b-16edca9817c1",
+      "name": "SmsConfiguration",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "## Configuration Noeud OVH\n* Récupère identifiant\n* les variables",
+        "height": 440,
+        "width": 280,
+        "color": 4
+      },
+      "name": "Download Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3480,
+        460
+      ],
+      "id": "af6806c8-6b4c-4fae-aef0-3f7500c6903a"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3f3b4381-e9dd-40a9-995c-a4cab59e151e",
+              "name": "sms",
+              "value": "=Merci pour votre intérêt pour CanigouIA.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3080,
+        620
+      ],
+      "id": "7c27c6a5-448f-4900-a0d3-5408abe4c0e8",
+      "name": "Corps_SMS",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const crypto = require('crypto');\n\nconst applicationSecret = 'TON_APPLICATION_SECRET';\nconst applicationKey = '35b8c54c6e204f67';\nconst consumerKey = 'c14c1bcd285619f1e814ec96dd23b7fd';\nconst httpMethod = 'POST';\nconst url = '/sms/{SERVICE_NAME}/jobs';\nconst body = JSON.stringify({\n  charset: 'UTF-8',\n  message: `Votre réservation au CanigouIA est confirmée pour le ${$json.date} à ${$json.heure}.`,\n  noStopClause: true,\n  priority: 'high',\n  receivers: [$json.telephone],\n  sender: 'CanigouIA'\n});\nconst timestamp = Math.floor(Date.now() / 1000);\n\nconst toSign = [\n  applicationSecret,\n  consumerKey,\n  httpMethod,\n  `https://eu.api.ovh.com/1.0${url}`,\n  body,\n  timestamp\n].join('+');\n\nconst signature = `$1$${crypto.createHash('sha1').update(toSign).digest('hex')}`;\n\nreturn [\n  {\n    json: {\n      timestamp,\n      signature,\n      body,\n      url,\n    },\n  },\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3280,
+        620
+      ],
+      "id": "0d967150-4ea9-4a0b-a96d-9cd847b5f96f",
+      "name": "signature_sms",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b888ac7c-9d0b-485d-b6ac-c782b717d5db",
+              "name": "telephone_final",
+              "value": "={{ $json.telephone && $json.telephone.trim() !== '' ? $json.telephone : $json.telephone_origin }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        300,
+        -100
+      ],
+      "id": "997b8dc3-8343-46d1-ae1c-8e379508620a",
+      "name": "Définir téléphone final"
+    },
+    {
+      "parameters": {
+        "content": "## Définir le téléphone d'appel\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n*téléphone fourni par l'appelant* sinon le téléphone de l'appel",
+        "height": 460,
+        "width": 340,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        140,
+        -180
+      ],
+      "typeVersion": 1,
+      "id": "80c45803-78fd-4666-b197-fef3867c9c38",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "jsCode": "const crypto = require('crypto');\n\n// Remplacer par tes informations d'identification OVH\nconst applicationSecret = 'ab7e77321aa69623f4a910fa511705d3';\nconst applicationKey = '35b8c54c6e204f67';\nconst consumerKey = 'c14c1bcd285619f1e814ec96dd23b7fd';\nconst serviceName = 'smpp-dt250220-1'; // Ton nom de service SMPP OVH\n\nconst httpMethod = 'POST';\nconst url = `/sms/${serviceName}/jobs`;\n\n// Format du numéro de téléphone\nlet telephone = $json.telephone_sms;\n// Si le numéro ne commence pas par +, ajouter +33 et enlever le premier 0\nif (telephone && !telephone.startsWith('+')) {\n  if (telephone.startsWith('0')) {\n    telephone = '+33' + telephone.substring(1);\n  } else {\n    telephone = '+33' + telephone;\n  }\n}\n\n// Préparation du corps de la requête\nconst requestBody = {\n  charset: 'UTF-8',\n  message: $json.sms,\n  noStopClause: true,\n  priority: 'high',\n  receivers: [telephone],\n  sender: 'CanigouIA'\n};\n\nconst body = JSON.stringify(requestBody);\nconst timestamp = Math.floor(Date.now() / 1000);\n\n// Création de la signature selon les spécifications OVH\nconst toSign = [\n  applicationSecret,\n  consumerKey,\n  httpMethod,\n  `https://eu.api.ovh.com/1.0${url}`,\n  body,\n  timestamp\n].join('+');\n\nconst signature = `$1$${crypto.createHash('sha1').update(toSign).digest('hex')}`;\n\nreturn {\n  json: {\n    timestamp,\n    signature,\n    body: requestBody,\n    url: `https://eu.api.ovh.com/1.0${url}`,\n    telephone,\n    applicationKey,\n    consumerKey\n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3560,
+        1100
+      ],
+      "id": "7f86014f-290a-4f18-b3ae-858b74a5ddc1",
+      "name": "Préparer Signature SMS",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.ovh_url }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Ovh-Application",
+              "value": "={{ $json.applicationKey }}"
+            },
+            {
+              "name": "X-Ovh-Consumer",
+              "value": "={{ $json.consumerKey }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "X-Ovh-Timestamp",
+              "value": "={{ $json.timestamp }}"
+            },
+            {
+              "name": "X-Ovh-Signature",
+              "value": "={{ $json.signature }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=$json.body",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3820,
+        1100
+      ],
+      "id": "ae4f522e-ae03-4444-9acc-dc11211bf786",
+      "name": "Envoyer SMS via OVH",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "## Configuration OVH SMPP\n* Génère signature d'authentification\n* Prépare l'en-tête et le corps de la requête\n* Formate le numéro de téléphone",
+        "height": 440,
+        "width": 520,
+        "color": 4
+      },
+      "name": "OVH SMPP Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3500,
+        940
+      ],
+      "id": "51e17ac7-c2c0-4761-a10d-3a924b4a5eec"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "sms-status-id",
+              "name": "status",
+              "value": "={{ $json }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        4120,
+        1100
+      ],
+      "id": "c26cefad-3ef1-4ea5-bcce-70b602689508",
+      "name": "Statut SMS",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "## Préparation SMS\n* Définit le corps du message\n* Personnalise avec le nom du client\n* Inclut les coordonnées et signature",
+        "height": 440,
+        "width": 420
+      },
+      "name": "Email Content Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3060,
+        940
+      ],
+      "id": "b3af8080-df73-467b-8d5a-f8ffd89145e3"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3f3b4381-e9dd-40a9-995c-a4cab59e151e",
+              "name": "sms",
+              "value": "=Mme ou M {{ $('Webhook2').item.json.body.nom }}, Merci pour votre intérêt pour CanigouIA. Votre réservation pour {{ $('Webhook2').item.json.body.personnes }} personnes le {{ $('Webhook2').item.json.body.date }} à {{ $('Webhook2').item.json.body.heure }} est faite. Vos demandes spécifiques : {{ $('Webhook2').item.json.body.desirs }}\n🗓️ Envie de voir ce que ça donnerait pour votre entreprise ? Réservez un diagnostic 100% offert (30 min) ici : https://calendly.com/canigouia/30min",
+              "type": "string"
+            },
+            {
+              "id": "telefon-number-id",
+              "name": "telephone_sms",
+              "value": "={{ $json.fields.Telephone_Resa }}",
+              "type": "string"
+            },
+            {
+              "id": "69659069-fc78-4462-a316-1bf748ef609b",
+              "name": "ovh_url",
+              "value": "https://eu.api.ovh.com/1.0/sms/smpp-dt250220-1/jobs",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3100,
+        1100
+      ],
+      "id": "d2b4be92-b83c-49bc-8036-7a1d82df34a9",
+      "name": "Corps_SMS1",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "37570bb4-8370-456c-a212-5fdcc6bca47b",
+              "leftValue": "={{ $json.fields.Telephone_Resa }}",
+              "rightValue": "+336",
+              "operator": {
+                "type": "string",
+                "operation": "startsWith"
+              }
+            },
+            {
+              "id": "7796d77f-b480-4f94-ab86-5169d7cb254b",
+              "leftValue": "={{ $json.fields.Telephone_Resa }}",
+              "rightValue": "+337",
+              "operator": {
+                "type": "string",
+                "operation": "startsWith"
+              }
+            },
+            {
+              "id": "06d6b510-70c4-401a-81d3-6c114c3a96e3",
+              "leftValue": "={{ $json.fields.Telephone_Resa }}",
+              "rightValue": "06",
+              "operator": {
+                "type": "string",
+                "operation": "startsWith"
+              }
+            },
+            {
+              "id": "06e07631-915f-4e0b-858f-438482fa08fb",
+              "leftValue": "={{ $json.fields.Telephone_Resa }}",
+              "rightValue": "07",
+              "operator": {
+                "type": "string",
+                "operation": "startsWith"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2820,
+        640
+      ],
+      "id": "91278d5e-ecec-4381-b13a-e24ddeb51464",
+      "name": "Si numero mobile -> sms"
+    },
+    {
+      "parameters": {
+        "content": "## Condition si SMS",
+        "height": 220,
+        "width": 300,
+        "color": 5
+      },
+      "name": "Email Content Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2740,
+        580
+      ],
+      "id": "e73f636d-45c1-48e6-9b89-bd175de35bc1"
+    }
+  ],
+  "pinData": {
+    "Webhook2": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.catafs.eu",
+            "user-agent": "python-httpx/0.28.1",
+            "content-length": "312",
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, zstd",
+            "baggage": "sentry-trace_id=d699dead3da74366b6c75fa1ba50eeb2,sentry-environment=production,sentry-public_key=35adeb2ba94f1d285a75efdc462d0321,sentry-sample_rate=1.0,sentry-sampled=true",
+            "content-type": "application/json",
+            "sentry-trace": "d699dead3da74366b6c75fa1ba50eeb2-8dcb0abfd942adaa-1",
+            "x-forwarded-for": "20.74.39.213",
+            "x-forwarded-host": "n8n.catafs.eu",
+            "x-forwarded-proto": "https"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "nom": "Dion",
+            "date": "2025-04-09",
+            "heure": "21:00",
+            "personnes": "2",
+            "telephone": "",
+            "type": "tool_call",
+            "tool_name": "ReserveTable",
+            "call_id": "9a689dac-ea9c-4d9a-970b-ba4ec4eaaf35",
+            "telephone_origin": "+33675572154",
+            "email": "C-H-I-E-2-R-Y-D-I-O",
+            "Resa_ID": "",
+            "desirs": "Table dans un coin calme"
+          },
+          "webhookUrl": "https://n8n.catafs.eu/webhook/84b2ae14-1a68-4881-ad40-932a77d058e8",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "CanigouIA",
+  "repo_owner": "terryble66",
+  "repo_path": "2025/03/wlEdFiIJj1o2kg9n.json",
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Paris",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-30T07:27:39.922Z",
+  "versionId": "b369ca47-5fd7-4851-8db3-e1633a024aa1"
+}
