@@ -1,0 +1,978 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Récupérer Brochure": {
+      "main": [
+        [
+          {
+            "node": "Télécharger Brochure",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Télécharger Brochure": {
+      "main": [
+        [
+          {
+            "node": "Envoyer Email Client",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Définir Objet Email Annulation",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Définir Corps Email Annulation",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Définir Objet Email Modification",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Définir Corps Email Modification",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Définir Objet Email Specifique",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Définir Corps Email Specifique",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Définir Objet Email Specifique",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Définir Corps Email Specifique",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Définir Objet Email recrutement",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Définir Objet Email Annulation": {
+      "main": [
+        [
+          {
+            "node": "Merge objets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Définir Corps Email Annulation": {
+      "main": [
+        [
+          {
+            "node": "Merge Corps",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Définir Objet Email Specifique": {
+      "main": [
+        [
+          {
+            "node": "Merge objets",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Définir Corps Email Specifique": {
+      "main": [
+        [
+          {
+            "node": "Merge Corps",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Définir Objet Email Modification": {
+      "main": [
+        [
+          {
+            "node": "Merge objets",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Définir Corps Email Modification": {
+      "main": [
+        [
+          {
+            "node": "Merge Corps",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Envoyer Email Client": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Consolider Variables Email": {
+      "main": [
+        [
+          {
+            "node": "Récupérer Brochure",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge Corps": {
+      "main": [
+        [
+          {
+            "node": "Merge for Email",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge objets": {
+      "main": [
+        [
+          {
+            "node": "Merge for Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge for Email": {
+      "main": [
+        [
+          {
+            "node": "Consolider Variables Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Définir Objet Email recrutement": {
+      "main": [
+        [
+          {
+            "node": "Définir Corps Email recrutement",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge objets",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "Définir Corps Email recrutement": {
+      "main": [
+        [
+          {
+            "node": "Merge Corps",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-03T12:39:44.867Z",
+  "id": "WVem46vvZ2CI8djz",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "CANIGOUIA.S.Vocal.#1-4.specifiqueRestaurant.PROD",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "69c71c1e-1297-444e-aa3c-8cdfaace858e",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -240,
+        140
+      ],
+      "id": "5e775244-a537-4fcd-bbf8-5fd47f8c1a81",
+      "name": "Webhook",
+      "webhookId": "69c71c1e-1297-444e-aa3c-8cdfaace858e"
+    },
+    {
+      "parameters": {
+        "content": "## Préparation Email selon l'objectif\n* Définit l'objet et le corps du message\n* Personnalise avec le nom du client\n* Inclut les coordonnées et signature ",
+        "height": 680,
+        "width": 420
+      },
+      "name": "Email Content Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        220,
+        -160
+      ],
+      "id": "bb019510-20ca-4f7d-a372-1967445709de"
+    },
+    {
+      "parameters": {
+        "fromEmail": "contact@canigouia.fr",
+        "toEmail": "={{ $('Webhook1').item.json.email }}",
+        "ccEmail": "catafs.si@gmail.com",
+        "subject": "={{ $('Consolider Variables Email').item.json.objet_final }}",
+        "text": "={{ $('Consolider Variables Email').item.json.corps_final }}",
+        "attachments": "data",
+        "options": {}
+      },
+      "name": "Envoyer Email Client",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        2100,
+        40
+      ],
+      "id": "7342ef17-97a8-4442-a10e-0064162af7c5",
+      "credentials": {
+        "smtp": {
+          "id": "cp0zatHnRJtBnlTG",
+          "name": "SMTP account Hostinger CanigouIA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Téléchargement Brochure\n* Récupère le fichier PDF depuis l'URL Airtable\n* Stocke en binaire pour pouvoir l'envoyer par email",
+        "height": 440,
+        "width": 360,
+        "color": 4
+      },
+      "name": "Download Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1580,
+        -160
+      ],
+      "id": "78b1814e-8c93-40d8-80d9-dbc536b453dc"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.Document[0].url }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "name": "Télécharger Brochure",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1800,
+        40
+      ],
+      "id": "aacfc3c7-39b6-47fa-8beb-901e18275dda"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appfYhSgpp4bA592e",
+          "mode": "list",
+          "cachedResultName": "Gestion Table Restaurant"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblvEGHl3SizlKrGc",
+          "mode": "list",
+          "cachedResultName": "Documentation"
+        },
+        "filterByFormula": "={Status} =  \"Utiliser\"",
+        "options": {}
+      },
+      "name": "Récupérer Brochure",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        1620,
+        40
+      ],
+      "id": "4e58a419-de74-4cc1-a530-7d7c2aa74997",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "zYVUtJkQEXl8AiSy",
+          "name": "Airtable catafs.si"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Récupérer Brochure\n* Récupère le fichier PDF depuis l'URL Airtable\n* Stocke en binaire pour pouvoir l'envoyer par email \n",
+        "height": 680,
+        "width": 280,
+        "color": 4
+      },
+      "name": "Download Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        640,
+        -160
+      ],
+      "id": "3cd22044-3dee-4afd-8f3f-93defa4f46a8"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.demande }}",
+                    "rightValue": "annulation",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "2d08805b-1d4c-4cee-9147-8daa181faf35"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "annulation"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "28677481-c3b8-4650-b3ad-b42e37fa1770",
+                    "leftValue": "={{ $json.demande }}",
+                    "rightValue": "modification",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "modification"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "7c0f0a57-56bc-4470-bbfd-4ea25d20ce33",
+                    "leftValue": "={{ $json.demande }}",
+                    "rightValue": "specifique",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "specifique"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "c5d081e7-aa44-4ae2-bf69-dcf38e923155",
+                    "leftValue": "={{ $json.demande }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "empty",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "none"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "1cd72ad3-b304-4f6d-910a-cb35aad004c9",
+                    "leftValue": "={{ $json.demande }}",
+                    "rightValue": "recrutement",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "recrutement"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        240,
+        120
+      ],
+      "id": "19d9bad0-5b95-4fb4-9562-26512ada980d",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "827ff6ef-84a7-44b3-ad37-37b99f3ea1bc",
+              "name": "objet",
+              "type": "string",
+              "value": "=🚫 Annulation de reservation demandée ❌"
+            },
+            {
+              "id": "8b97aa79-c2ae-4624-85cf-2189d14604f0",
+              "name": "Calendry",
+              "value": "https://calendly.com/canigouia/30min?",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Définir Objet Email Annulation",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        460,
+        -20
+      ],
+      "id": "bf831eab-b38a-41f5-a606-68141d593fe5"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d4d7e1d1-07c6-4e4e-a75c-0c0c85cf8d3c",
+              "name": "corps",
+              "type": "string",
+              "value": "=Bonjour Chef(fe) 🧑‍🍳\n\nVous avez reçue une demande d'annulation pour la réservation n°{{ $('Webhook1').item.json.resa_ID }} au nom de {{ $('Webhook1').item.json.nom }}. \nLe numéro d'appel est le : {{ $('Webhook1').item.json.num_appel }}\nMerci de la prendre en compte chef(fe)🧑‍🍳.\n\n---------\n\nMerci pour votre intérêt pour CanigouIA — notre assistant vocal 24/7 a bien pris en compte votre demande.\n\nVeuillez trouver notre eBook 📘 :\n\nCe guide vous montre comment :\n- Des solutions concrètes pour booster l'avtivitées\n- Se désengager des taches pénibles\n- Des choix optimisés pour vos communcations clients\n\n🎯 Bonus : Nous pouvons également analyser votre activité, Mme ou M {{ $('Webhook1').item.json.nom }}.\nIl est fort probable que **3 de vos processus clés puissent être automatisés dès maintenant** (devis, relances, gestion RDV…).\n\nVous doutez ? tester notre calculatrice de retour sur investissement:\nhttps://www.canigouia.fr/nos-ressources/#ROI\n\n🗓️ **Envie de voir ce que ça donnerait pour votre entreprise Mme ou M ,{{ $('Webhook1').item.json.nom }} ?**  \nRéservez un diagnostic 100% offert (30 min) ici : \n{{ $json.Calendry }}\n\nAu plaisir d’échanger avec vous et de libérer du temps pour ce qui compte vraiment.\n\n🛡️ Vos données sont traitées avec soin, hébergées en France et conformes au RGPD.\nBien cordialement,  \nThierry Dion-Fajal\nCanigouIA\nTél: 09 74 99 70 28\nEmail: contact@canigouia.fr\nSite: www.canigouia.fr"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Définir Corps Email Annulation",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        680,
+        -20
+      ],
+      "id": "d04af6c7-e449-4b30-8b34-922d3534b4b3"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "827ff6ef-84a7-44b3-ad37-37b99f3ea1bc",
+              "name": "objet",
+              "type": "string",
+              "value": "=🎁 Demande spécifique en approche 🚀"
+            },
+            {
+              "id": "8b97aa79-c2ae-4624-85cf-2189d14604f0",
+              "name": "Calendry",
+              "value": "https://calendly.com/canigouia/30min?",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Définir Objet Email Specifique",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        460,
+        340
+      ],
+      "id": "f7036e61-ebc9-48f6-85a7-b7ae335eeeaa"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d4d7e1d1-07c6-4e4e-a75c-0c0c85cf8d3c",
+              "name": "corps",
+              "type": "string",
+              "value": "=Bonjour Chef(fe)🧑‍🍳\n\n{{ $('Webhook1').item.json.nom }} a envoyé une demande particulière :\n\"{{ $('Webhook1').item.json.desirs }}\". \n\nPouvez-vous le ou la rappeller au {{ $('Webhook1').item.json.num_appel }} dans les plus bref delais.\n\nMerci chef(fe)🧑‍🍳\n\n-----------\nMerci pour votre intérêt pour CanigouIA — notre assistant vocal 24/7 a bien pris en compte votre demande.\n\nVeuillez trouver notre eBook 📘 :\n\nCe guide vous montre comment :\n- Des solutions concrètes pour booster l'avtivitées\n- Se désengager des taches pénibles\n- Des choix optimisés pour vos communcations clients\n\n🎯 Bonus : Nous pouvons également analyser votre activité, Mme ou M {{ $('Webhook1').item.json.nom }}.\nIl est fort probable que **3 de vos processus clés puissent être automatisés dès maintenant** (devis, relances, gestion RDV…).\n\n🗓️ **Envie de voir ce que ça donnerait pour votre entreprise Mme ou M ,{{ $('Webhook1').item.json.nom }} ?**  \nRéservez un diagnostic 100% offert (30 min) ici : \n{{ $json.Calendry }}\n\nAu plaisir d’échanger avec vous et de libérer du temps pour ce qui compte vraiment.\n\n🛡️ Vos données sont traitées avec soin, hébergées en France et conformes au RGPD.\nBien cordialement,  \nThierry Dion-Fajal\nCanigouIA\nTél: 09 74 99 70 28\nEmail: contact@canigouia.fr\nSite: www.canigouia.fr"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Définir Corps Email Specifique",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        680,
+        340
+      ],
+      "id": "6510061b-6f2f-4f8b-9406-0ab579229d5c"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "827ff6ef-84a7-44b3-ad37-37b99f3ea1bc",
+              "name": "objet",
+              "type": "string",
+              "value": "=🗓️ Modificatin de Réservation"
+            },
+            {
+              "id": "8b97aa79-c2ae-4624-85cf-2189d14604f0",
+              "name": "Calendry",
+              "value": "https://calendly.com/canigouia/30min?",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Définir Objet Email Modification",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        500,
+        180
+      ],
+      "id": "9d09ed8d-98fe-4111-9de1-dee7b6f0e84d"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d4d7e1d1-07c6-4e4e-a75c-0c0c85cf8d3c",
+              "name": "corps",
+              "type": "string",
+              "value": "=Bonjour Chef(fe)🧑‍🍳\n\nUne demande de modification a été faite pour la réservation n° {{ $('Webhook1').item.json.resa_ID }} au nom de {{ $('Webhook1').item.json.nom }}. \nLe numéro d'appel est le : {{ $('Webhook1').item.json.num_appel }}\n\nMerci de la prendre en compte chef(fe)🧑‍🍳.\n-----------\nMerci pour votre intérêt pour CanigouIA — notre assistant vocal 24/7 a bien pris en compte votre demande.\n\nVeuillez trouver notre eBook 📘 :\n\nCe guide vous montre comment :\n- Des solutions concrètes pour booster l'avtivitées\n- Se désengager des taches pénibles\n- Des choix optimisés pour vos communcations clients\n\n🎯 Bonus : Nous pouvons également analyser votre activité, Mme ou M {{ $('Webhook1').item.json.nom }}.\nIl est fort probable que **3 de vos processus clés puissent être automatisés dès maintenant** (devis, relances, gestion RDV…).\n\n🗓️ **Envie de voir ce que ça donnerait pour votre entreprise Mme ou M ,{{ $('Webhook1').item.json.nom }} ?**  \nRéservez un diagnostic 100% offert (30 min) ici : \n{{ $json.Calendry }}\n\nAu plaisir d’échanger avec vous et de libérer du temps pour ce qui compte vraiment.\n\n🛡️ Vos données sont traitées avec soin, hébergées en France et conformes au RGPD.\nBien cordialement,  \nThierry Dion-Fajal\nCanigouIA\nTél: 09 74 99 70 28\nEmail: contact@canigouia.fr\nSite: www.canigouia.fr"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Définir Corps Email Modification",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        680,
+        160
+      ],
+      "id": "01e09ed4-1a44-4b5a-bee5-c359575652d9"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"results\": [\n    {\n      \"toolCallId\": \"{{ $('Webhook_Valid').first().json.call_id }}\",\n      \"result\": \"email:true\"\n    }\n  ]\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        2320,
+        40
+      ],
+      "id": "610fcb0d-eb12-44d7-b216-11a8339f6bc5",
+      "name": "Respond to Webhook",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "182ca9dd-ac48-418d-bcd0-c6aaf0100444",
+              "name": "demande",
+              "value": "={{ $json.body.demande }}",
+              "type": "string"
+            },
+            {
+              "id": "dab2de61-2af0-4bb3-827d-10d14236cfed",
+              "name": "tool_name",
+              "value": "={{ $json.body.tool_name }}",
+              "type": "string"
+            },
+            {
+              "id": "32175860-b23f-464a-81e9-62add58b2ae0",
+              "name": "num_appel",
+              "value": "={{ $json.body.num_appel }}",
+              "type": "string"
+            },
+            {
+              "id": "95370c4e-f7cc-46c1-be6a-8badfef12291",
+              "name": "telephone",
+              "value": "={{ $json.body.telephone }}",
+              "type": "string"
+            },
+            {
+              "id": "8a1cb92c-74f3-4239-8928-06347c17f7da",
+              "name": "call_ID",
+              "value": "={{ $json.body.call_ID }}",
+              "type": "string"
+            },
+            {
+              "id": "2570afb1-fc20-40d1-83b1-586174d23582",
+              "name": "nom",
+              "value": "={{ $json.body.nom }}",
+              "type": "string"
+            },
+            {
+              "id": "f2b0eb16-8850-4cb8-9ca2-6671ae26a92f",
+              "name": "resa_ID",
+              "value": "={{ $json.body.resa_ID }}",
+              "type": "string"
+            },
+            {
+              "id": "bb3a1563-8dfa-42c0-b365-13118b68ff4c",
+              "name": "date",
+              "value": "={{ $json.body.date }}",
+              "type": "string"
+            },
+            {
+              "id": "3f1d72fa-47f5-47a4-a976-61b450a69089",
+              "name": "heure",
+              "value": "={{ $json.body.heure }}",
+              "type": "string"
+            },
+            {
+              "id": "88033691-a37e-405c-9318-7241caf63c63",
+              "name": "desirs",
+              "value": "={{ $json.body.desirs }}",
+              "type": "string"
+            },
+            {
+              "id": "778f6119-6383-4d38-aaa4-89faa32abe25",
+              "name": "personnes",
+              "value": "={{ $json.body.personnes }}",
+              "type": "string"
+            },
+            {
+              "id": "a94443c7-82c2-47ab-b5c5-03f875ce68d6",
+              "name": "email",
+              "value": "={{ $json.body.email }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -20,
+        140
+      ],
+      "id": "6546d0ef-65a2-447d-a48f-0b132934bda7",
+      "name": "Webhook1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "06b9c825-57e2-4542-adeb-7a43627334b9",
+              "name": "objet_final",
+              "value": "={{ $json.objet }}",
+              "type": "string"
+            },
+            {
+              "id": "f81b84f5-3c27-401d-84b3-8a7f92526f7a",
+              "name": "corps_final",
+              "value": "={{ $json.corps }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1420,
+        60
+      ],
+      "id": "efe299b0-7b46-4d19-b308-37bf00347aa9",
+      "name": "Consolider Variables Email"
+    },
+    {
+      "parameters": {
+        "numberInputs": 4
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.1,
+      "position": [
+        1040,
+        300
+      ],
+      "id": "2068e3dc-6178-46df-b252-1ff7de14a543",
+      "name": "Merge Corps"
+    },
+    {
+      "parameters": {
+        "numberInputs": 4
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.1,
+      "position": [
+        1040,
+        20
+      ],
+      "id": "c9990091-2a0f-4ae7-a19e-7f35836a10ad",
+      "name": "Merge objets"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.1,
+      "position": [
+        1200,
+        120
+      ],
+      "id": "6f85f991-50af-4e88-87e2-37e9d1465f54",
+      "name": "Merge for Email"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "827ff6ef-84a7-44b3-ad37-37b99f3ea1bc",
+              "name": "objet",
+              "type": "string",
+              "value": "=🎉 Bonne nouvelle : vous pouvez maintenant recruter notre IA pour votre entreprise !"
+            },
+            {
+              "id": "8b97aa79-c2ae-4624-85cf-2189d14604f0",
+              "name": "Calendry",
+              "value": "https://calendly.com/canigouia/30min?",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Définir Objet Email recrutement",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        480,
+        560
+      ],
+      "id": "32fa12e3-b295-409c-a0d8-2b7529953415"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d4d7e1d1-07c6-4e4e-a75c-0c0c85cf8d3c",
+              "name": "corps",
+              "type": "string",
+              "value": "=Bonjour,\n\nVous avez testé notre IA avec succès… et il est temps de passer à l'étape suivante ! 🚀  \nVoici votre proposition personnalisée pour intégrer notre assistante intelligente dans votre quotidien pro.\n\n📄 Découvrez notre offre → il ne reste plus qu’à valider !\n\n-----------\nMerci pour votre intérêt pour CanigouIA — notre assistant vocal 24/7 a bien pris en compte votre demande.\n\nVeuillez trouver notre eBook 📘 :\n\nCe guide vous montre comment :\n- Des solutions concrètes pour booster l'avtivitées\n- Se désengager des taches pénibles\n- Des choix optimisés pour vos communcations clients\n\n🎯 Bonus : Nous pouvons également analyser votre activité, Mme ou M {{ $('Webhook1').item.json.nom }}.\nIl est fort probable que **3 de vos processus clés puissent être automatisés dès maintenant** (devis, relances, gestion RDV…).\n\n🗓️ **Envie de voir ce que ça donnerait pour votre entreprise Mme ou M ,{{ $('Webhook1').item.json.nom }} ?**  \nRéservez un diagnostic 100% offert (30 min) ici : \n{{ $json.Calendry }}\n\nAu plaisir d’échanger avec vous et de libérer du temps pour ce qui compte vraiment.\n\n🛡️ Vos données sont traitées avec soin, hébergées en France et conformes au RGPD.\nBien cordialement,  \nThierry Dion-Fajal\nCanigouIA\nTél: 09 74 99 70 28\nEmail: contact@canigouia.fr\nSite: www.canigouia.fr"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Définir Corps Email recrutement",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        700,
+        560
+      ],
+      "id": "5e12c620-57cc-4461-9404-3e876c19f70a"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.catafs.eu",
+            "user-agent": "python-httpx/0.28.1",
+            "content-length": "330",
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, zstd",
+            "content-type": "application/json",
+            "x-forwarded-for": "20.199.0.85",
+            "x-forwarded-host": "n8n.catafs.eu",
+            "x-forwarded-proto": "https"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "tool_name": "modifrdv",
+            "num_appel": "+33123456789",
+            "resa_ID": null,
+            "email": "",
+            "heure": null,
+            "desirs": "Je voudrais t'embaucher pour mon assistance de support technique.",
+            "call_ID": "2d8e1ed8-9b25-47a9-b060-10caf4437ebb",
+            "nom": "Dion",
+            "personnes": null,
+            "date": null,
+            "telephone": "0675572154",
+            "demande": "recrutement"
+          },
+          "webhookUrl": "https://n8n.catafs.eu/webhook/69c71c1e-1297-444e-aa3c-8cdfaace858e",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "CanigouIA",
+  "repo_owner": "terryble66",
+  "repo_path": "2025/04/WVem46vvZ2CI8djz.json",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-30T07:28:07.002Z",
+  "versionId": "1c171800-1924-4483-9c30-296cd852e4fd"
+}
