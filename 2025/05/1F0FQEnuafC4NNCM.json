@@ -1,0 +1,791 @@
+{
+  "active": true,
+  "connections": {
+    "Airtable - Enregistrer facture": {
+      "main": [
+        [
+          {
+            "node": "Archiver facture",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Extraire données facture",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extraire données facture": {
+      "main": [
+        [
+          {
+            "node": "Airtable - Enregistrer facture",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Télécharger la facture": {
+      "main": [
+        [
+          {
+            "node": "Upload to Mistral",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Déclencheur quotidien 9h00": {
+      "main": [
+        [
+          {
+            "node": "Google Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive": {
+      "main": [
+        [
+          {
+            "node": "Filtrer PDF non archivés1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Google Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filtrer PDF non archivés1": {
+      "main": [
+        [
+          {
+            "node": "Télécharger la facture",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload to Mistral": {
+      "main": [
+        [
+          {
+            "node": "Get Signed URL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Signed URL": {
+      "main": [
+        [
+          {
+            "node": "Get OCR Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get OCR Results": {
+      "main": [
+        [
+          {
+            "node": "Extraire données facture",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-09T17:58:29.257Z",
+  "id": "1F0FQEnuafC4NNCM",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "CanigouIA_Facture_Client_PROD",
+  "nodes": [
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {
+          "temperature": 0.1
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1940,
+        780
+      ],
+      "id": "2f686a34-f80c-4015-b01c-3179f26f36d6",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "34CHH48MlmPBcrFa",
+          "name": "OpenAi account personel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Enregistrement et Archivage\n- Enregistrement des données dans Airtable\n- Copie du fichier dans le dossier ARCHIVES avec suffixe .archive\n- Suppression du fichier original pour éviter les doublons",
+        "height": 504,
+        "width": 620
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2200,
+        380
+      ],
+      "id": "51f29604-b199-46f6-beff-c1ce15c3bbc4",
+      "name": "Note explicative - Archivage"
+    },
+    {
+      "parameters": {
+        "content": "## Traitement OCR avec Mistral AI\n- Upload du fichier PDF pour OCR\n- Vérification de l'état du traitement\n- Récupération du texte extrait par OCR\n- Utilisation d'OpenAI pour extraire les données structurées",
+        "height": 204,
+        "width": 780
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        140,
+        140
+      ],
+      "id": "9684145a-d769-4e6e-a574-e3d07f3004cb",
+      "name": "Note explicative - OCR"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appdBaUVmEgBAbgGd",
+          "mode": "list",
+          "cachedResultName": "Finance - CaningouIA V1"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblLhKxKidJL6Fsiq",
+          "mode": "list",
+          "cachedResultName": "📄 Factures",
+          "cachedResultUrl": "https://airtable.com/appdBaUVmEgBAbgGd/tblLhKxKidJL6Fsiq"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Montant HT": "={{ $json.output['Montant HT'] }}",
+            "TVA (%)": "={{ $json.output['TVA (%)'] }}",
+            "Montant TTC": "={{ $json.output['Montant TTC'] }}",
+            "ID Facture": "={{ $json.output['ID Facture'] }}",
+            "Projet lié": "={{ $json.output['Projet lié'] }}",
+            "Client": "={{ $json.output.Client }}",
+            "Statut": "Envoyée",
+            "Date d’echeance": "={{ $json.output['Date d\\'échéance'] }}",
+            "Moyen de paiement": "VIR"
+          },
+          "matchingColumns": [
+            "ID Facture"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true
+            },
+            {
+              "id": "ID Facture",
+              "displayName": "ID Facture",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Projet lié",
+              "displayName": "Projet lié",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Client",
+              "displayName": "Client",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Montant HT",
+              "displayName": "Montant HT",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "TVA (%)",
+              "displayName": "TVA (%)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Montant TTC",
+              "displayName": "Montant TTC",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Statut",
+              "displayName": "Statut",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Payée",
+                  "value": "Payée"
+                },
+                {
+                  "name": "Envoyée",
+                  "value": "Envoyée"
+                },
+                {
+                  "name": "En retard",
+                  "value": "En retard"
+                },
+                {
+                  "name": "A envoyée",
+                  "value": "A envoyée"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Date d’echeance",
+              "displayName": "Date d’echeance",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Date de paiement",
+              "displayName": "Date de paiement",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Moyen de paiement",
+              "displayName": "Moyen de paiement",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "VIR",
+                  "value": "VIR"
+                },
+                {
+                  "name": "CB",
+                  "value": "CB"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": true,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "typecast": true
+        }
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        2280,
+        600
+      ],
+      "id": "9c96e5fe-7189-4dfe-88a7-7e001ce10166",
+      "name": "Airtable - Enregistrer facture",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "zYVUtJkQEXl8AiSy",
+          "name": "Airtable catafs.si"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.pages[0].markdown }}",
+        "attributes": {
+          "attributes": [
+            {
+              "name": "ID Facture",
+              "description": "Identifiant unique de la facture, souvent au format FAC-XXXX ou similaire",
+              "required": true
+            },
+            {
+              "name": "Client",
+              "description": "Nom du client ou de l'entreprise cliente",
+              "required": true
+            },
+            {
+              "name": "Montant HT",
+              "type": "number",
+              "description": "Montant hors taxes",
+              "required": true
+            },
+            {
+              "name": "TVA (%)",
+              "type": "number",
+              "description": "Taux de TVA appliqué (généralement 20%, 10%, 5.5%, etc.)",
+              "required": true
+            },
+            {
+              "name": "Montant TTC",
+              "type": "number",
+              "description": "Montant total TTC de la facture",
+              "required": true
+            },
+            {
+              "name": "Projet lié",
+              "description": "Nom du projet associé à cette facture nomé Pxxx, il est mentionné dans Facture: FAC-Pxxx-xx",
+              "required": true
+            },
+            {
+              "name": "Date d'échéance",
+              "type": "date",
+              "description": "Date limite de paiement au format ISO : YYYY-MM-DD",
+              "required": true
+            },
+            {
+              "name": "Moyen de paiement",
+              "description": "Méthode de paiement spécifiée (virement, chèque, etc.)"
+            },
+            {
+              "name": "ID Facture",
+              "description": "N° de la facture nomée FAC-Pxxx-xx, elle est mentionnée après Facture: ",
+              "required": true
+            }
+          ]
+        },
+        "options": {
+          "systemPromptTemplate": "Tu es un expert en extraction d'informations de factures. Extrait les données demandées avec précision et ignore tout le reste."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1,
+      "position": [
+        1900,
+        600
+      ],
+      "id": "c292fadf-6289-4ace-ba7a-1bbfb381792a",
+      "name": "Extraire données facture"
+    },
+    {
+      "parameters": {
+        "content": "## Surveillance de Google Drive\n- Déclenchement quotidien à 9h00\n- Recherche des factures PDF uniquement\n- Ignore les fichiers déjà traités (marqués avec .archive)\n- Traitement de chaque facture individuellement",
+        "height": 204,
+        "width": 720
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        160,
+        440
+      ],
+      "id": "33a691d6-57ce-4656-8bdf-6fe374aae452",
+      "name": "Note explicative - Surveillance"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 2,
+      "position": [
+        700,
+        600
+      ],
+      "id": "98b91895-9d95-4df1-810e-c54af53125bb",
+      "name": "Télécharger la facture",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "fcut7SczYARuZtT8",
+          "name": "Google Drive account catafs.si"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -200,
+        620
+      ],
+      "id": "6898adf4-feba-4aee-b5dc-6f0145ba381e",
+      "name": "Déclencheur quotidien 9h00"
+    },
+    {
+      "parameters": {
+        "resource": "fileFolder",
+        "queryString": "FACTURE",
+        "returnAll": true,
+        "filter": {
+          "whatToSearch": "files"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        220,
+        620
+      ],
+      "id": "d75e0a31-789e-4cd8-b4ff-d8a6bbd30c65",
+      "name": "Google Drive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "fcut7SczYARuZtT8",
+          "name": "Google Drive account catafs.si"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -320,
+        400
+      ],
+      "id": "d3c0c4fc-0d8a-4c39-9d3a-f685b518e53c",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c2fecc15-e90d-4f0a-9e75-0a1930d40efe",
+              "leftValue": "={{ $json.name }}",
+              "rightValue": ".pdf",
+              "operator": {
+                "type": "string",
+                "operation": "endsWith"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        420,
+        620
+      ],
+      "id": "0c73fa06-ca6e-43de-94be-4ba74e019047",
+      "name": "Filtrer PDF non archivés1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.mistral.ai/v1/files",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "purpose",
+              "value": "ocr"
+            },
+            {
+              "parameterType": "formBinaryData",
+              "name": "file",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1100,
+        600
+      ],
+      "id": "e0d929ed-8cb0-4f1b-bc42-6336d1c93ff1",
+      "name": "Upload to Mistral",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "zFt8uN6Q4bhfCrdo",
+          "name": "CanigouIA_Mistral_OCR catafs.si"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://api.mistral.ai/v1/files/{{ $json.id }}/url",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "expiry",
+              "value": "24"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1340,
+        600
+      ],
+      "id": "39499176-f27a-4826-9fc5-fe01202e7b92",
+      "name": "Get Signed URL",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "zFt8uN6Q4bhfCrdo",
+          "name": "CanigouIA_Mistral_OCR catafs.si"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.mistral.ai/v1/ocr",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"mistral-ocr-latest\",\n  \"document\": {\n    \"type\": \"document_url\",\n    \"document_url\": \"{{ $json.url }}\"\n  },\n  \"include_image_base64\": true\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1600,
+        600
+      ],
+      "id": "e7849b46-4a30-476a-b9df-f98a1481fd03",
+      "name": "Get OCR Results",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "zFt8uN6Q4bhfCrdo",
+          "name": "CanigouIA_Mistral_OCR catafs.si"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Upload to Mistral : \nLe document téléchargé est envoyé à l'API Mistral AI via une requête HTTP POST. Le document est transmis avec le paramètre \"purpose: ocr\" pour indiquer qu'il sera utilisé pour la reconnaissance de texte.",
+        "height": 460,
+        "width": 200
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1060,
+        320
+      ],
+      "typeVersion": 1,
+      "id": "aa868f86-9c67-4723-a897-dafa3fe1032b",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "## Get Signed URL : \nUne fois le document téléchargé, le workflow récupère une URL signée qui donne accès temporaire au document (valable 24 heures) stocké sur les serveurs de Mistral.",
+        "height": 460
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1260,
+        320
+      ],
+      "typeVersion": 1,
+      "id": "e4a03c14-7478-46f8-8dd2-7b6a0d81b00a",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## Get OCR Results :\nFinalement, le workflow envoie une requête à l'endpoint OCR de Mistral avec l'URL signée du document. Le modèle \"mistral-ocr-latest\" est utilisé pour analyser le document et extraire le texte. Le paramètre \"include_image_base64: true\" indique que l'API doit également renvoyer les images du document encodées en base64.",
+        "height": 460
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1520,
+        320
+      ],
+      "typeVersion": 1,
+      "id": "94dd416c-dcde-49a7-a288-bded1516255e",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "operation": "move",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $('Télécharger la facture').item.json.id }}",
+          "mode": "id"
+        },
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1WUYeU8hoFekFQ5LjlKFn-ir-0GYE9MCn",
+          "mode": "list",
+          "cachedResultName": "ARCHIVES",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1WUYeU8hoFekFQ5LjlKFn-ir-0GYE9MCn"
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        2640,
+        600
+      ],
+      "id": "2e7e67a0-cdc5-4043-b90f-4a285ded3b68",
+      "name": "Archiver facture",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "fcut7SczYARuZtT8",
+          "name": "Google Drive account catafs.si"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "CanigouIA",
+  "repo_owner": "terryble66",
+  "repo_path": "2025/05/1F0FQEnuafC4NNCM.json",
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Paris",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "hYt10qucorpB2UbQ"
+  },
+  "staticData": {
+    "node:Déclencheur quotidien 9h00": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-05-12T16:30:08.721Z",
+  "versionId": "1d05415c-cbcd-43c3-9cef-e44ec4c227da"
+}
