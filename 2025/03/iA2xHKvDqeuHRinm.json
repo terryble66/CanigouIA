@@ -1,0 +1,1039 @@
+{
+  "active": true,
+  "connections": {
+    "Voiceflow Endpoint": {
+      "main": [
+        [
+          {
+            "node": "Extract email",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Rechercher Client1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Error Data": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook with Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract email": {
+      "main": [
+        [
+          {
+            "node": "Rechercher Client",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rechercher Client": {
+      "main": [
+        [
+          {
+            "node": "Client Existe?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Client Existe?": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook with Customer Data",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ajouter Nouveau Client",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ajouter Nouveau Client": {
+      "main": [
+        [
+          {
+            "node": "Set Error Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rechercher Client1": {
+      "main": [
+        [
+          {
+            "node": "Client Existe?1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Client Existe?1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Ajouter Nouveau Client1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-24T15:06:49.332Z",
+  "id": "iA2xHKvDqeuHRinm",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "CANIGOUIA.CRM.EBOOK.Voiceflow.Client.PROD",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "![voiceflow](https://uploads.n8n.io/templates/voiceflow.png)\n## Find Customer DEPUIS CHATBOT\nThis portion of the workflow queries the customer database and returns customer details to the AI agent if found. If not found, it returns NOT_FOUND for the customer details. ",
+        "height": 620,
+        "width": 1440,
+        "color": 7
+      },
+      "id": "f3d56d8a-b325-4bce-8952-e79422f339a2",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -240,
+        -40
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "d9b20efe-9bb4-4d8b-b9aa-d568f43f78ea",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "29e65727-f6c0-45f6-b503-afb687a3b6df",
+      "name": "Voiceflow Endpoint",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        100,
+        420
+      ],
+      "webhookId": "d9b20efe-9bb4-4d8b-b9aa-d568f43f78ea",
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "785f6074-60b9-4e3b-b436-20a5338e01f5",
+      "name": "Respond to Webhook with Customer Data",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "position": [
+        980,
+        320
+      ],
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "505fae12-24e8-4392-af16-57c2c71fde58",
+      "name": "Respond to Webhook with Error",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "position": [
+        1420,
+        520
+      ],
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1ec3d6bd-41d8-489b-8c52-73c88267e0bd",
+              "name": "row_number",
+              "type": "string",
+              "value": "NOT_FOUND"
+            },
+            {
+              "id": "bfd6215e-f4ed-4d75-b9ae-d5925f87eb98",
+              "name": "Name",
+              "type": "string",
+              "value": "NOT_FOUND"
+            },
+            {
+              "id": "e06fc869-57e7-4dc5-b563-4d093be654ab",
+              "name": "Email Address",
+              "type": "string",
+              "value": "NOT_FOUND"
+            },
+            {
+              "id": "ae1a429b-1c21-4dcb-bf68-e0c01732ec5e",
+              "name": "Tier",
+              "type": "string",
+              "value": "NOT_FOUND"
+            },
+            {
+              "id": "879369f3-79f7-4420-bcec-b72f67212297",
+              "name": "Phone Number",
+              "type": "string",
+              "value": "NOT_FOUND"
+            },
+            {
+              "id": "7ac92f60-85b7-4489-b838-1590c52f987e",
+              "name": "ebook",
+              "value": "true",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "41ee4f55-de68-4888-86e5-7ebdd92d23be",
+      "name": "Set Error Data",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1200,
+        520
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "90de9dcb-1ab6-43d6-999e-6672fbd81f2a",
+              "name": "query.email",
+              "type": "string",
+              "value": "={{ $json.body.email }}"
+            },
+            {
+              "id": "3da2b780-1bb6-4ced-a9eb-ae114cf88a79",
+              "name": "query.name",
+              "value": "={{ $json.body.name_first }}",
+              "type": "string"
+            },
+            {
+              "id": "06c52618-c17a-4b88-a938-a630094bf692",
+              "name": "query.phone",
+              "value": "={{ $json.body.phone_number }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0f1f5489-b414-405e-9b1e-2737b9a0db64",
+      "name": "Extract email",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        320,
+        420
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "content": "![voiceflow](https://uploads.n8n.io/templates/voiceflow.png)\n\n\n\n\n\n\n\n\n\n\n\n**Reponse du chatbot pour un ebook",
+        "height": 320
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        30,
+        260
+      ],
+      "typeVersion": 1,
+      "id": "e4d68fce-21e4-4909-9666-28e068af6529",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Verifie l'email du demendeur\n\n\n\n\n\n\n\n\n\n\n\n\n\n**Reponse du chatbot pour un ebook",
+        "height": 320,
+        "width": 540,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        210,
+        260
+      ],
+      "typeVersion": 1,
+      "id": "080e7fda-8d87-4460-9cc4-532cfdbdb089",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "##Client connu\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n**pas de client trouvé\nAjout dans le CRM",
+        "height": 320,
+        "width": 220,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1620,
+        180
+      ],
+      "typeVersion": 1,
+      "id": "7a10b488-c834-49b2-a3eb-20b40a428000",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "content": "LIEN: [BASE CRM](https://docs.google.com/spreadsheets/d/1vMPjyZaugtBMPgIjKiH6C7VEe47uaXbUcgsnOurrJmA/edit?gid=0#gid=0)"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1060,
+        720
+      ],
+      "typeVersion": 1,
+      "id": "649d4a90-b0b2-484f-be1b-6d62eed257ab",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appwzBJaStXL5hlJP",
+          "mode": "list",
+          "cachedResultName": "CRM - CaningouIA V1",
+          "cachedResultUrl": "https://airtable.com/appwzBJaStXL5hlJP"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblSTDnjAvNRiiJ5G",
+          "mode": "list",
+          "cachedResultName": "Clients",
+          "cachedResultUrl": "https://airtable.com/appwzBJaStXL5hlJP/tblSTDnjAvNRiiJ5G"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Ebook demandé": true,
+            "Ebook envoyé": false,
+            "Statut": "Nouveau",
+            "Email": "={{ $('Extract email').item.json.query.email }}",
+            "Téléphone Mobile": "={{ $('Extract email').item.json.query.phone }}",
+            "Nom du contact": "={{ $('Extract email').item.json.query.name }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "ID_Client",
+              "displayName": "ID_Client",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Statut",
+              "displayName": "Statut",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Client",
+                  "value": "Client"
+                },
+                {
+                  "name": "Prospect",
+                  "value": "Prospect"
+                },
+                {
+                  "name": "Contacté",
+                  "value": "Contacté"
+                },
+                {
+                  "name": "A répondu",
+                  "value": "A répondu"
+                },
+                {
+                  "name": "Nouveau",
+                  "value": "Nouveau"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Nom de l'entreprise",
+              "displayName": "Nom de l'entreprise",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Nom du contact",
+              "displayName": "Nom du contact",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Prénom du contact",
+              "displayName": "Prénom du contact",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Téléphone Mobile",
+              "displayName": "Téléphone Mobile",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Télélphone Fixe",
+              "displayName": "Télélphone Fixe",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Adresse",
+              "displayName": "Adresse",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Ville",
+              "displayName": "Ville",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Opportunités",
+              "displayName": "Opportunités",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Suivi Actions Clients",
+              "displayName": "Suivi Actions Clients",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Projets Clients",
+              "displayName": "Projets Clients",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "LinkedIn",
+              "displayName": "LinkedIn",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Faccebook",
+              "displayName": "Faccebook",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Instagram",
+              "displayName": "Instagram",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Tweeter (X)",
+              "displayName": "Tweeter (X)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Site web",
+              "displayName": "Site web",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Ebook demandé",
+              "displayName": "Ebook demandé",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Ebook envoyé",
+              "displayName": "Ebook envoyé",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "name": "Ajouter Nouveau Client",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        980,
+        520
+      ],
+      "id": "c1aeb075-b290-4ae9-b777-f54140d1886a",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "zYVUtJkQEXl8AiSy",
+          "name": "Airtable catafs.si"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Ajout Client\n* Ajoute un nouveau client dans Airtable\n* Attribue le statut NOUVEAU\n* Stocke nom et email",
+        "height": 400,
+        "width": 280
+      },
+      "name": "Ajout Client Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        890,
+        280
+      ],
+      "id": "5a9c543f-0c60-439d-bab7-7a5f6ec457f5"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appwzBJaStXL5hlJP",
+          "mode": "list",
+          "cachedResultName": "CRM - CaningouIA V1",
+          "cachedResultUrl": "https://airtable.com/appwzBJaStXL5hlJP"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblSTDnjAvNRiiJ5G",
+          "mode": "list",
+          "cachedResultName": "Clients",
+          "cachedResultUrl": "https://airtable.com/appwzBJaStXL5hlJP/tblSTDnjAvNRiiJ5G"
+        },
+        "filterByFormula": "={Email} =  \"{{ $json.query.email }}\"",
+        "options": {}
+      },
+      "name": "Rechercher Client",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        540,
+        420
+      ],
+      "id": "17f5e324-4936-4036-8f99-f322856b2a70",
+      "alwaysOutputData": true,
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "zYVUtJkQEXl8AiSy",
+          "name": "Airtable catafs.si"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "98f7e02b-5a6c-46d4-9e8c-f9d1a3c2b4e5",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              },
+              "leftValue": "={{ $json }}",
+              "rightValue": ""
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "name": "Client Existe?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        760,
+        420
+      ],
+      "id": "d067a0e0-1a3c-44a9-8055-869a395403b7",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "content": "## Condition Client\n* Si client existe: vérifier son statut\n* Si client n'existe pas: l'ajouter à la base",
+        "height": 320,
+        "width": 300
+      },
+      "name": "Condition Client Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        660,
+        260
+      ],
+      "id": "9ca84ea5-4b9c-4d12-b889-02ef9604d3a1"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appwzBJaStXL5hlJP",
+          "mode": "list",
+          "cachedResultName": "CRM - CaningouIA V1",
+          "cachedResultUrl": "https://airtable.com/appwzBJaStXL5hlJP"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblSTDnjAvNRiiJ5G",
+          "mode": "list",
+          "cachedResultName": "Clients",
+          "cachedResultUrl": "https://airtable.com/appwzBJaStXL5hlJP/tblSTDnjAvNRiiJ5G"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Statut": "Nouveau",
+            "Téléphone Mobile": "={{ $('Extract email').item.json.query.phone }}",
+            "Email": "={{ $('Extract email').item.json.query.email }}",
+            "Nom du contact": "={{ $('Extract email').item.json.query.name }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "ID_Client",
+              "displayName": "ID_Client",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Statut",
+              "displayName": "Statut",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Client",
+                  "value": "Client"
+                },
+                {
+                  "name": "Prospect",
+                  "value": "Prospect"
+                },
+                {
+                  "name": "Contacté",
+                  "value": "Contacté"
+                },
+                {
+                  "name": "A répondu",
+                  "value": "A répondu"
+                },
+                {
+                  "name": "Nouveau",
+                  "value": "Nouveau"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Nom de l'entreprise",
+              "displayName": "Nom de l'entreprise",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Nom du contact",
+              "displayName": "Nom du contact",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Prénom du contact",
+              "displayName": "Prénom du contact",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Téléphone Mobile",
+              "displayName": "Téléphone Mobile",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Téélphone Fixe",
+              "displayName": "Téélphone Fixe",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Adresse",
+              "displayName": "Adresse",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Ville",
+              "displayName": "Ville",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Opportunités",
+              "displayName": "Opportunités",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Suivi Actions Clients",
+              "displayName": "Suivi Actions Clients",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Projets Clients",
+              "displayName": "Projets Clients",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "name": "Ajouter Nouveau Client1",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        1180,
+        880
+      ],
+      "id": "1852d820-9e6e-40e6-a164-a97e10e2aafa",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "zYVUtJkQEXl8AiSy",
+          "name": "Airtable catafs.si"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appwzBJaStXL5hlJP",
+          "mode": "list",
+          "cachedResultName": "CRM - CaningouIA V1",
+          "cachedResultUrl": "https://airtable.com/appwzBJaStXL5hlJP"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblSTDnjAvNRiiJ5G",
+          "mode": "list",
+          "cachedResultName": "Clients",
+          "cachedResultUrl": "https://airtable.com/appwzBJaStXL5hlJP/tblSTDnjAvNRiiJ5G"
+        },
+        "filterByFormula": "={Email} =  \"{{ $json.query.email }}\"",
+        "options": {}
+      },
+      "name": "Rechercher Client1",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        340,
+        880
+      ],
+      "id": "c7e19878-05ed-43c0-a940-99d76d6301c4",
+      "alwaysOutputData": true,
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "zYVUtJkQEXl8AiSy",
+          "name": "Airtable catafs.si"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "98f7e02b-5a6c-46d4-9e8c-f9d1a3c2b4e5",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              },
+              "leftValue": "={{ $json }}",
+              "rightValue": ""
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "name": "Client Existe?1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        620,
+        880
+      ],
+      "id": "16f94d87-debf-4b48-85ed-f41efcc6863c",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "content": "## Vérification Client\n* Recherche si le client existe déjà\n* Selon résultat, ajoute nouveau client ou continue",
+        "height": 240,
+        "width": 280
+      },
+      "name": "Recherche Client Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        240,
+        740
+      ],
+      "id": "9e4d2a5f-622a-4087-9a41-ea978651e6b4"
+    },
+    {
+      "parameters": {
+        "content": "## Condition Client\n* Si client existe: vérifier son statut\n* Si client n'existe pas: l'ajouter à la base",
+        "height": 240,
+        "width": 280
+      },
+      "name": "Condition Client Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        560,
+        720
+      ],
+      "id": "1f9d44bc-38b6-48bb-9b55-71636a790c7a"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "CanigouIA",
+  "repo_owner": "terryble66",
+  "repo_path": "2025/03/iA2xHKvDqeuHRinm.json",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-30T07:29:31.454Z",
+  "versionId": "15123f45-7902-4bfc-8e52-3eeb69700bf0"
+}
