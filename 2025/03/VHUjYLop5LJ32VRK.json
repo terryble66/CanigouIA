@@ -1,0 +1,642 @@
+{
+  "active": true,
+  "connections": {
+    "Airtable Trigger": {
+      "main": [
+        [
+          {
+            "node": "Reservation Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "search_slot",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reservation Data": {
+      "main": [
+        [
+          {
+            "node": "Generatedreccords",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generatedreccords": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "search_slot": {
+      "main": [
+        [
+          {
+            "node": "Bloc slot",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Bloc slot": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-10T13:34:42.591Z",
+  "id": "VHUjYLop5LJ32VRK",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "CanigouIA.S.Vocal.#1-2 MaJ dispo Restaurant",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "authentication": "airtableTokenApi",
+        "baseId": {
+          "__rl": true,
+          "value": "appfYhSgpp4bA592e",
+          "mode": "id"
+        },
+        "tableId": {
+          "__rl": true,
+          "value": "tblN1LokzT8cmj4w7",
+          "mode": "id"
+        },
+        "triggerField": "Datemaj",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.airtableTrigger",
+      "typeVersion": 1,
+      "position": [
+        -320,
+        40
+      ],
+      "id": "123136d0-9c4f-4251-b1d6-e901112d108e",
+      "name": "Airtable Trigger",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "zYVUtJkQEXl8AiSy",
+          "name": "Airtable catafs.si"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        580,
+        40
+      ],
+      "id": "e3d1f02c-94c7-42c8-84c8-e620ccc9662b",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "Date",
+              "stringValue": "={{ $json.fields.Date }}"
+            },
+            {
+              "name": "Debut",
+              "stringValue": "={{ $json.fields.Heure }}"
+            },
+            {
+              "name": "Table_ID",
+              "stringValue": "={{ $json.fields.Table_ID }}"
+            },
+            {
+              "name": "Resa_ID",
+              "stringValue": "={{ $json.fields.Resa_ID }}"
+            }
+          ]
+        },
+        "include": "selected",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [
+        20,
+        40
+      ],
+      "name": "Reservation Data",
+      "id": "c0da0190-7ce6-4b21-8946-124033cd14c0"
+    },
+    {
+      "parameters": {
+        "content": "## Block 3 slots\n\nCe workflow bloque automatiquement 4 créneaux consécutifs (2 heures) lorsqu'une table est réservée. Il recherche d'abord les enregistrements existants dans la table des disponibilités, puis les met à jour individuellement pour les marquer comme indisponibles et y associer le numéro de réservation correspondant.",
+        "height": 340,
+        "width": 220,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -620,
+        -80
+      ],
+      "typeVersion": 1,
+      "id": "1fac87b9-4448-4f2f-822b-26b29e13d7bc",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "jsCode": "// On récupère la première entrée du Set précédent\nconst reservation = $input.first().json;\n\nconst startTime = reservation.Debut;      // Ex: \"19:30\"\nconst tableId = reservation.Table_ID;     // Ex: \"T1\"\nconst date = reservation.Date;            // Ex: \"2025-03-11\"\nconst resId = reservation.Resa_ID;        // Ex: \"RES20250311JEAN\"\n\n// Fonction pour calculer le prochain créneau (+30min)\nfunction getNextSlot(time) {\n  const [hours, minutes] = time.split(':').map(Number);\n  const dateObj = new Date();\n  dateObj.setHours(hours);\n  dateObj.setMinutes(minutes + 30);\n\n  const nextHours = String(dateObj.getHours()).padStart(2, '0');\n  const nextMinutes = String(dateObj.getMinutes()).padStart(2, '0');\n\n  return `${nextHours}:${nextMinutes}`;\n}\n\n// On crée une liste des horaires à bloquer\nlet timesToUpdate = [startTime];\nlet currentTime = startTime;\n\nfor (let i = 0; i < 3; i++) {\n  currentTime = getNextSlot(currentTime);\n  timesToUpdate.push(currentTime);\n}\n\n// On structure les données pour Airtable\nconst records = timesToUpdate.map(timeSlot => ({\n  \"Date\": date,\n  \"Time_Slot\": timeSlot,\n  \"Table_ID\": tableId,\n  \"Status\": \"Indisponible\",       // Respecte le statut de ta table \"Disponible\" / \"Indisponible\"\n  \"Num_Resa\": resId\n}));\n\nreturn records;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        300,
+        40
+      ],
+      "id": "45930468-3096-4117-b179-7bafccadd343",
+      "name": "Generatedreccords"
+    },
+    {
+      "parameters": {
+        "content": "## METTRE A JOUR LES SLOTS INDISPONIBLES\n\nLe processus en deux étapes (recherche puis mise à jour) assure que nous modifions uniquement les enregistrements existants sans créer de doublons. Cette approche est plus fiable que l'upsert qui peut échouer avec les champs de type dateTime d'Airtable.",
+        "height": 320,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -640,
+        -440
+      ],
+      "typeVersion": 1,
+      "id": "4e081ba9-3b23-40ff-a3cb-5264d4c613c5",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appfYhSgpp4bA592e",
+          "mode": "list",
+          "cachedResultName": "Gestion Table Restaurant",
+          "cachedResultUrl": "https://airtable.com/appfYhSgpp4bA592e"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblczSo1Z1dIOM2Tk",
+          "mode": "list",
+          "cachedResultName": "Table_Disponibilite",
+          "cachedResultUrl": "https://airtable.com/appfYhSgpp4bA592e/tblczSo1Z1dIOM2Tk"
+        },
+        "filterByFormula": "=AND({Table_ID} = '{{ $json.Table_ID }}', {Time_Slot} = '{{ $json.Time_Slot }}', {Date} = DATETIME_PARSE('{{ $json.Date }}'))",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        840,
+        60
+      ],
+      "id": "52df58d3-c372-4c94-bc16-6f9b910e6436",
+      "name": "search_slot",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "zYVUtJkQEXl8AiSy",
+          "name": "Airtable catafs.si"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## trigger \nCe nœud surveille la table de réservations et détecte toute modification du champ 'Datemaj'. Lorsqu'une nouvelle réservation est enregistrée ou qu'une réservation existante est modifiée, le workflow se déclenche automatiquement pour mettre à jour les disponibilités des tables.",
+        "height": 440
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -380,
+        -260
+      ],
+      "typeVersion": 1,
+      "id": "13433b31-433f-4759-b90e-b0a5a564f2ff",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appfYhSgpp4bA592e",
+          "mode": "list",
+          "cachedResultName": "Gestion Table Restaurant",
+          "cachedResultUrl": "https://airtable.com/appfYhSgpp4bA592e"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblczSo1Z1dIOM2Tk",
+          "mode": "list",
+          "cachedResultName": "Table_Disponibilite",
+          "cachedResultUrl": "https://airtable.com/appfYhSgpp4bA592e/tblczSo1Z1dIOM2Tk"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Status": "Indisponible",
+            "Num_Resa": "={{ $('Loop Over Items').item.json.Num_Resa }}",
+            "RECORD_ID()": "={{ $json[\"RECORD_ID()\"] }}"
+          },
+          "matchingColumns": [
+            "RECORD_ID()"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Index",
+              "displayName": "Index",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Groupe",
+              "displayName": "Groupe",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Table_ID",
+              "displayName": "Table_ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "T1",
+                  "value": "T1"
+                },
+                {
+                  "name": "T2",
+                  "value": "T2"
+                },
+                {
+                  "name": "T3",
+                  "value": "T3"
+                },
+                {
+                  "name": "T4",
+                  "value": "T4"
+                },
+                {
+                  "name": "T5",
+                  "value": "T5"
+                },
+                {
+                  "name": "",
+                  "value": ""
+                }
+              ],
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Time_Slot",
+              "displayName": "Time_Slot",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "11:30",
+                  "value": "11:30"
+                },
+                {
+                  "name": "12:00",
+                  "value": "12:00"
+                },
+                {
+                  "name": "12:30",
+                  "value": "12:30"
+                },
+                {
+                  "name": "13:00",
+                  "value": "13:00"
+                },
+                {
+                  "name": "13:30",
+                  "value": "13:30"
+                },
+                {
+                  "name": "14:00",
+                  "value": "14:00"
+                },
+                {
+                  "name": "14:30",
+                  "value": "14:30"
+                },
+                {
+                  "name": "15:00",
+                  "value": "15:00"
+                },
+                {
+                  "name": "15:30",
+                  "value": "15:30"
+                },
+                {
+                  "name": "16:00",
+                  "value": "16:00"
+                },
+                {
+                  "name": "16:30",
+                  "value": "16:30"
+                },
+                {
+                  "name": "17:00",
+                  "value": "17:00"
+                },
+                {
+                  "name": "17:30",
+                  "value": "17:30"
+                },
+                {
+                  "name": "18:00",
+                  "value": "18:00"
+                },
+                {
+                  "name": "18:30",
+                  "value": "18:30"
+                },
+                {
+                  "name": "19:00",
+                  "value": "19:00"
+                },
+                {
+                  "name": "19:30",
+                  "value": "19:30"
+                },
+                {
+                  "name": "20:00",
+                  "value": "20:00"
+                },
+                {
+                  "name": "20:30",
+                  "value": "20:30"
+                },
+                {
+                  "name": "21:00",
+                  "value": "21:00"
+                },
+                {
+                  "name": "21:30",
+                  "value": "21:30"
+                },
+                {
+                  "name": "22:00",
+                  "value": "22:00"
+                },
+                {
+                  "name": "22:30",
+                  "value": "22:30"
+                },
+                {
+                  "name": "23:00",
+                  "value": "23:00"
+                },
+                {
+                  "name": "23:30",
+                  "value": "23:30"
+                }
+              ],
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Disponible",
+                  "value": "Disponible"
+                },
+                {
+                  "name": "Indisponible",
+                  "value": "Indisponible"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Num_Resa",
+              "displayName": "Num_Resa",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Reservations",
+              "displayName": "Reservations",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "RECORD_ID()",
+              "displayName": "RECORD_ID()",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "typecast": false
+        }
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        1140,
+        60
+      ],
+      "id": "5b8f02f0-b5f6-4fa3-b76e-5c0f8e97ca38",
+      "name": "Bloc slot",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "zYVUtJkQEXl8AiSy",
+          "name": "Airtable catafs.si"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Reservation Data\nCe nœud extrait et reformate les informations essentielles de la réservation détectée par le trigger. Il conserve uniquement les données nécessaires pour les étapes suivantes : la date, l'heure de début, l'identifiant de la table et le numéro de réservation.",
+        "height": 440
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -60,
+        -260
+      ],
+      "typeVersion": 1,
+      "id": "fb300827-9475-46ad-ac8d-2d26f2dc5286",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "## Generatedreccords\nCe nœud JavaScript est le cœur du système. Il génère 4 créneaux horaires à bloquer : l'horaire de réservation initial plus les 3 créneaux suivants de 30 minutes chacun. Par exemple, si une table est réservée à 19h30, ce nœud créera des enregistrements pour 19h30, 20h00, 20h30 et 21h00, garantissant ainsi que la table reste bloquée pendant 2 heures.",
+        "height": 440
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        220,
+        -260
+      ],
+      "typeVersion": 1,
+      "id": "f585ee54-0669-4cf0-bc88-ca79efdf2244",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## Loop Over Items\nCe nœud prend les 4 créneaux générés et les traite un par un dans une boucle. Pour chaque créneau, il va d'abord rechercher l'enregistrement correspondant dans la table des disponibilités, puis le mettre à jour pour le marquer comme indisponible.",
+        "height": 440
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        520,
+        -260
+      ],
+      "typeVersion": 1,
+      "id": "e20d7cc3-a814-47ae-a0cc-9a34e56b7acf",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "content": "## search_slot\nCe nœud recherche dans la table des disponibilités l'enregistrement qui correspond exactement à la date, l'horaire et la table spécifiques du créneau en cours de traitement. Il utilise une formule Airtable avec DATETIME_PARSE pour assurer la compatibilité du format de date. Ce nœud retourne l'ID unique de l'enregistrement trouvé, nécessaire pour l'étape de mise à jour.",
+        "height": 440
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        800,
+        -260
+      ],
+      "typeVersion": 1,
+      "id": "d35e8742-f4cf-47fa-a399-ef13223ae357",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "content": "## bloc_slot\nCe nœud final met à jour l'enregistrement trouvé par la recherche. Il modifie le statut de 'Disponible' à 'Indisponible' et ajoute le numéro de réservation pour référence. La mise à jour se fait via l'ID d'enregistrement (RECORD_ID) pour garantir que le bon créneau est modifié.",
+        "height": 440
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1080,
+        -260
+      ],
+      "typeVersion": 1,
+      "id": "9b65cd91-b555-4f37-bab8-ec9739e25e98",
+      "name": "Sticky Note7"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "CanigouIA",
+  "repo_owner": "terryble66",
+  "repo_path": "2025/03/VHUjYLop5LJ32VRK.json",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Airtable Trigger": {
+      "lastTimeChecked": "2025-05-12T20:46:22Z"
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-05-04T20:53:49.146Z",
+  "versionId": "ccc43094-ca84-455c-b22b-65e6c37a6373"
+}
