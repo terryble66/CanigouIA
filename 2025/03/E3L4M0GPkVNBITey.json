@@ -1,0 +1,526 @@
+{
+  "active": true,
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Upload to Mistral",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload to Mistral": {
+      "main": [
+        [
+          {
+            "node": "Get Signed URL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Signed URL": {
+      "main": [
+        [
+          {
+            "node": "Get OCR Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Information Extractor": {
+      "main": [
+        [
+          {
+            "node": "Airtable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get OCR Results": {
+      "main": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-26T10:54:18.728Z",
+  "id": "E3L4M0GPkVNBITey",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "CanigouIA.S.Devis.Mistral-OCR.POC",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Document Understanding",
+        "formDescription": "Please upload your document for processing.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Document",
+              "fieldType": "file",
+              "multipleFiles": false,
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        -380,
+        460
+      ],
+      "id": "9b378f5e-c64f-4851-aead-5ddb9765e45b",
+      "name": "On form submission",
+      "webhookId": "f9d60b5f-0a09-4654-a840-84a0f745321e"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.mistral.ai/v1/files",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "purpose",
+              "value": "ocr"
+            },
+            {
+              "parameterType": "formBinaryData",
+              "name": "file",
+              "inputDataFieldName": "Document"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        40,
+        460
+      ],
+      "id": "5c6a327c-c2e6-4c3e-8f43-a9bc286e8ac4",
+      "name": "Upload to Mistral",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "zFt8uN6Q4bhfCrdo",
+          "name": "CanigouIA_Mistral_OCR catafs.si"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://api.mistral.ai/v1/files/{{ $json.id }}/url",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "expiry",
+              "value": "24"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        280,
+        460
+      ],
+      "id": "139e55f5-c74c-49bc-b642-7ebce49bd8bf",
+      "name": "Get Signed URL",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "zFt8uN6Q4bhfCrdo",
+          "name": "CanigouIA_Mistral_OCR catafs.si"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.mistral.ai/v1/ocr",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"mistral-ocr-latest\",\n  \"document\": {\n    \"type\": \"document_url\",\n    \"document_url\": \"{{ $json.url }}\"\n  },\n  \"include_image_base64\": true\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        540,
+        460
+      ],
+      "id": "096aeb11-3fd9-44a7-9bec-6e7b9753a2b0",
+      "name": "Get OCR Results",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "zFt8uN6Q4bhfCrdo",
+          "name": "CanigouIA_Mistral_OCR catafs.si"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Mistral OCR\nRemember to insert your credentials!",
+        "height": 540,
+        "width": 940,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -220,
+        100
+      ],
+      "typeVersion": 1,
+      "id": "97702acf-4954-4564-9f94-796f601c76cc",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "AI Automation Mistral OCR pour Devis et facture",
+        "height": 80,
+        "width": 500,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        0
+      ],
+      "typeVersion": 1,
+      "id": "bce67144-b609-4212-8dbb-433336f6a5ae",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## On form submission\nUn formulaire web qui permet à un utilisateur de télécharger un document PDF. C'est le point de départ du workflow.",
+        "height": 460,
+        "width": 200
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -580,
+        180
+      ],
+      "typeVersion": 1,
+      "id": "34021f1f-0565-49f3-91eb-80a7e6d92cc9",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Upload to Mistral : \nLe document téléchargé est envoyé à l'API Mistral AI via une requête HTTP POST. Le document est transmis avec le paramètre \"purpose: ocr\" pour indiquer qu'il sera utilisé pour la reconnaissance de texte.",
+        "height": 460,
+        "width": 200
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        180
+      ],
+      "typeVersion": 1,
+      "id": "1b8d4f34-533b-48b4-b12c-169ae405ec05",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "## Get Signed URL : \nUne fois le document téléchargé, le workflow récupère une URL signée qui donne accès temporaire au document (valable 24 heures) stocké sur les serveurs de Mistral.",
+        "height": 460
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        200,
+        180
+      ],
+      "typeVersion": 1,
+      "id": "839ebc83-515d-4267-947d-6c01dd51ac0b",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## Get OCR Results :\nFinalement, le workflow envoie une requête à l'endpoint OCR de Mistral avec l'URL signée du document. Le modèle \"mistral-ocr-latest\" est utilisé pour analyser le document et extraire le texte. Le paramètre \"include_image_base64: true\" indique que l'API doit également renvoyer les images du document encodées en base64.",
+        "height": 460
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        460,
+        180
+      ],
+      "typeVersion": 1,
+      "id": "4f1e8301-f0fa-4772-9585-8b90e98ae747",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1,
+      "position": [
+        780,
+        460
+      ],
+      "id": "728e80ce-bb8a-4f0b-8cc8-3f603cfd143e",
+      "name": "Information Extractor"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appdBaUVmEgBAbgGd",
+          "mode": "list",
+          "cachedResultName": "Finance - CaningouIA V1",
+          "cachedResultUrl": "https://airtable.com/appdBaUVmEgBAbgGd"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblLhKxKidJL6Fsiq",
+          "mode": "list",
+          "cachedResultName": "📄 Factures",
+          "cachedResultUrl": "https://airtable.com/appdBaUVmEgBAbgGd/tblLhKxKidJL6Fsiq"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "ID Facture",
+              "displayName": "ID Facture",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Projet lié",
+              "displayName": "Projet lié",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Client",
+              "displayName": "Client",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Montant HT",
+              "displayName": "Montant HT",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "TVA (%)",
+              "displayName": "TVA (%)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Montant TTC",
+              "displayName": "Montant TTC",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Statut",
+              "displayName": "Statut",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Date d’échéance",
+              "displayName": "Date d’échéance",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Date de paiement",
+              "displayName": "Date de paiement",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Moyen de paiement",
+              "displayName": "Moyen de paiement",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        1140,
+        460
+      ],
+      "id": "36c7bcee-bd22-44ac-9a39-ced2261caea3",
+      "name": "Airtable",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "zYVUtJkQEXl8AiSy",
+          "name": "Airtable catafs.si"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        760,
+        720
+      ],
+      "id": "92258d58-c928-4b80-819d-5d4098f1e8a0",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "34CHH48MlmPBcrFa",
+          "name": "OpenAi account personel"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Upload to Mistral": [
+      {
+        "json": {
+          "id": "5c73cef9-df43-49a8-bed7-1b4e87cf4a6c",
+          "object": "file",
+          "bytes": 113371,
+          "created_at": 1743060441,
+          "filename": "Rapport.pdf",
+          "purpose": "ocr",
+          "sample_type": "ocr_input",
+          "num_lines": null,
+          "source": "upload"
+        }
+      }
+    ]
+  },
+  "repo_name": "CanigouIA",
+  "repo_owner": "terryble66",
+  "repo_path": "2025/03/E3L4M0GPkVNBITey.json",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-05-09T20:25:03.162Z",
+  "versionId": "a182b12d-ed2d-4776-acb0-6bb7a9c3ec2c"
+}
