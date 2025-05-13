@@ -1,0 +1,567 @@
+{
+  "active": true,
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code Verfify ChatID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Date & Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Telegram Audio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Master Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Master Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Date & Prompt": {
+      "main": [
+        [
+          {
+            "node": "Master Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Audio": {
+      "main": [
+        [
+          {
+            "node": "Convert l'audio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert l'audio": {
+      "main": [
+        [
+          {
+            "node": "Master Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code Verfify ChatID": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Master Agent": {
+      "main": [
+        [
+          {
+            "node": "Telegram1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call CANIGOUIA_Calendar_Assistant": {
+      "ai_tool": [
+        [
+          {
+            "node": "Master Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call CANIGOUIA_CRM_Assistant": {
+      "ai_tool": [
+        [
+          {
+            "node": "Master Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call CANIGOUIA_Notion_Assistant1": {
+      "ai_tool": [
+        [
+          {
+            "node": "Master Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call n8n Workflow Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "Master Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-21T13:31:31.470Z",
+  "id": "iIb3tIBGhrd9LKEB",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "CANIGOUI.AGENT.Assistant",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -240,
+        0
+      ],
+      "id": "de6b3536-ae94-498f-9808-e3c299ae8b35",
+      "name": "Telegram Trigger",
+      "webhookId": "89e018bf-20e2-46de-bc2d-f6ed7ec1d226",
+      "credentials": {
+        "telegramApi": {
+          "id": "1KysjgvAHZD0NkJk",
+          "name": "Telegram account catafs.si"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "55ffaae5-8f64-489b-9700-8a771868793e",
+              "leftValue": "={{ $json.message.text }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        220,
+        0
+      ],
+      "id": "c875f5be-8a74-4f7a-b21c-4b05d533f6d0",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        840,
+        340
+      ],
+      "id": "2f67f019-50ff-451b-9f92-26eb3a470f7b",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "34CHH48MlmPBcrFa",
+          "name": "OpenAi account personel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $json.output }}",
+        "additionalFields": {
+          "appendAttribution": true
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1320,
+        -60
+      ],
+      "id": "6ad81c0a-db6f-40fe-a380-25beb3343ee9",
+      "name": "Telegram1",
+      "webhookId": "5607d4c2-d583-4acd-bdd1-0ad9fcc47bc4",
+      "credentials": {
+        "telegramApi": {
+          "id": "1KysjgvAHZD0NkJk",
+          "name": "Telegram account catafs.si"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        1020,
+        340
+      ],
+      "id": "1484998a-2e0b-4b37-a8f1-d71cb1fd9bd4",
+      "name": "Window Buffer Memory"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "824c2bf2-dad1-4a59-86e2-29391b92f898",
+              "name": "text",
+              "value": "={{ $json.message.text }}",
+              "type": "string"
+            },
+            {
+              "id": "59148aba-a563-45c4-9b97-63d5964923bd",
+              "name": "date",
+              "value": "={{$now}}\n// n8n displays the ISO formatted timestamp\n// For example 2022-03-09T14:02:37.065+00:00\n{{\"Today's date is \" + $now}}\n// n8n displays \"Today's date is <unix timestamp>\"\n// For example \"Today's date is 1646834498755\"",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        460,
+        -100
+      ],
+      "id": "163a0461-c457-4fb5-a213-a8e20b4296b0",
+      "name": "Date & Prompt"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $json.message.voice.file_id }}"
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        460,
+        180
+      ],
+      "id": "da2d723a-8e0d-459c-9ff6-2950af66d8b1",
+      "name": "Telegram Audio",
+      "webhookId": "026e81fd-097f-4569-8376-ebf8669e86ad",
+      "credentials": {
+        "telegramApi": {
+          "id": "1KysjgvAHZD0NkJk",
+          "name": "Telegram account catafs.si"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        680,
+        180
+      ],
+      "id": "ef8de251-e5b9-4741-98e2-4325c840562b",
+      "name": "Convert l'audio",
+      "credentials": {
+        "openAiApi": {
+          "id": "34CHH48MlmPBcrFa",
+          "name": "OpenAi account personel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "if ($input.first().json.message.from.id !== 8103907720) { // Replace with your actual ID\n\nreturn {unauthorized: true};\n\n} else {\n\n// Return the original data when authorized\n\nreturn $input.all();\n\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -20,
+        0
+      ],
+      "id": "131be55f-7e18-4bf7-ba91-fcfa95fe0145",
+      "name": "Code Verfify ChatID"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.text }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "You are a helpful assistant\nFor for time and date of the day refere to the variable \"date\"  {{ $json.date }}\n1/ Pour toutes informations de date et de calendrier appelles l'outil calendrier s'il renvoie {{ $json.date }} remplace par la ou les dates que tu mentionnais\n3/ Pour toutes informations sur nos clients appelles notre outil CRM\n4/ Pour toutes informaitons sur nos idées , activités strategique, et activités techinques utilise notre outil otion \n5/ Pour toutes informations su les mails appelles l'outil mail\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        940,
+        -60
+      ],
+      "id": "08248ace-ba91-4445-9be0-8fa13ee9010c",
+      "name": "Master Agent"
+    },
+    {
+      "parameters": {
+        "name": "CANIGOUIA_Calendar_Assistant",
+        "description": "Call this tool to get all informations about my calendar. \nGet or search Events, \nAvailibility, \nAdd , update or delete a event.",
+        "workflowId": {
+          "__rl": true,
+          "value": "ERaZwVgbFnilyeGF",
+          "mode": "list",
+          "cachedResultName": "CANIGOUIA.Calendar.Gestion.PROD"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.1,
+      "position": [
+        1180,
+        340
+      ],
+      "id": "22e7f7a9-528e-4d53-ae00-660a7ffadb1f",
+      "name": "Call CANIGOUIA_Calendar_Assistant"
+    },
+    {
+      "parameters": {
+        "name": "CANIGOUIA_CRM_Assistant",
+        "description": "Call this tool to get all informations about my crm. \nClients (infos complètes + statut + historique)\nLeads (prospects entrants + scoring)\nOpportunités (liées aux clients ou leads)\nContacts (si plusieurs interlocuteurs par entreprise)\nRDV avec mes clients avec les comptes-rendu\nInteractions (journal d'activité)\n\n",
+        "workflowId": {
+          "__rl": true,
+          "value": "og6yNluTylXnXy7k",
+          "mode": "list",
+          "cachedResultName": "CANIGOUIA.CRM.Assitant.PROD"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.1,
+      "position": [
+        1360,
+        340
+      ],
+      "id": "5f0e4661-18fc-4ba2-837e-17be97f0637e",
+      "name": "Call CANIGOUIA_CRM_Assistant"
+    },
+    {
+      "parameters": {
+        "name": "CANIGOUIA_Notion_Assistant",
+        "description": "Call this tool to get all informations about my notion. \nles idées à garder ou savoir, Kanban CanigouIA Strategique, Kanban CanigouIA techniques.\n",
+        "workflowId": {
+          "__rl": true,
+          "value": "6R3QegNpXD72oR8n",
+          "mode": "list",
+          "cachedResultName": "CANIGOUIA.Notion.Assistant.POC"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.1,
+      "position": [
+        1540,
+        340
+      ],
+      "id": "9ee353ba-9b8e-4539-b050-951bcba86b02",
+      "name": "Call CANIGOUIA_Notion_Assistant1"
+    },
+    {
+      "parameters": {
+        "name": "CANIGOUIA_email_assistant",
+        "description": "all this tool to mannage eamil of the user\nyou can \ncheck and search email\ncreate reply\ncreate email\narchive eamil",
+        "workflowId": {
+          "__rl": true,
+          "value": "CXSzM9VeyRrYX7Gy",
+          "mode": "list",
+          "cachedResultName": "CANIGOUIA.Email.Assistant.PROD"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "userMessage": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('userMessage', ``, 'string') }}",
+            "userEmail": "Catafs.si@gmail.com",
+            "additionalContext": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('additionalContext', ``, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "userMessage",
+              "displayName": "userMessage",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "userEmail",
+              "displayName": "userEmail",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "additionalContext",
+              "displayName": "additionalContext",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "object"
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.1,
+      "position": [
+        1720,
+        360
+      ],
+      "id": "3398a30c-3af2-4164-826d-43783123a618",
+      "name": "Call n8n Workflow Tool"
+    }
+  ],
+  "pinData": {
+    "Telegram Trigger": [
+      {
+        "json": {
+          "update_id": 473740656,
+          "message": {
+            "message_id": 42,
+            "from": {
+              "id": 8103907720,
+              "is_bot": false,
+              "first_name": "Canigou",
+              "last_name": "IA",
+              "language_code": "fr"
+            },
+            "chat": {
+              "id": 8103907720,
+              "first_name": "Canigou",
+              "last_name": "IA",
+              "type": "private"
+            },
+            "date": 1746017595,
+            "text": "Est-ce que j'ai des rendez-vous aujourd'hui"
+          }
+        }
+      }
+    ]
+  },
+  "repo_name": "CanigouIA",
+  "repo_owner": "terryble66",
+  "repo_path": "2025/03/iIb3tIBGhrd9LKEB.json",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-30T21:35:27.266Z",
+  "versionId": "3559b43f-501d-450d-9696-767b18a1d85f"
+}
