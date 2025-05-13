@@ -1,0 +1,347 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "arbre_decision",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Commande": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Autre": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "arbre_decision": {
+      "main": [
+        [
+          {
+            "node": "evenement",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Commande",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Autre",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "evenement": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-23T06:16:53.437Z",
+  "id": "ulrV7RudTyVCNvht",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "CANIGOUIA.VIGNERON-ROUNDED_EMAIL_ROUTING_V.1.0.PROD",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "c121ef4c-19bb-447a-9aaa-d9dee2816432",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -380,
+        0
+      ],
+      "id": "0eb55f0b-3abf-470e-8621-9dcb83a7dec8",
+      "name": "Webhook",
+      "webhookId": "c121ef4c-19bb-447a-9aaa-d9dee2816432"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"nom\": \"{{$json.body.nom}}\",\n  \"telephone\": \"{{$json.body.telephone}}\",\n  \"heure\": \"{{$json.body.heure}}\",\n  \"date\": \"{{$json.body.date}}\",\n  \"visite\": \"{{$json.body.visite}}\",\n  \"email\": \"{{$json.body.email}}\",\n  \"personnes\": \"{{$json.body.personne}}\",\n  \"commentaire\": \"{{$json.body.commentaire}}\",\n  \"evenement\": \"{{$json.body.evenement}}\",\n  \"objet\": \"{{$json.body.objet}}\",\n  \"nature_demande\": \"{{$json.body.nature_demande}}\",\n  \"call_id\": \"{{$json.body.call_id}}\",\n  \"telephone_origin\": \"{{$json.body.telephone_origin}}\",\n  \"produit\": \"{{$json.body.produit}}\",\n  \"quantite\": \"{{$json.body.quantite}}\",\n  \"adresse\": \"{{$json.body.adresse_livraison}}\",\n  \"mode\": \"{{$json.body.mode_retrait}}\",\n  \"tool_name\": \"{{$json.body.tool_name}}\",\n  \"commande_tool\": \"{{$json.body.commande_tool}}\"\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -180,
+        0
+      ],
+      "id": "e674102e-53e7-42e7-988d-6d9b9f3271a0",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1020,
+        0
+      ],
+      "id": "353d33f4-1446-47d0-8ad0-beff56368bc1",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "sendTo": "catafs.si@gmail.com",
+        "subject": "={{ $json.nature_demande }} : client{{ $json.nom }} via Vigneron.Bot",
+        "message": "=<!DOCTYPE html>\n<html lang=\"fr\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <style>\n      body {\n        font-family: Arial, sans-serif;\n        color: #333333;\n        line-height: 1.6;\n        background-color: #ffffff;\n        margin: 0;\n        padding: 20px;\n      }\n      .container {\n        padding: 20px;\n        border: 1px solid #dddddd;\n        border-radius: 8px;\n        background-color: #f9f9f9;\n        max-width: 600px;\n        margin: auto;\n      }\n      .label {\n        font-weight: bold;\n      }\n      h2 {\n        color: #8C031C;\n      }\n    </style>\n  </head>\n  <body>\n    <div class=\"container\">\n      <h2>📦 Nouvelle commande de vin reçue via VigneronBot</h2>\n\n      <p><span class=\"label\">Nom du client :</span> {{ $json.nom }}</p>\n      <p><span class=\"label\">Téléphone :</span> {{ $json.telephone }} ou {{ $json.telephone_origin }}</p>\n      <p><span class=\"label\">Adresse de livraison :</span> {{ $json.adresse }}</p>\n      <p><span class=\"label\">Produit commandé :</span> {{ $json.produit }}</p>\n      <p><span class=\"label\">Quantité :</span> {{ $json.quantite }}</p>\n      <p><span class=\"label\">Mode de retrait :</span> {{ $json.mode }}</p>\n      <p><span class=\"label\">Email :</span> {{ $json.email }}</p>\n      <p><span class=\"label\">Commentaire du client :</span> {{ $json.commentaire }}</p>\n      <p><span class=\"label\">Objet de la demande :</span> {{ $json.objet }}</p>\n      <p><span class=\"label\">Commande enregistrée via :</span> {{ $json.tool_name }}</p>\n\n      <p style=\"margin-top: 30px; font-style: italic;\">\n        Ce message a été généré automatiquement suite à un appel avec l’assistante vocale IA CanigouIA.\n      </p>\n    </div>\n  </body>\n</html>\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        620,
+        120
+      ],
+      "id": "21285c86-2c04-4581-ab6f-bde973cc3e3c",
+      "name": "Commande",
+      "webhookId": "a906a32e-790d-42b0-a210-a1a1429764ca",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "9NoExkRFVF0ZPS4n",
+          "name": "Gmail account cataf.si"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "catafs.si@gmail.com",
+        "subject": "={{ $('Edit Fields').item.json.nature_demande }} : client{{ $json.nom }} via Vigneron.Bot",
+        "message": "=<!DOCTYPE html> <html lang=\"fr\">   <head>     <meta charset=\"UTF-8\" />     <style>       body {         font-family: Arial, sans-serif;         color: #333333;         line-height: 1.6;       }       .container {         padding: 20px;         border: 1px solid #dddddd;         border-radius: 8px;         background-color: #f9f9f9;       }       .label {         font-weight: bold;       }     </style>   </head>   <body>     <div class=\"container\">       <h2>Nouvelle demande reçue via BaristaBotte</h2>       <p><span class=\"label\">Nom :</span> {{ $json.nom }}</p>       <p><span class=\"label\">Téléphone :</span> {{$json.telephone}} ou  {{$json.telephone_origin}}</p>       <p><span class=\"label\">Objet :</span> {{$json.objet}}</p>\n<p><span class=\"label\">lieu_installation :</span> {{$json.lieu_installation}}</p>\n<p>Ce message a été généré automatiquement après la finalisation du dialogue avec l'agent IA.</p>     </div>   </body> </html>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        620,
+        380
+      ],
+      "id": "e69aaf03-d9f8-4fbb-92cc-19906c5e8956",
+      "name": "Autre",
+      "webhookId": "6eb9ca6d-2499-4c59-8afd-1a1566526689",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "9NoExkRFVF0ZPS4n",
+          "name": "Gmail account cataf.si"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Webhook').item.json.body.nature_demande }}",
+                    "rightValue": "evenement",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "f960d616-33f7-48c6-93cc-b7498873361a"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "evenement"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "a9ec3beb-90be-4491-bb75-80d80ebe6769",
+                    "leftValue": "={{ $('Webhook').item.json.body.nature_demande }}",
+                    "rightValue": "commande",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "commande"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "48136901-51de-4634-a938-2269db41818d",
+                    "leftValue": "={{ $('Webhook').item.json.body.nature_demande }}",
+                    "rightValue": "autre",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "autre"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        220,
+        0
+      ],
+      "id": "94a8d4fd-ab9b-416f-97a4-e0414551c995",
+      "name": "arbre_decision"
+    },
+    {
+      "parameters": {
+        "sendTo": "catafs.si@gmail.com",
+        "subject": "={{ $json.nature_demande }} : client{{ $json.nom }} via Vigneron.Bot",
+        "message": "=<!DOCTYPE html>\n<html lang=\"fr\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <style>\n      body {\n        font-family: Arial, sans-serif;\n        color: #333333;\n        line-height: 1.6;\n        background-color: #ffffff;\n        margin: 0;\n        padding: 20px;\n      }\n      .container {\n        padding: 20px;\n        border: 1px solid #dddddd;\n        border-radius: 8px;\n        background-color: #f9f9f9;\n        max-width: 600px;\n        margin: auto;\n      }\n      .label {\n        font-weight: bold;\n      }\n      h2 {\n        color: #8C031C;\n      }\n    </style>\n  </head>\n  <body>\n    <div class=\"container\">\n      <h2>🍇 Nouvelle demande de {{ $json.evenement }} reçue via Vigneronbot</h2>\n\n      <p><span class=\"label\">Nom du client :</span> {{ $json.nom }}</p>\n      <p><span class=\"label\">Téléphone donné par le client :</span> {{ $json.telephone }}</p>\n      <p><span class=\"label\">Téléphone d’origine (appel entrant) :</span> {{ $json.telephone_origin }}</p>\n      <p><span class=\"label\">Email :</span> {{ $json.email }}</p>\n      <p><span class=\"label\">Nombre de personnes :</span> {{ $json.personnes }}</p>\n      <p><span class=\"label\">Date souhaitée :</span> {{ $json.date }}</p>\n      <p><span class=\"label\">Heure souhaitée :</span> {{ $json.heure }}</p>\n      <p><span class=\"label\">Type de visite :</span> {{ $json.visite }}</p>\n      <p><span class=\"label\">Commentaire du client :</span> {{ $json.commentaire }}</p>\n\n      <p><span class=\"label\">Objet de la demande :</span> {{ $json.objet || 'Non précisé' }}</p>\n      <p><span class=\"label\">Nature de la demande :</span> {{ $json.nature_demande }}</p>\n      <p><span class=\"label\">ID de l'appel :</span> {{ $json.call_id }}</p>\n      <p><span class=\"label\">Agent vocal :</span> {{ $json.tool_name }}</p>\n\n      <p style=\"margin-top: 30px; font-style: italic;\">\n        Ce message a été généré automatiquement à la suite d’un appel avec l’assistant vocal IA <strong>Vigneronbot</strong> (CanigouIA).\n      </p>\n    </div>\n  </body>\n</html>\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        620,
+        -120
+      ],
+      "id": "c4ddd014-4073-4e35-a6d4-ce94ca97c7ad",
+      "name": "evenement",
+      "webhookId": "810f0375-a68e-4962-9ac6-4e2beb6a08f7",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "9NoExkRFVF0ZPS4n",
+          "name": "Gmail account cataf.si"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.catafs.eu",
+            "user-agent": "python-httpx/0.28.1",
+            "content-length": "380",
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, zstd",
+            "content-type": "application/json",
+            "x-forwarded-for": "20.74.71.250",
+            "x-forwarded-host": "n8n.catafs.eu",
+            "x-forwarded-proto": "https"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "evenement": "visite",
+            "comment": "Accompagné d'un chien.",
+            "email": "quonsoitphilippin@gmail.com",
+            "personne": 4,
+            "nom": "Monsieur Philippins",
+            "telephone": "607101213",
+            "date": "2025-04-26",
+            "objet": "10:00",
+            "nature_demande": "evenement",
+            "call_id": "e5b73547-09fd-4d30-978f-97ff4ed73dcf",
+            "telephone_origin": "anonymous",
+            "tool_call": "evenement_tool",
+            "visite": "cave"
+          },
+          "webhookUrl": "https://n8n.catafs.eu/webhook/c121ef4c-19bb-447a-9aaa-d9dee2816432",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "CanigouIA",
+  "repo_owner": "terryble66",
+  "repo_path": "2025/04/ulrV7RudTyVCNvht.json",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-30T07:28:54.821Z",
+  "versionId": "9adb88dc-557e-4ac9-92d7-0bca8aa2c38b"
+}
