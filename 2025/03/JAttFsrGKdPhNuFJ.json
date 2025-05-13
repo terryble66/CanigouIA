@@ -1,0 +1,585 @@
+{
+  "active": true,
+  "connections": {
+    "If": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structure Date de reservation": {
+      "main": [
+        [
+          {
+            "node": "SuitableTables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SuitableTables": {
+      "main": [
+        [
+          {
+            "node": "Available Slots",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Available Slots": {
+      "main": [
+        [
+          {
+            "node": "availabilityOnRequestedTime",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "availabilityOnRequestedTime": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Respond time is available",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook.Check.availibility": {
+      "main": [
+        [
+          {
+            "node": "Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Structure Date de reservation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Not respond time is available",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-06T16:14:37.082Z",
+  "id": "JAttFsrGKdPhNuFJ",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "CANIGOUIA.S.Vocal.#1-1.Check.Restaurant.PROD",
+  "nodes": [
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "82a4d0dd-900e-4c5f-a9ad-ba0b7f9c1621",
+              "leftValue": "={{ $json.body.type }}",
+              "rightValue": "tool_call",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -100,
+        -60
+      ],
+      "id": "3fa9df00-6b46-4c76-af17-a36aba6db9e7",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "content": "## Convertion de la date\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCe nœud convertit les dates exprimées en langage naturel (ex: \"demain\", \"vendredi prochain\") en un format ISO (YYYY-MM-DD) compatible avec Airtable et les autres systèmes.\n✅ **JavaScript natif dans n8n** : `new Date().toISOString().split(\"T\")[0]` permet d’obtenir **la date actuelle**.  ",
+        "height": 380,
+        "width": 420
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        160,
+        -180
+      ],
+      "id": "7d0d10ac-8d87-46bc-b49b-b9a049af610b",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-3.5-turbo",
+          "mode": "list",
+          "cachedResultName": "GPT-3.5-TURBO"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "="
+            },
+            {
+              "content": "=Vous êtes un assistant pour résoudre les problèmes de date et d'heure.\nAujourd'hui nous sommes le {{ $now.format('DD MMMM YYYY') }}.\n\nRécupérez et formatez la date et l'heure suivantes:\nDate: {{ $json.body.date }} → format YYYY-MM-DD\nHeure: {{ $json.body.heure }} → format HH:MM (24h)\n\nIMPORTANT: Retournez UNIQUEMENT un objet JSON brut sans aucun texte supplémentaire, \nexactement comme dans cet exemple:\n{\"heure\":\"20:30\",\"date\":\"2025-04-01\"}\n\nNe rajoutez AUCUN texte avant ou après cet objet JSON.\nSi la date et l'heure est au format attendu recopie la.\nIl doit y avoir toujours des informations date et heure en sortie"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        160,
+        -100
+      ],
+      "id": "f5c1d078-2619-4fdc-8296-145f13f81747",
+      "name": "OpenAI",
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "34CHH48MlmPBcrFa",
+          "name": "OpenAi account personel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2d495ac9-658d-46f4-9467-b2f430d2ccfa",
+              "name": "Date",
+              "value": "={{ $json.date }}",
+              "type": "string"
+            },
+            {
+              "id": "85551a2d-4db2-4b77-89c7-18ab34262cab",
+              "name": "Heure",
+              "value": "={{ $json.heure }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        880,
+        -40
+      ],
+      "id": "63951d85-a408-425a-bd01-0fd62aa163a3",
+      "name": "Structure Date de reservation"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b1f8572d-fca1-4e83-a521-dd12a83f7bf8",
+              "name": "call_id",
+              "value": "={{ $json.body.call_id }}",
+              "type": "string"
+            },
+            {
+              "id": "203ec1c2-153d-4f16-97e4-c573c5e6cda9",
+              "name": "heure",
+              "value": "={{ $json.body.heure }}",
+              "type": "string"
+            },
+            {
+              "id": "1e64ccc3-e34d-4b68-bad3-796dceb19c49",
+              "name": "date",
+              "value": "={{ $json.body.date }}",
+              "type": "string"
+            },
+            {
+              "id": "27924b6d-9bc1-471f-ba97-6a49135f90a9",
+              "name": "personnes",
+              "value": "={{ $json.body.personnes }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -320,
+        -60
+      ],
+      "id": "421895d0-e6e2-450c-bc91-6d9d135c4663",
+      "name": "Webhook"
+    },
+    {
+      "parameters": {
+        "content": "## Reccuperation Date et heure au bon format\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+        "height": 400,
+        "width": 200,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        840,
+        -200
+      ],
+      "id": "57ade3e0-8e09-43f5-a8ff-fd0eef76cafb",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "jsCode": "// const guests = $input.first().json.personnes;\nconst guests = parseInt($('Webhook').first().json.body.personnes) || 0;\n// Fonction pour obtenir les tables adaptées en fonction du nombre de personnes\nfunction getSuitableTables(guests) {\n    if (guests <= 2) return ['T1', 'T2'];\n    if (guests <= 4) return ['T3', 'T4'];\n    if (guests <= 6) return ['T5', 'T6'];\n    return [];\n}\n\nconst suitableTables = getSuitableTables(guests);\n\n// Générer un filtre pour Airtable avec \"Table_ID\"\nconst tableFilter = `OR(${suitableTables.map(table => `{Table_ID} = '${table}'`).join(', ')})`;\n\nreturn {\n    json: {\n        \"suitableTables\": suitableTables,  // Utilise la liste générée dynamiquement\n        \"tableFilter\": tableFilter  // Applique le bon format de champ Airtable\n    }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1200,
+        -80
+      ],
+      "id": "913e1c8d-9e53-449d-85db-d1c0a2851b9b",
+      "name": "SuitableTables"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appfYhSgpp4bA592e",
+          "mode": "list",
+          "cachedResultName": "Gestion Table Restaurant",
+          "cachedResultUrl": "https://airtable.com/appfYhSgpp4bA592e"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblczSo1Z1dIOM2Tk",
+          "mode": "list",
+          "cachedResultName": "Table_Disponibilite",
+          "cachedResultUrl": "https://airtable.com/appfYhSgpp4bA592e/tblczSo1Z1dIOM2Tk"
+        },
+        "filterByFormula": "=AND(\n{Status} = 'Disponible',\nIS_SAME({Date}, DATETIME_PARSE('{{ $('Structure Date de reservation').item.json.Date }}', 'YYYY-MM-DD'), 'day'),\nOR({{ $json.tableFilter }})\n)",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        1440,
+        -100
+      ],
+      "id": "e63615f5-06bf-4cac-8081-2d89c005d804",
+      "name": "Available Slots",
+      "alwaysOutputData": true,
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "zYVUtJkQEXl8AiSy",
+          "name": "Airtable catafs.si"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Filtre Airtable\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRecherche dans Airtable les créneaux disponibles selon :\n\nStatus = \"Disponible\"\nDate = Date de réservation\nTables filtrées selon le nombre de personnes.\n\n\n\n\n\n",
+        "height": 460,
+        "width": 180
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        -180
+      ],
+      "id": "ca678ccf-7228-493f-b95e-b08471080d3d",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Variables d'entrée\nconst requestedTime = $('Webhook').first().json.body.heure;\nconst availableSlots = $('Available Slots').all().map(item => item.json);\nconsole.log('Debug - Available Slots:', availableSlots);\n\n// Définition des horaires limites\nconst LUNCH_END = \"14:00\";\nconst DINNER_END = \"23:00\";\n\n// Vérification de la période : déjeuner ou dîner\nconst isLunchPeriod = requestedTime <= LUNCH_END;\n\n// Fonction pour calculer le prochain créneau (ajoute 30 min)\nfunction getNextSlot(time) {\n  const [hours, minutes] = time.split(':').map(Number);\n  const date = new Date();\n  date.setHours(hours, minutes + 30, 0, 0);\n  const nextHours = String(date.getHours()).padStart(2, '0');\n  const nextMinutes = String(date.getMinutes()).padStart(2, '0');\n  return `${nextHours}:${nextMinutes}`;\n}\n\n// DEBUG INIT\nconsole.log('Initial available slots:', availableSlots);\n\n// Filtrer les créneaux disponibles en fonction de la période\nconst periodSlots = availableSlots.filter(slot => {\n  if (isLunchPeriod) {\n    return slot['Time_Slot'] <= LUNCH_END;\n  } else {\n    return slot['Time_Slot'] > LUNCH_END && slot['Time_Slot'] <= DINNER_END;\n  }\n});\n\nconsole.log('Period slots:', periodSlots);\n\n// Créer une liste unique de créneaux horaires disponibles\nconst potentialTimes = [...new Set(periodSlots.map(slot => slot['Time_Slot']))].sort();\n\nconsole.log('Potential times:', potentialTimes);\n\n// Vérifier les créneaux valides : créneaux consécutifs disponibles\nconst validTimes = potentialTimes.filter(time => {\n  const requiredSlots = [time];\n  let nextSlot = time;\n  const endTime = isLunchPeriod ? LUNCH_END : DINNER_END;\n\n  // Cherche les 3 créneaux suivants\n  for (let i = 0; i < 3; i++) {\n    nextSlot = getNextSlot(nextSlot);\n    if (nextSlot > endTime) break;\n    requiredSlots.push(nextSlot);\n  }\n\n  // Tables disponibles au 1er créneau\n  const tablesAtTime = periodSlots\n    .filter(slot => slot['Time_Slot'] === time)\n    .map(slot => slot['Table_ID']);\n\n  if (tablesAtTime.length === 0) return false;\n\n  // Vérifier pour chaque table sur tous les créneaux nécessaires\n  for (const tableId of tablesAtTime) {\n    let isTableValid = true;\n\n    for (const timeSlot of requiredSlots) {\n      if (timeSlot > endTime) break;\n\n      const slotExists = periodSlots.some(slot =>\n        slot['Time_Slot'] === timeSlot && slot['Table_ID'] === tableId\n      );\n\n      if (!slotExists) {\n        isTableValid = false;\n        break;\n      }\n    }\n\n    if (isTableValid) return true;\n  }\n\n  return false;\n});\n\nconsole.log('Valid times with available slots:', validTimes);\n\n// Créneaux requis (requestedTime + 3 slots)\nlet requiredSlots = [requestedTime];\nlet nextSlot = requestedTime;\nconst endTime = isLunchPeriod ? LUNCH_END : DINNER_END;\n\nfor (let i = 0; i < 3; i++) {\n  nextSlot = getNextSlot(nextSlot);\n  if (nextSlot > endTime) break;\n  requiredSlots.push(nextSlot);\n}\n\nconsole.log('Required slots:', requiredSlots);\n\n// Tables disponibles à l'heure demandée\nconst initialTables = periodSlots\n  .filter(slot => slot['Time_Slot'] === requestedTime)\n  .map(slot => slot['Table_ID']);\n\nconsole.log('Initial tables at requested time:', initialTables);\n\n// Vérifier les tables disponibles sur tous les créneaux requis\nconst availableTablesWithSlots = initialTables.filter(tableId => {\n  for (const timeSlot of requiredSlots) {\n    if (timeSlot > endTime) break;\n\n    const slotExists = periodSlots.some(slot =>\n      slot['Time_Slot'] === timeSlot && slot['Table_ID'] === tableId\n    );\n\n    if (!slotExists) return false;\n  }\n\n  return true;\n});\n\nconsole.log('Available tables with required slots:', availableTablesWithSlots);\n\n// Résultat final\nconst hasAvailableSlots = availableTablesWithSlots.length > 0;\n\n// Filtrer les créneaux alternatifs pour correspondre à la même période que celle demandée\nconst filteredAlternativeTimes = validTimes.filter(time => {\n  // Si l'heure demandée est pour le déjeuner, ne proposer que des heures de déjeuner\n  if (isLunchPeriod) {\n    return time <= LUNCH_END;\n  } \n  // Sinon, ne proposer que des heures de dîner\n  else {\n    return time > LUNCH_END;\n  }\n});\n\n// Si le requestedTime n'est pas dans les validTimes, retourner l'objet complet malgré tout\nif (!validTimes.includes(requestedTime)) {\n  console.log(`Requested time ${requestedTime} is not within valid times.`);\n  return {\n    json: {\n      available: false,\n      requestedTime,\n      requiredSlots,\n      initialTables,\n      availableTablesWithSlots,\n      alternativeTimes: filteredAlternativeTimes,\n      isEndOfDay: requiredSlots.some(slot => slot > endTime),\n      period: isLunchPeriod ? 'lunch' : 'dinner',\n      message: 'Malheureusement, l\\'horaire demandé n\\'est plus disponible.'\n    }\n  };\n}\n\n// Sinon, retour classique\nreturn {\n  json: {\n    available: hasAvailableSlots,\n    requestedTime,\n    requiredSlots,\n    initialTables,\n    availableTablesWithSlots,\n    alternativeTimes: filteredAlternativeTimes,\n    isEndOfDay: requiredSlots.some(slot => slot > endTime),\n    period: isLunchPeriod ? 'lunch' : 'dinner',\n    message: hasAvailableSlots\n      ? 'L\\'horaire souhaité est disponible.'\n      : 'Malheureusement, l\\'horaire demandé n\\'est plus disponible.'\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1740,
+        -100
+      ],
+      "id": "51097ffb-c039-46a4-971f-9a4dc8e43743",
+      "name": "availabilityOnRequestedTime",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "content": "## Filtrage des tables disponibles\n\n\n\n\n\n\n\n\n\n\n\n\nVérifie si l'heure est disponible, et propose une alternative dans la même période dinner ou lunch\n\n\n\n\n\n\n\n",
+        "height": 400,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1380,
+        -180
+      ],
+      "id": "6f147229-4334-4032-8246-3fab1b33d1e0",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6c532017-570d-4b39-b8fd-f0a0de7955b1",
+              "leftValue": "={{ $json.available }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "48525dbd-1043-4971-be10-ed83bd5a3b62",
+              "leftValue": "",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2100,
+        -100
+      ],
+      "id": "0daaa2c1-4c36-4998-abd2-b034c8dc719d",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"results\": [\n    {\n      \"call_id\": \"{{ $('Webhook.Check.availibility').first().json.body.call_id }}\",\n      \"result\": \"available:true\"\n    }\n  ]\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        2460,
+        -200
+      ],
+      "id": "758d6465-2cbb-46fc-9dcc-8806665ea9f5",
+      "name": "Respond time is available"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ \n  {\n    \"results\": [\n      {\n        \"call_id\": $('Webhook.Check.availibility').first().json.body.call_id,\n        \"result\": {\n          \"available\": false,\n          \"requestedTime\": $('availabilityOnRequestedTime').first().json.requestedTime,\n          \"alternativeTimes\": $('availabilityOnRequestedTime').first().json.alternativeTimes,\n          \"message\": $('availabilityOnRequestedTime').first().json.message,\n          \"period\": $('availabilityOnRequestedTime').first().json.period\n        }\n      }\n    ]\n  }\n}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        2680,
+        60
+      ],
+      "id": "8c2e482d-72c2-47c8-9dfb-45b92194f725",
+      "name": "Not respond time is available"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ad60ebbc-70c9-4204-b87a-8e8d71caa0cf",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -540,
+        -60
+      ],
+      "id": "85afc682-2479-499c-9309-da0d2951bdef",
+      "name": "Webhook.Check.availibility",
+      "webhookId": "ad60ebbc-70c9-4204-b87a-8e8d71caa0cf"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Pour le nœud Code qui suit le LLM\nfor (const item of $input.all()) {\n  try {\n    // Option 1 : Si le LLM renvoie déjà un objet JSON parsé\n    if (item.json.message && item.json.message.content && typeof item.json.message.content === 'object') {\n      if (item.json.message.content.date && item.json.message.content.heure) {\n        item.json.date = item.json.message.content.date;\n        item.json.heure = item.json.message.content.heure;\n      }\n    } \n    // Option 2 : Si le LLM renvoie une chaîne JSON à parser\n    else if (item.json.message && item.json.message.content && typeof item.json.message.content === 'string') {\n      try {\n        const parsed = JSON.parse(item.json.message.content);\n        if (parsed.date && parsed.heure) {\n          item.json.date = parsed.date;\n          item.json.heure = parsed.heure;\n        }\n      } catch (e) {\n        // Gérer le cas où le contenu n'est pas un JSON valide\n        console.log(\"Erreur de parsing JSON:\", e);\n      }\n    }\n  } catch (error) {\n    console.log(\"Erreur générale:\", error);\n  }\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        640,
+        -40
+      ],
+      "id": "698fdd8f-cc62-41c4-aa7c-8fd38df600cc",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "content": "## Reccuperation Date et heure du LLM\n\n\n\n\n\n\n\n\n\n\n\n\n-Parcourt tous les éléments d'entrée\nIl vérifie si le LLM a renvoyé un objet avec le format attendu (message.content qui contient un objet avec date et heure)\n- Si c'est le cas, il extrait ces valeurs et les ajoute directement à la racine de l'objet JSON en créant item.json.date et item.json.heure",
+        "height": 560,
+        "width": 200,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        600,
+        -180
+      ],
+      "id": "db4e55a1-6c20-4501-a30b-c044d6d3cc7b",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Récupérer les données nécessaires\nconst call_id = $('Webhook.Check.availibility').first().json.body.call_id;\nconst availabilityData = $('availabilityOnRequestedTime').first().json;\n\n// Construire l'objet de réponse\nconst responseObject = {\n  results: [\n    {\n      call_id: call_id,\n      result: {\n        available: false,\n        requestedTime: availabilityData.requestedTime,\n        alternativeTimes: availabilityData.alternativeTimes,\n        message: availabilityData.message,\n        period: availabilityData.period\n      }\n    }\n  ]\n};\n\n// Retourner l'objet formaté\nreturn { json: responseObject };"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2380,
+        60
+      ],
+      "id": "5c6e94b8-90b1-45fc-b6cd-c820fc77d816",
+      "name": "Code1"
+    }
+  ],
+  "pinData": {
+    "Webhook.Check.availibility": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.catafs.eu",
+            "user-agent": "python-httpx/0.28.1",
+            "content-length": "156",
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, zstd",
+            "content-type": "application/json",
+            "x-forwarded-for": "20.199.0.85",
+            "x-forwarded-host": "n8n.catafs.eu",
+            "x-forwarded-proto": "https"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "type": "tool_call",
+            "tool_name": "check_rdv",
+            "call_id": "2c4061e2-12c2-411d-b08a-d2c0808b55a1",
+            "personnes": "2",
+            "date": "2025-04-10",
+            "heure": "19:00"
+          },
+          "webhookUrl": "https://n8n.catafs.eu/webhook/ad60ebbc-70c9-4204-b87a-8e8d71caa0cf",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "CanigouIA",
+  "repo_owner": "terryble66",
+  "repo_path": "2025/03/JAttFsrGKdPhNuFJ.json",
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Paris",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "hYt10qucorpB2UbQ"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-05-12T16:32:35.749Z",
+  "versionId": "050ebe1c-7c0f-4115-890a-1bb1be1d22ec"
+}
