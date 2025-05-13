@@ -1,0 +1,1611 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Extract Form Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Form Data": {
+      "main": [
+        [
+          {
+            "node": "Type de métier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Success Response": {
+      "main": [
+        [
+          {
+            "node": "Send Notifications?",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Respond To Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Final Response": {
+      "main": [
+        [
+          {
+            "node": "Success Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Notifications?": {
+      "main": [
+        [
+          {
+            "node": "Send SMS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Type de métier": {
+      "main": [
+        [
+          {
+            "node": "Statut Atelier",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Statut Pressing",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Statut Cordonnier",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Statut Autres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Statut Atelier": {
+      "main": [
+        [
+          {
+            "node": "Set Status: Véhicule déposé",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set Status: Diagnostic réalisé",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set Status: Pièces commandées",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set Status: Véhicule prêt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Statut Pressing": {
+      "main": [
+        [
+          {
+            "node": "Set Status: Article reçu",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set Status: Lavage en cours",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set Status: Repassage terminé",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set Status: Prêt à être retiré",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Statut Cordonnier": {
+      "main": [
+        [
+          {
+            "node": "Set Status: Chaussures déposées",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set Status: Réparation semelles/talons",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set Status: Finitions en cours",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set Status: Prêt pour retrait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Statut Autres": {
+      "main": [
+        [
+          {
+            "node": "Set Status: Créé",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set Status: En production",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set Status: En test",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set Status: Terminé",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Status: Véhicule déposé": {
+      "main": [
+        [
+          {
+            "node": "Prepare Final Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Status: Diagnostic réalisé": {
+      "main": [
+        [
+          {
+            "node": "Prepare Final Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Status: Pièces commandées": {
+      "main": [
+        [
+          {
+            "node": "Prepare Final Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Status: Véhicule prêt": {
+      "main": [
+        [
+          {
+            "node": "Prepare Final Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Status: Article reçu": {
+      "main": [
+        [
+          {
+            "node": "Prepare Final Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Status: Lavage en cours": {
+      "main": [
+        [
+          {
+            "node": "Prepare Final Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Status: Repassage terminé": {
+      "main": [
+        [
+          {
+            "node": "Prepare Final Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Status: Prêt à être retiré": {
+      "main": [
+        [
+          {
+            "node": "Prepare Final Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Status: Chaussures déposées": {
+      "main": [
+        [
+          {
+            "node": "Prepare Final Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Status: Réparation semelles/talons": {
+      "main": [
+        [
+          {
+            "node": "Prepare Final Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Status: Finitions en cours": {
+      "main": [
+        [
+          {
+            "node": "Prepare Final Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Status: Prêt pour retrait": {
+      "main": [
+        [
+          {
+            "node": "Prepare Final Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Status: Créé": {
+      "main": [
+        [
+          {
+            "node": "Prepare Final Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Status: En production": {
+      "main": [
+        [
+          {
+            "node": "Prepare Final Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Status: En test": {
+      "main": [
+        [
+          {
+            "node": "Prepare Final Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Status: Terminé": {
+      "main": [
+        [
+          {
+            "node": "Prepare Final Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-29T12:26:48.314Z",
+  "id": "CovY7C9CwX8qfuvp",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "CanigouIA.Simulateur.Statut.POC",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "update-status",
+        "options": {}
+      },
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -1420,
+        180
+      ],
+      "webhookId": "update-status-simulator",
+      "id": "d3e4ddc1-f6d3-4e9c-82b3-defff439c197"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "83c5dcfb-4f56-4789-8eff-9c3c83969e7b",
+              "name": "ID_Travail",
+              "value": "={{ $json.body.ID_Travail }}",
+              "type": "string"
+            },
+            {
+              "id": "076de7ab-a16b-453f-b134-1cba10cef26b",
+              "name": "Status_ID",
+              "value": "={{ $json.body.Status_ID }}",
+              "type": "string"
+            },
+            {
+              "id": "metier-field-id",
+              "name": "Metier",
+              "value": "={{ $json.body.Metier }}",
+              "type": "string"
+            },
+            {
+              "id": "phone-field-id",
+              "name": "phone",
+              "value": "={{ $json.body.phone }}",
+              "type": "string"
+            },
+            {
+              "id": "af656a26-4222-455f-ad01-eccb0da6d02f",
+              "name": "email",
+              "value": "={{ $json.body.email }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1180,
+        260
+      ],
+      "id": "505c8a4e-cb6a-4bd2-9298-d54d3368f522",
+      "name": "Extract Form Data"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"success\": true,\n  \"message\": \"Status mis à jour avec succès\",\n  \"ID_Travail\": \"{{ $json.ID_Travail }}\"\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1180,
+        320
+      ],
+      "id": "2a439a97-9625-4571-bc07-6a42918355e4",
+      "name": "Success Response"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"status_text\": \"{{ $json.status_text }}\",\n  \"ID_Travail\":\"{{ $('Extract Form Data').item.json.ID_Travail }}\"\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        880,
+        320
+      ],
+      "id": "a2ac3f76-de30-4d2e-a956-69cc8c68d74b",
+      "name": "Prepare Final Response"
+    },
+    {
+      "parameters": {
+        "to": "={{ $('Extract Form Data').item.json.phone }}",
+        "options": {}
+      },
+      "name": "Send SMS",
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [
+        1740,
+        520
+      ],
+      "id": "8782906c-c791-4fc9-aa27-fcac980b8c14",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "59cde3be-281c-433f-a149-66d9e2215e69",
+              "leftValue": "={{ $json.phone }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1400,
+        460
+      ],
+      "id": "19199f14-d998-48f5-a2e1-2310001fe3d8",
+      "name": "Send Notifications?"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {}
+      },
+      "name": "Respond To Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1700,
+        260
+      ],
+      "id": "022297a7-6f2f-4153-9698-0848e4d6c40c",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "## Atelier Mécanique\n* 1: Véhicule déposé\n* 2: Diagnostic réalisé\n* 3: Pièces commandées\n* 4: Véhicule prêt",
+        "height": 200,
+        "width": 400
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -500,
+        -80
+      ],
+      "typeVersion": 1,
+      "id": "46db31cf-cd98-4e03-a415-434604d2518a",
+      "name": "Atelier"
+    },
+    {
+      "parameters": {
+        "content": "## Pressing / Blanchisserie\n* 1: Article reçu\n* 2: Lavage en cours\n* 3: Repassage terminé\n* 4: Prêt à être retiré",
+        "height": 200,
+        "width": 400
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -500,
+        180
+      ],
+      "typeVersion": 1,
+      "id": "daccfbb1-2df9-4d30-83a0-402149e42240",
+      "name": "Pressing"
+    },
+    {
+      "parameters": {
+        "content": "## Cordonnier\n* 1: Chaussures déposées\n* 2: Réparation semelles/talons\n* 3: Finitions en cours\n* 4: Prêt pour retrait",
+        "height": 200,
+        "width": 400
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -500,
+        440
+      ],
+      "typeVersion": 1,
+      "id": "48007897-369e-4e04-814a-7f8867849ffc",
+      "name": "Cordonnier"
+    },
+    {
+      "parameters": {
+        "content": "## Autres métiers\n* 1: Créé\n* 2: En production\n* 3: En test\n* 4: Terminé",
+        "height": 200,
+        "width": 400
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -500,
+        740
+      ],
+      "typeVersion": 1,
+      "id": "8b070746-7eb7-47e5-beda-beaa8f1678d2",
+      "name": "Autres"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.Metier }}",
+                    "rightValue": "Atelier"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "Atelier"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "id": "26a3ffe8-c8a6-4564-8d18-5494a8059372",
+                    "operator": {
+                      "name": "filter.operator.equals",
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.Metier }}",
+                    "rightValue": "Pressing"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "Pressing"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "id": "0f51cc26-2e42-42e1-a5c2-cb1d2e384962",
+                    "operator": {
+                      "name": "filter.operator.equals",
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.Metier }}",
+                    "rightValue": "Cordonnier"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "Cordonnier"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "id": "51031140-5ceb-48aa-9f33-d314131a9653",
+                    "operator": {
+                      "name": "filter.operator.equals",
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.Metier }}",
+                    "rightValue": "Autres"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "Autres"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -880,
+        280
+      ],
+      "id": "22f6bc76-0d90-49cd-ab0f-17c86e23604c",
+      "name": "Type de métier"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.Status_ID }}",
+                    "rightValue": "1"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "Status1"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "id": "26a3ffe8-c8a6-4564-8d18-5494a8059372",
+                    "operator": {
+                      "name": "filter.operator.equals",
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.Status_ID }}",
+                    "rightValue": "2"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "Status2"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "id": "0f51cc26-2e42-42e1-a5c2-cb1d2e384962",
+                    "operator": {
+                      "name": "filter.operator.equals",
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.Status_ID }}",
+                    "rightValue": "3"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "Status3"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "id": "51031140-5ceb-48aa-9f33-d314131a9653",
+                    "operator": {
+                      "name": "filter.operator.equals",
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.Status_ID }}",
+                    "rightValue": "4"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "Status4"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -260,
+        -60
+      ],
+      "id": "b028542c-26b4-4d58-893b-59adee750862",
+      "name": "Statut Atelier"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.Status_ID }}",
+                    "rightValue": "1"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "Status1"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "id": "26a3ffe8-c8a6-4564-8d18-5494a8059372",
+                    "operator": {
+                      "name": "filter.operator.equals",
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.Status_ID }}",
+                    "rightValue": "2"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "Status2"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "id": "0f51cc26-2e42-42e1-a5c2-cb1d2e384962",
+                    "operator": {
+                      "name": "filter.operator.equals",
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.Status_ID }}",
+                    "rightValue": "3"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "Status3"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "id": "51031140-5ceb-48aa-9f33-d314131a9653",
+                    "operator": {
+                      "name": "filter.operator.equals",
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.Status_ID }}",
+                    "rightValue": "4"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "Status4"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -260,
+        220
+      ],
+      "id": "c2be5cee-6337-4006-b856-338d7596a156",
+      "name": "Statut Pressing"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.Status_ID }}",
+                    "rightValue": "1"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "Status1"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "id": "26a3ffe8-c8a6-4564-8d18-5494a8059372",
+                    "operator": {
+                      "name": "filter.operator.equals",
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.Status_ID }}",
+                    "rightValue": "2"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "Status2"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "id": "0f51cc26-2e42-42e1-a5c2-cb1d2e384962",
+                    "operator": {
+                      "name": "filter.operator.equals",
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.Status_ID }}",
+                    "rightValue": "3"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "Status3"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "id": "51031140-5ceb-48aa-9f33-d314131a9653",
+                    "operator": {
+                      "name": "filter.operator.equals",
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.Status_ID }}",
+                    "rightValue": "4"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "Status4"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -260,
+        460
+      ],
+      "id": "9ff1b023-d280-4305-a51e-d41e9fe16faa",
+      "name": "Statut Cordonnier"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.Status_ID }}",
+                    "rightValue": "1"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "Status1"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "id": "26a3ffe8-c8a6-4564-8d18-5494a8059372",
+                    "operator": {
+                      "name": "filter.operator.equals",
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.Status_ID }}",
+                    "rightValue": "2"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "Status2"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "id": "0f51cc26-2e42-42e1-a5c2-cb1d2e384962",
+                    "operator": {
+                      "name": "filter.operator.equals",
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.Status_ID }}",
+                    "rightValue": "3"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "Status3"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "version": 2,
+                  "leftValue": "",
+                  "caseSensitive": true,
+                  "typeValidation": "strict"
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "id": "51031140-5ceb-48aa-9f33-d314131a9653",
+                    "operator": {
+                      "name": "filter.operator.equals",
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "leftValue": "={{ $json.Status_ID }}",
+                    "rightValue": "4"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "Status4"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -260,
+        760
+      ],
+      "id": "42663b6f-b53a-45c2-ad7f-2232448af0ab",
+      "name": "Statut Autres"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "status-text-atelier-1",
+              "name": "status_text",
+              "value": "Véhicule déposé",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        320,
+        -600
+      ],
+      "id": "d69bfee6-e5ac-46c0-aba2-6b4ebb52479c",
+      "name": "Set Status: Véhicule déposé"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "status-text-atelier-2",
+              "name": "status_text",
+              "value": "Diagnostic réalisé",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        320,
+        -400
+      ],
+      "id": "1f7e1672-3811-4492-8c9a-656023ad4b0f",
+      "name": "Set Status: Diagnostic réalisé"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "status-text-atelier-3",
+              "name": "status_text",
+              "value": "Pièces commandées",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        320,
+        -200
+      ],
+      "id": "5bbb15a0-332b-4fb1-ad69-2db695e8196a",
+      "name": "Set Status: Pièces commandées"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "status-text-atelier-4",
+              "name": "status_text",
+              "value": "Véhicule prêt",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        320,
+        -20
+      ],
+      "id": "5b764e01-ab49-4a9d-af65-5b38e04b331d",
+      "name": "Set Status: Véhicule prêt"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "status-text-pressing-1",
+              "name": "status_text",
+              "value": "Article reçu",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        320,
+        140
+      ],
+      "id": "6360a4b4-89ff-4121-8a46-7baee05d7e07",
+      "name": "Set Status: Article reçu"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "status-text-pressing-2",
+              "name": "status_text",
+              "value": "Lavage en cours",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        320,
+        300
+      ],
+      "id": "06da7c8b-f844-4b97-a0b2-80d1474d3d2f",
+      "name": "Set Status: Lavage en cours"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "status-text-pressing-3",
+              "name": "status_text",
+              "value": "Repassage terminé",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        320,
+        500
+      ],
+      "id": "e92f046e-8f68-4be3-8dd8-2cc201e9c4d7",
+      "name": "Set Status: Repassage terminé"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "status-text-pressing-4",
+              "name": "status_text",
+              "value": "Prêt à être retiré",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        320,
+        700
+      ],
+      "id": "252b1411-0ea5-4bb2-8ba8-9eb580e99657",
+      "name": "Set Status: Prêt à être retiré"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "status-text-cordonnier-1",
+              "name": "status_text",
+              "value": "Chaussures déposées",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        340,
+        940
+      ],
+      "id": "fdc081c1-a78b-4343-8b57-83cd270b0978",
+      "name": "Set Status: Chaussures déposées"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "status-text-cordonnier-2",
+              "name": "status_text",
+              "value": "Réparation semelles/talons",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        340,
+        1120
+      ],
+      "id": "f0d7dd0c-23e4-474b-a0e4-0260eab223f0",
+      "name": "Set Status: Réparation semelles/talons"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "status-text-cordonnier-3",
+              "name": "status_text",
+              "value": "Finitions en cours",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        340,
+        1320
+      ],
+      "id": "4f67506a-ede7-4e53-aa1c-886b331b5f5a",
+      "name": "Set Status: Finitions en cours"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "status-text-cordonnier-4",
+              "name": "status_text",
+              "value": "Prêt pour retrait",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        340,
+        1480
+      ],
+      "id": "e4a24ab2-df78-40fc-bac5-d8ff19b0e7d2",
+      "name": "Set Status: Prêt pour retrait"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "status-text-autres-1",
+              "name": "status_text",
+              "value": "Créé",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        340,
+        1700
+      ],
+      "id": "e45196fc-4565-4f6a-b5eb-b0b94845406e",
+      "name": "Set Status: Créé"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "status-text-autres-2",
+              "name": "status_text",
+              "value": "En production",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        340,
+        1860
+      ],
+      "id": "90310769-0b0f-4e3a-a19c-10c841e7c188",
+      "name": "Set Status: En production"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "status-text-autres-3",
+              "name": "status_text",
+              "value": "En test",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        340,
+        2020
+      ],
+      "id": "9d5ca425-8e91-43e5-a20f-ea869734d892",
+      "name": "Set Status: En test"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "status-text-autres-4",
+              "name": "status_text",
+              "value": "Terminé",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        340,
+        2180
+      ],
+      "id": "ea9d9992-e8c2-464e-876e-16f21b80f206",
+      "name": "Set Status: Terminé"
+    },
+    {
+      "parameters": {
+        "content": "## Point d'entrée\n**Webhook pour recevoir les requêtes du formulaire**",
+        "height": 320,
+        "width": 320
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1260,
+        120
+      ],
+      "typeVersion": 1,
+      "id": "b24ffdde-4657-4e97-bf56-584c7ef51919",
+      "name": "Webhook Note"
+    },
+    {
+      "parameters": {
+        "content": "## Switch par métier\n**Redirige vers la bonne branche selon le métier**",
+        "width": 320
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -900,
+        140
+      ],
+      "typeVersion": 1,
+      "id": "242e49a7-d787-436d-bc90-98536cb9f15a",
+      "name": "Métier Switch Note"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "CanigouIA",
+  "repo_owner": "terryble66",
+  "repo_path": "2025/03/CovY7C9CwX8qfuvp.json",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-30T09:18:18.372Z",
+  "versionId": "46513dc4-8444-4b36-8543-88dc2d6a8616"
+}
