@@ -289,7 +289,7 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "CanigouIA.Backup.Workflow.n8n.POC",
+  "name": "CanigouIA.Backup.Workflow.n8n.PROD",
   "nodes": [
     {
       "parameters": {},
@@ -892,7 +892,9 @@
   "repo_owner": "terryble66",
   "repo_path": "2025/05/qnjSWRqZcmfeZNkp.json",
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "timezone": "Europe/Paris",
+    "callerPolicy": "workflowsFromSameOwner"
   },
   "staticData": {
     "node:Schedule Trigger": {
@@ -901,6 +903,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-05-13T00:01:07.310Z",
-  "versionId": "d2039c99-2553-49d5-b2c8-1b5c0a5d00c3"
+  "updatedAt": "2025-05-13T08:44:24.843Z",
+  "versionId": "64009489-f084-43a1-b5dc-fc3b23d44225"
 }
