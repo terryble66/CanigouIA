@@ -157,7 +157,7 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "CANIGOUI.AGENT.Assistant",
+  "name": "CANIGOUI.MASTER.AGENT.Assistant.PROD",
   "nodes": [
     {
       "parameters": {
@@ -562,6 +562,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-30T21:35:27.266Z",
-  "versionId": "3559b43f-501d-450d-9696-767b18a1d85f"
+  "updatedAt": "2025-05-13T08:58:22.448Z",
+  "versionId": "b1f31282-147c-46d6-90e9-48227529cb42"
 }
