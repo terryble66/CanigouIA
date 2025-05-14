@@ -108,12 +108,24 @@
     },
     "Google Calendar Trigger": {
       "main": [
-        []
+        [
+          {
+            "node": "Google Calendar",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Google Calendar Trigger1": {
       "main": [
-        []
+        [
+          {
+            "node": "Google Calendar",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Airtable": {
@@ -932,8 +944,8 @@
       "type": "n8n-nodes-base.googleCalendarTrigger",
       "typeVersion": 1,
       "position": [
-        1340,
-        880
+        1700,
+        920
       ],
       "id": "76e49b0e-30e4-462f-a381-8efc546ca94f",
       "name": "Google Calendar Trigger",
@@ -967,8 +979,8 @@
       "type": "n8n-nodes-base.googleCalendarTrigger",
       "typeVersion": 1,
       "position": [
-        1340,
-        1160
+        1700,
+        1180
       ],
       "id": "e8e724bf-8f66-4f7f-9561-11e94a4c50c2",
       "name": "Google Calendar Trigger1",
@@ -1394,14 +1406,14 @@
   },
   "staticData": {
     "node:Google Calendar Trigger": {
-      "lastTimeChecked": "2025-05-12T20:46:24Z"
+      "lastTimeChecked": "2025-05-13T15:15:43Z"
     },
     "node:Google Calendar Trigger1": {
-      "lastTimeChecked": "2025-05-12T20:46:24Z"
+      "lastTimeChecked": "2025-05-13T15:15:03Z"
     }
   },
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-05-08T15:59:54.467Z",
-  "versionId": "071cf185-2e0f-4fbe-b2aa-acc2b75fd139"
+  "updatedAt": "2025-05-13T08:50:31.105Z",
+  "versionId": "5eff4f40-e367-4cb5-a83b-b62987ba6c78"
 }
