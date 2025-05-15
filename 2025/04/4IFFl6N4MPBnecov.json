@@ -309,8 +309,8 @@
       ],
       "credentials": {
         "googleCalendarOAuth2Api": {
-          "id": "FkHw8XDKmJtzlBIU",
-          "name": "Google Calendar account catafs.si"
+          "id": "tABOD9zFimHW5aI4",
+          "name": "Google Calendar account"
         }
       }
     },
@@ -883,8 +883,8 @@
       ],
       "credentials": {
         "googleCalendarOAuth2Api": {
-          "id": "FkHw8XDKmJtzlBIU",
-          "name": "Google Calendar account catafs.si"
+          "id": "tABOD9zFimHW5aI4",
+          "name": "Google Calendar account"
         }
       }
     },
@@ -951,8 +951,8 @@
       "name": "Google Calendar Trigger",
       "credentials": {
         "googleCalendarOAuth2Api": {
-          "id": "FkHw8XDKmJtzlBIU",
-          "name": "Google Calendar account catafs.si"
+          "id": "tABOD9zFimHW5aI4",
+          "name": "Google Calendar account"
         }
       }
     },
@@ -986,8 +986,8 @@
       "name": "Google Calendar Trigger1",
       "credentials": {
         "googleCalendarOAuth2Api": {
-          "id": "FkHw8XDKmJtzlBIU",
-          "name": "Google Calendar account catafs.si"
+          "id": "tABOD9zFimHW5aI4",
+          "name": "Google Calendar account"
         }
       }
     },
@@ -1406,14 +1406,14 @@
   },
   "staticData": {
     "node:Google Calendar Trigger": {
-      "lastTimeChecked": "2025-05-13T15:15:43Z"
+      "lastTimeChecked": "2025-05-14T20:02:02Z"
     },
     "node:Google Calendar Trigger1": {
-      "lastTimeChecked": "2025-05-13T15:15:03Z"
+      "lastTimeChecked": "2025-05-14T20:02:02Z"
     }
   },
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-05-13T08:50:31.105Z",
-  "versionId": "5eff4f40-e367-4cb5-a83b-b62987ba6c78"
+  "updatedAt": "2025-05-14T20:02:02.222Z",
+  "versionId": "9eb5b6a0-c88d-4bfb-8135-710380da4fff"
 }
