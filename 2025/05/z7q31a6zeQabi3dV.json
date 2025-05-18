@@ -1,0 +1,738 @@
+{
+  "active": true,
+  "connections": {
+    "When clicking 'Test workflow'": {
+      "main": [
+        [
+          {
+            "node": "Générer liste de groupes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Générer liste de groupes": {
+      "main": [
+        [
+          {
+            "node": "Traiter un groupe à la fois",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Traiter un groupe à la fois": {
+      "main": [
+        [
+          {
+            "node": "Préparer date pour ce groupe",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Préparer date pour ce groupe": {
+      "main": [
+        [
+          {
+            "node": "Récupérer entrées pour ce groupe",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Récupérer entrées pour ce groupe": {
+      "main": [
+        [
+          {
+            "node": "Préparer données à mettre à jour",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Préparer données à mettre à jour": {
+      "main": [
+        [
+          {
+            "node": "Mettre à jour entrées pour ce groupe",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mettre à jour entrées pour ce groupe": {
+      "main": [
+        [
+          {
+            "node": "Tous les groupes traités?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tous les groupes traités?": {
+      "main": [
+        [
+          {
+            "node": "Générer résumé final",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Traiter un groupe à la fois",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Générer résumé final": {
+      "main": [
+        [
+          {
+            "node": "Envoyer notification Slack",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Préparer émail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mise à jour hebdomadaire": {
+      "main": [
+        []
+      ]
+    },
+    "Préparer émail": {
+      "main": [
+        [
+          {
+            "node": "Envoyer notification email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-17T11:55:50.697Z",
+  "id": "z7q31a6zeQabi3dV",
+  "meta": null,
+  "name": "CANIGOUIA.S.Vocal.#1-5 Maj hebdo dispo tables.PROD",
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "// Liste fixe des 7 groupes (0 à 6)\nconst groupes = [0, 1, 2, 3, 4, 5, 6];\n\n// Générer un item pour chaque groupe\nconst items = groupes.map(groupe => ({\n  json: {\n    groupe: groupe,\n    traite: false  // Chaque groupe commence non traité\n  }\n}));\n\nreturn items;"
+      },
+      "name": "Générer liste de groupes",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        80,
+        200
+      ],
+      "id": "51b05a32-2da7-4229-b41d-29a2f15ca61e"
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "name": "Traiter un groupe à la fois",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 1,
+      "position": [
+        400,
+        200
+      ],
+      "id": "17494cd1-3bc4-4635-b4d8-771bc32209e6"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Récupérer le groupe actuel\nconst groupe = $json.groupe;\n\n// Calculer la date pour ce groupe (groupe + 1 jour)\nconst today = new Date();\nconst daysToAdd = groupe + 1;\nconst targetDate = new Date(today);\ntargetDate.setDate(today.getDate() + daysToAdd);\n\n// Formater la date (YYYY-MM-DD)\nconst year = targetDate.getFullYear();\nconst month = String(targetDate.getMonth() + 1).padStart(2, '0');\nconst day = String(targetDate.getDate()).padStart(2, '0');\nconst dateToUpdate = `${year}-${month}-${day}`;\n\n// Afficher des informations de debug\nconsole.log(`Mise à jour pour groupe ${groupe} avec date: ${dateToUpdate}`);\n\n// Retourner les informations utiles pour la suite\nreturn {\n  json: {\n    groupe: groupe,\n    date: dateToUpdate\n  }\n};"
+      },
+      "name": "Préparer date pour ce groupe",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        600,
+        200
+      ],
+      "id": "03466858-e164-41be-9ef6-0a9da70347a5"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appfYhSgpp4bA592e",
+          "mode": "list",
+          "cachedResultName": "Gestion Table Restaurant"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblczSo1Z1dIOM2Tk",
+          "mode": "list",
+          "cachedResultName": "Table_Disponibilite"
+        },
+        "filterByFormula": "=({Groupe} = \"{{ $json.groupe }}\")",
+        "options": {}
+      },
+      "name": "Récupérer entrées pour ce groupe",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        800,
+        200
+      ],
+      "id": "a5e8dd78-d923-4920-a9b6-29b0cec1b49d",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "zYVUtJkQEXl8AiSy",
+          "name": "Airtable catafs.si"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Récupérer les informations de date et groupe\nconst dateToUpdate = $('Préparer date pour ce groupe').first().json.date;\nconst currentGroupe = $('Préparer date pour ce groupe').first().json.groupe;\n\n// Vérifier si nous avons des entrées à mettre à jour\nconst items = $input.all();\nconsole.log(`Trouvé ${items.length} entrées pour le groupe ${currentGroupe}`);\n\nif (items.length > 0) {\n  // Préparer les items à mettre à jour\n  return items.map(item => {\n    const fields = item.json.fields || {};\n    \n    return {\n      json: {\n        id: item.json.id,\n        fields: {\n          Date: dateToUpdate,\n          Status: \"Disponible\",\n          Table_ID: fields.Table_ID || '',\n          Time_Slot: fields.Time_Slot || '',\n          Index: fields.Index || '', \n          Groupe: currentGroupe,\n          Num_Resa: \"\",\n          Reservations: \"\"\n        },\n        groupe: currentGroupe\n      }\n    };\n  });\n} else {\n  // Si aucune entrée, retourner un message d'information\n  return {\n    json: {\n      message: `Aucune entrée pour le groupe ${currentGroupe}`,\n      groupe: currentGroupe\n    }\n  };\n}"
+      },
+      "name": "Préparer données à mettre à jour",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1000,
+        200
+      ],
+      "id": "8bdc2b9a-109a-42fa-b1a1-68dd57861785"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appfYhSgpp4bA592e",
+          "mode": "list",
+          "cachedResultName": "Gestion Table Restaurant"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblczSo1Z1dIOM2Tk",
+          "mode": "list",
+          "cachedResultName": "Table_Disponibilite"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Date": "={{ $json.fields.Date }}",
+            "Status": "={{ $json.fields.Status }}",
+            "Num_Resa": "={{ $json.fields.Num_Resa }}",
+            "id": "={{ $json.id }}",
+            "Reservations": "={{ $json.fields.Reservations }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true
+            },
+            {
+              "id": "Index",
+              "displayName": "Index",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Groupe",
+              "displayName": "Groupe",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Table_ID",
+              "displayName": "Table_ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "T1",
+                  "value": "T1"
+                },
+                {
+                  "name": "T2",
+                  "value": "T2"
+                },
+                {
+                  "name": "T3",
+                  "value": "T3"
+                },
+                {
+                  "name": "T4",
+                  "value": "T4"
+                },
+                {
+                  "name": "T5",
+                  "value": "T5"
+                },
+                {
+                  "name": "",
+                  "value": ""
+                }
+              ],
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Time_Slot",
+              "displayName": "Time_Slot",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "11:30",
+                  "value": "11:30"
+                },
+                {
+                  "name": "12:00",
+                  "value": "12:00"
+                },
+                {
+                  "name": "12:30",
+                  "value": "12:30"
+                },
+                {
+                  "name": "13:00",
+                  "value": "13:00"
+                },
+                {
+                  "name": "13:30",
+                  "value": "13:30"
+                },
+                {
+                  "name": "14:00",
+                  "value": "14:00"
+                },
+                {
+                  "name": "14:30",
+                  "value": "14:30"
+                },
+                {
+                  "name": "15:00",
+                  "value": "15:00"
+                },
+                {
+                  "name": "15:30",
+                  "value": "15:30"
+                },
+                {
+                  "name": "16:00",
+                  "value": "16:00"
+                },
+                {
+                  "name": "16:30",
+                  "value": "16:30"
+                },
+                {
+                  "name": "17:00",
+                  "value": "17:00"
+                },
+                {
+                  "name": "17:30",
+                  "value": "17:30"
+                },
+                {
+                  "name": "18:00",
+                  "value": "18:00"
+                },
+                {
+                  "name": "18:30",
+                  "value": "18:30"
+                },
+                {
+                  "name": "19:00",
+                  "value": "19:00"
+                },
+                {
+                  "name": "19:30",
+                  "value": "19:30"
+                },
+                {
+                  "name": "20:00",
+                  "value": "20:00"
+                },
+                {
+                  "name": "20:30",
+                  "value": "20:30"
+                },
+                {
+                  "name": "21:00",
+                  "value": "21:00"
+                },
+                {
+                  "name": "21:30",
+                  "value": "21:30"
+                },
+                {
+                  "name": "22:00",
+                  "value": "22:00"
+                },
+                {
+                  "name": "22:30",
+                  "value": "22:30"
+                },
+                {
+                  "name": "23:00",
+                  "value": "23:00"
+                },
+                {
+                  "name": "23:30",
+                  "value": "23:30"
+                }
+              ],
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Disponible",
+                  "value": "Disponible"
+                },
+                {
+                  "name": "Indisponible",
+                  "value": "Indisponible"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Num_Resa",
+              "displayName": "Num_Resa",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Reservations",
+              "displayName": "Reservations",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "RECORD_ID()",
+              "displayName": "RECORD_ID()",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "typecast": true
+        }
+      },
+      "name": "Mettre à jour entrées pour ce groupe",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        1200,
+        200
+      ],
+      "id": "8c7a79be-5a1e-4b6f-a80c-caf1fd4563b8",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "zYVUtJkQEXl8AiSy",
+          "name": "Airtable catafs.si"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "leftValue": "={{ $('Traiter un groupe à la fois').context.noItemsLeft === true }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              },
+              "id": "17606b65-c1b6-4a10-8829-5af55e1f80b7"
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "name": "Tous les groupes traités?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1400,
+        200
+      ],
+      "id": "186700d6-4c60-4ccd-b866-f357eb90e0ac"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Créer un résumé des dates attribuées à chaque groupe\nconst groups = [0, 1, 2, 3, 4, 5, 6];\nconst today = new Date();\n\n// Générer le résumé\nconst summary = groups.map(groupe => {\n  const daysToAdd = groupe + 1;\n  const targetDate = new Date(today);\n  targetDate.setDate(today.getDate() + daysToAdd);\n  \n  // Formater la date\n  const year = targetDate.getFullYear();\n  const month = String(targetDate.getMonth() + 1).padStart(2, '0');\n  const day = String(targetDate.getDate()).padStart(2, '0');\n  const formattedDate = `${year}-${month}-${day}`;\n  \n  return `Groupe ${groupe} → Date ${formattedDate}`;\n}).join('\\n');\n\nreturn {\n  json: {\n    message: 'Mise à jour terminée',\n    details: `Les dates suivantes ont été attribuées:\\n${summary}`\n  }\n};"
+      },
+      "name": "Générer résumé final",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1600,
+        140
+      ],
+      "id": "a0a48a63-4a1a-4edc-86ec-e4beaf96319c"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        420
+      ],
+      "id": "4af044b8-de85-43f2-a448-5300084e1e27",
+      "name": "When clicking 'Test workflow'"
+    },
+    {
+      "parameters": {
+        "content": "## Workflow de mise à jour par groupe\n\nCe workflow met à jour les disponibilités de tables pour 7 groupes (0 à 6) :\n\n1. Génère une liste fixe des 7 groupes\n2. Traite chaque groupe un par un\n3. Calcule la date pour chaque groupe (groupe + 1 jour)\n4. Met à jour les entrées dans Airtable\n5. Continue jusqu'à avoir traité tous les groupes",
+        "height": 200,
+        "width": 600
+      },
+      "name": "Note explicative",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        620,
+        -40
+      ],
+      "id": "8315d2fe-e343-46ff-ade9-0280f3e2ad0a"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C08R6TLN6PR",
+          "mode": "list",
+          "cachedResultName": "notifications"
+        },
+        "text": "={{ $json.details }}",
+        "otherOptions": {}
+      },
+      "name": "Envoyer notification Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        2080,
+        220
+      ],
+      "id": "87aebdd2-5bc7-4e24-9b4b-1da6fe898c15",
+      "webhookId": "3ba3ed5d-b76d-44ab-be76-5d37a0506a29",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "CkPd9FlkopJskvKA",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "catafs.si@gmail.com",
+        "subject": "={{ $json.message }}",
+        "message": "={{ $json.Message }}",
+        "options": {}
+      },
+      "name": "Envoyer notification email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2080,
+        20
+      ],
+      "id": "eedbe5b5-167f-417a-be1e-5475027d0053",
+      "webhookId": "1b63aa41-a0bf-4d70-b7bc-254876822c23",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "9NoExkRFVF0ZPS4n",
+          "name": "Gmail account cataf.si"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Envoi des notifications\n\nEnvoie des notifications email et Slack.",
+        "width": 270
+      },
+      "name": "Note envoi notifications",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        220,
+        -20
+      ],
+      "id": "ba689621-2746-47cf-a675-157d1a7a50a9"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks"
+            }
+          ]
+        }
+      },
+      "name": "Mise à jour hebdomadaire",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -260,
+        200
+      ],
+      "id": "8f53007a-6fb7-4155-83d2-2935b72e2cca"
+    },
+    {
+      "parameters": {
+        "content": "## Déclencheur\n\nExécute le workflow une fois par semaine pour mettre à jour la table de réservation.",
+        "height": 150,
+        "width": 250
+      },
+      "name": "Note déclencheur",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -340,
+        20
+      ],
+      "id": "0828bd30-bc5f-4592-b869-0341ae0e1577"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ad47be84-70ca-42a8-9334-d7c3c1cace53",
+              "name": "message",
+              "value": "={{ $json.message }} restaurant pour le {{ $now.format('dd-MM-yy') }}",
+              "type": "string"
+            },
+            {
+              "id": "be082c90-10e3-4ee9-bafa-0a41685d99c5",
+              "name": "Message",
+              "value": "=<h3>{{ $json.message }}</h3>\n<p>Mise à jour effectuée le {{ $now.format('DD-MM-YY') }}</p>\n<ul>\n{{ $json.details.split('\\n').map(line => `<li>${line}</li>`).join('') }}\n</ul>\n",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1820,
+        40
+      ],
+      "id": "63ab8405-33c0-4e18-9d01-2d48a279ac88",
+      "name": "Préparer émail"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "CanigouIA",
+  "repo_owner": "terryble66",
+  "repo_path": "2025/05/z7q31a6zeQabi3dV.json",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Mise à jour hebdomadaire": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-05-17T14:06:19.370Z",
+  "versionId": "1e9f9121-ba67-4f7d-9cc0-a9a465bd5512"
+}
