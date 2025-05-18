@@ -1,0 +1,1252 @@
+{
+  "active": true,
+  "connections": {
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Summarization Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item List Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "AI Agent3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent3": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call n8n Workflow Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent3",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Summarization Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Code3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code3": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        []
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        []
+      ]
+    },
+    "OpenAI Chat Model4": {
+      "ai_languageModel": [
+        []
+      ]
+    },
+    "OpenAI Chat Model5": {
+      "ai_languageModel": [
+        []
+      ]
+    },
+    "Ollama Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent3",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model3": {
+      "ai_languageModel": [
+        []
+      ]
+    },
+    "Ollama Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Intention",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Intention": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Think": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recherche_Perplexity": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-17T14:07:09.345Z",
+  "id": "pt7e0XftEsu1jv9m",
+  "meta": null,
+  "name": "CANIGOUIA.RECHERCHE.APPRONFONDIE.POC",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=à partir de cette question : {{ $json.message.text }}\nRetoure moi 5 sections dans un item séparés",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "Tu es un agent IA spécialiste de la recherche des meilleures informations sur le sujet suivant : \"{{ $json.message.text }}\".  Ton rôle est de structurer un rapport de veille en **5 grandes sections claires et pertinentes**, sans entrer dans les détails. Ces sections serviront à orienter une rédaction automatisée sur le sujet.  🎯 Tes consignes : - Sois **précis** : utilise des formulations qui **nomment clairement le sujet** (ex : \"Impact de l’IA sur les PME industrielles\" plutôt que \"Conséquences\") - Les 5 sections doivent couvrir les **angles les plus pertinents et populaires** autour du sujet - Tu dois t’inspirer de ce qui est **le plus discuté, commenté, ou influent sur le web actuellement** (presse, réseaux sociaux, forums, blogs pro…) - Ne fais **aucun développement** ni explication. **Juste les titres** des 5 sections.  🎁 Exemple attendu : Si le sujet est \"Comment l’intelligence artificielle transforme l’agriculture en France\", ta réponse pourrait être : 1. Automatisation des tâches agricoles en France 2. IA et optimisation des rendements agricoles 3. Réduction des intrants grâce aux technologies prédictives 4. Acceptabilité sociale et perception de l’IA par les agriculteurs 5. Cadre réglementaire de l’IA dans l’agriculture française  Répète ce schéma pour le sujet donné."
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        960,
+        860
+      ],
+      "id": "f6cfec0d-4636-4cdc-9548-4b1588bb2e35",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        720,
+        400
+      ],
+      "id": "908d6fb1-0cf7-4e4b-bc4d-79f6a3549c3f",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "34CHH48MlmPBcrFa",
+          "name": "OpenAi account personel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1700,
+        860
+      ],
+      "id": "e577db07-9dac-4c41-bb21-8d5ec6d05d01",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Voici la partie :{{ $json.text }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "Tu es un agent expert en **structuration de rapports détaillés**. Ton rôle est d’étayer chaque **grande section** fournie par un premier agent en générant 5 **sous-parties précises** grâce à une recherche web approfondie.\n\nVoici ta mission :\n1. Tu reçois un titre de section (ex. : \"Les menaces actuelles sur la survie des pandas\").\n2. Tu vas utiliser ton outil `search` pour faire **plusieurs recherches web** (entre 3 et 6) avec des requêtes différentes autour du sujet.\n3. À partir des meilleures informations trouvées, tu construis une **liste de 5 sous-parties pertinentes**, spécifiques, actuelles, et utiles.\n4. Chaque sous-partie doit être **clairement formulée** comme un titre de paragraphe de rapport (pas de termes vagues ou génériques).\n\n🔍 Pour chaque requête web, tu remplaces le placeholder `{prompt}` par le titre de section que tu traites, et tu varies les formulations pour explorer des angles différents.\n\n🧾 Format de ta réponse :\n\n```json\n{\n  \"section\": \"Titre de la section principale\",\n  \"sous_parties\": [\n    \"Titre de la sous-partie 1\",\n    \"Titre de la sous-partie 2\",\n    \"Titre de la sous-partie 3\",\n    \"Titre de la sous-partie 4\",\n    \"Titre de la sous-partie 5\"\n  ],\n  \"sources\": [\n    \"https://site-source-1.com\",\n    \"https://site-source-2.com\",\n    \"https://site-source-3.com\"\n  ]\n}\n⚠️ Dans sources, tu dois lister toutes les URL issues du champ citations retourné par ton outil de recherche Recherche_Perplexity. Si plusieurs requêtes ont été faites, tu agrèges les citations de toutes.\n\n⛔ Ne commente pas, ne donne pas d'introduction, ne résume rien.\n✅ Ton seul objectif est de structurer la matière brute en plan intelligent et justifié."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        2180,
+        880
+      ],
+      "id": "b9076889-7067-41f9-a2f5-8d69022faea7",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {
+          "numberOfItems": 3
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserItemList",
+      "typeVersion": 1,
+      "position": [
+        1160,
+        1080
+      ],
+      "id": "8b413db6-7b73-49bc-bddc-eb2a72283594",
+      "name": "Item List Output Parser"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Voici ta partie : {{ $json['sous-partie'] }}\nDescription : {{ $json['descirption-sous-partie'] }}\nLes sources à utiliser via ton tool : {{ $json.source }}\nremplace {url} quand tu utilsie ton tool par ces urls\n\nGénère un paragraphe d'au moins 5000caractères ",
+        "options": {
+          "systemMessage": "=Tu es un agent IA expert en rédaction de rapports techniques détaillés.\n\nTa mission : rédiger uniquement le contenu de la section demandée, sans introduction ni conclusion.\n\nPour cela, tu dois utiliser ton outil de recherche avancée. À chaque fois que tu reçois une ou plusieurs URLs, tu effectues une recherche indépendante par URL afin d’obtenir des informations fiables, croisées et approfondies.\n\nLorsque tu appelles ton outil, remplace le paramètre {url} par l’URL reçue.\n\n🔍 Ton objectif : synthétiser les meilleures données provenant de ces sources, en respectant un ton clair, professionnel et informatif. Structure ton texte en paragraphes cohérents, utilise des listes si nécessaire.\n\n❌ Tu ne rédiges pas d’introduction ni de conclusion.\n✅ Tu génères uniquement le corps de la partie demandée, en t’appuyant sur les résultats des recherches faites à partir des URLs.\n\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        2240,
+        240
+      ],
+      "id": "04486277-4191-4173-83aa-7787b791ad98",
+      "name": "AI Agent3",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1820,
+        160
+      ],
+      "id": "735fd21a-2385-4373-8602-64cd6a04de47",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "  [\n{\n\t\"sous-partie\": \"sous-partie1\",\n    \"descirption-sous-partie\": \"descirption-sous-partie\",\n  \"source\": \"url,url,url\"\n},\n\n\n{\n\t\"sous-partie\": \"sous-partie2\",\n    \"descirption-sous-partie\": \"descirption-sous-partie2\",\n    \"source\": \"url,url,url\"\n},\n{\n\t\"sous-partie\": \"sous-partie3\",\n    \"descirption-sous-partie\": \"descirption-sous-partie3\",\n    \"source\": \"url,url,url\"\n},\n{\n\t\"sous-partie\": \"sous-partie4\",\n    \"descirption-sous-partie\": \"descirption-sous-partie4\",\n    \"source\": \"url,url,url\"\n},\n    {\n\t\"sous-partie\": \"sous-partie5\",\n    \"descirption-sous-partie\": \"descirption-sous-partie5\",\n        \"source\": \"url,url,url\"\n}\n    ]\n\n"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        2380,
+        1220
+      ],
+      "id": "e793f400-5518-4e46-b7e0-15f88b97963f",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "jsCode": "// On récupère l'entrée\nconst items = [];\n\n// Pour chaque entrée (on suppose qu'on peut avoir plusieurs objets avec output)\nfor (const item of $input.all()) {\n  const outputArray = item.json.output;\n\n  // On vérifie que output est bien un tableau\n  if (Array.isArray(outputArray)) {\n    for (const sousPartie of outputArray) {\n      items.push({ json: sousPartie });\n    }\n  }\n}\n\nreturn items;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1540,
+        160
+      ],
+      "id": "32a33571-c2d5-485a-8512-02cf137d2267",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "name": "recherche",
+        "workflowId": {
+          "__rl": true,
+          "value": "z3Tch0Hnp0MVEhhv",
+          "mode": "id"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "url": "={{ $fromAI('url', ``, 'string') }}"
+          },
+          "matchingColumns": [
+            "url"
+          ],
+          "schema": [
+            {
+              "id": "url",
+              "displayName": "url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        2460,
+        500
+      ],
+      "id": "92405589-ae31-4329-91d0-4954f1ddc13f",
+      "name": "Call n8n Workflow Tool"
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "url"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        100,
+        160
+      ],
+      "id": "6a6def63-a5a9-471b-886f-051f3a8682e5",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "url": "={{$json.url}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        380,
+        160
+      ],
+      "id": "fa91959a-b0b1-46ea-8e39-7b5c0d0dfea6",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Nettoyage HTML et scripts\nfunction stripHtml(html) {\n  // Supprime les balises <script>, <style> et les commentaires HTML\n  const withoutScripts = html.replace(/<script[\\s\\S]*?>[\\s\\S]*?<\\/script>/gi, '');\n  const withoutStyles = withoutScripts.replace(/<style[\\s\\S]*?>[\\s\\S]*?<\\/style>/gi, '');\n  const withoutComments = withoutStyles.replace(/<!--[\\s\\S]*?-->/g, '');\n\n  // Supprime toutes les balises HTML\n  const plainText = withoutComments.replace(/<[^>]+>/g, '');\n\n  // Supprime les espaces multiples et nettoie les caractères spéciaux HTML\n  return plainText\n    .replace(/&nbsp;/g, ' ')\n    .replace(/&amp;/g, '&')\n    .replace(/\\s+/g, ' ')\n    .trim();\n}\n\n// Appliquer à chaque item\nreturn $input.all().map(item => {\n  const rawHtml = item.json.data;\n  const cleaned = stripHtml(rawHtml);\n  return { json: { clean_text: cleaned } };\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        600,
+        160
+      ],
+      "id": "d1efd881-01e4-4dbc-aaf3-944474eb9532",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "options": {
+          "summarizationMethodAndPrompts": {
+            "values": {
+              "combineMapPrompt": "créer un résumé en ne perdant aucune info intéressante:\n\n\n\"{text}\"\n\n\nRésumé:",
+              "prompt": "écris un résumé concis de ça:\n\n\n\"{text}\"\n\n\nRésumé:"
+            }
+          }
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
+      "typeVersion": 2,
+      "position": [
+        820,
+        160
+      ],
+      "id": "c5d2a0f7-98ff-4f01-ba03-73ebf8b71ebc",
+      "name": "Summarization Chain",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "output"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        3760,
+        140
+      ],
+      "id": "c776b116-ee1a-40a2-87d0-905e04241cc2",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.pdfshift.io/v3/convert/pdf",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "authorization",
+              "value": "Basic YXBpOnNrXzUxN2JiM2Q2OGVmN2Q4YmIyZmUwMWYxZmY0M2I0NjliNGUzNGZiODg="
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "source",
+              "value": "={{ $json.html }}"
+            },
+            {
+              "name": "landscape",
+              "value": "false"
+            },
+            {
+              "name": "use_print",
+              "value": "false"
+            },
+            {
+              "name": "sandbox",
+              "value": "false"
+            },
+            {
+              "name": "margin",
+              "value": "1cm"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4080,
+        380
+      ],
+      "id": "4f1efe5f-adc7-4d97-834c-456704193887",
+      "name": "HTTP Request2"
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  {\n    json: {\n      html: (() => {\n        const dirtyBlocks = $input.first().json.output || [];\n        const problem =$('Telegram Trigger').first().json.message.text || 'Sujet non défini';\n\n        const cleanHTML = (block) => {\n          if (typeof block !== 'string') return '';\n          return block\n            .replace(/```html/g, '')\n            .replace(/```/g, '')\n            .trim();\n        };\n\n        const htmlContent = dirtyBlocks\n          .map(cleanHTML)\n          .filter(Boolean)\n          .join('\\n');\n\n        // Ajouter saut de page à chaque H1\n        const paginatedContent = htmlContent.replace(/<h1>/g, '<div class=\"page-break\"></div><h1>');\n\n        // Page de garde stylée\n        const coverPage = `\n        <div class=\"cover-page\">\n          <div class=\"decor-layer\"></div>\n          <h1>Recherche approfondie :</h1>\n          <h2>${problem}</h2>\n        </div>`;\n\n        // HTML Final complet\n        return `\n        <html>\n        <head>\n          <link href=\"https://fonts.googleapis.com/css2?family=Poppins&display=swap\" rel=\"stylesheet\">\n          <style>\n            body {\n              font-family: 'Poppins', sans-serif;\n              color: #2c3e50;\n              margin: 2cm;\n              line-height: 1.6;\n            }\n\n            .cover-page {\n              page-break-after: always;\n              height: 100vh;\n              display: flex;\n              flex-direction: column;\n              justify-content: center;\n              align-items: center;\n              background: linear-gradient(135deg, #e0f7fa, #ffffff);\n              position: relative;\n              text-align: center;\n            }\n\n            .cover-page h1 {\n              font-size: 40px;\n              color: #3498db;\n              margin: 0;\n            }\n\n            .cover-page h2 {\n              font-size: 28px;\n              margin-top: 20px;\n              color: #2c3e50;\n              max-width: 80%;\n            }\n\n            .decor-layer {\n              position: absolute;\n              width: 100%;\n              height: 100%;\n              background-image: url('https://cdn.pixabay.com/photo/2022/08/28/07/18/abstract-7416803_960_720.png');\n              background-size: cover;\n              background-position: center;\n              opacity: 0.1;\n              z-index: 0;\n            }\n\n            .cover-page * {\n              z-index: 1;\n            }\n\n            h1, h2 {\n              color: #3498db;\n            }\n\n            h1 {\n              font-size: 28px;\n              margin-top: 40px;\n            }\n\n            h2 {\n              font-size: 20px;\n              margin-top: 20px;\n            }\n\n            p {\n              font-size: 16px;\n              margin-bottom: 12px;\n            }\n\n            section {\n              margin-bottom: 32px;\n            }\n\n            .page-break {\n              page-break-before: always;\n            }\n\n            /* Effet décoratif subtil sur chaque page */\n            body::after {\n              content: '';\n              position: fixed;\n              bottom: 2cm;\n              right: 2cm;\n              width: 100px;\n              height: 100px;\n              background-image: url('https://cdn.pixabay.com/photo/2017/01/31/13/14/abstract-2020071_1280.png');\n              background-size: contain;\n              background-repeat: no-repeat;\n              opacity: 0.05;\n              z-index: 0;\n            }\n          </style>\n        </head>\n        <body>\n          ${coverPage}\n          ${paginatedContent}\n        </body>\n        </html>\n        `;\n      })()\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3660,
+        380
+      ],
+      "id": "a5624c5a-dcbf-481f-9a4a-c217f6155cb8",
+      "name": "Code3"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Tu répond uniquement le HTML sans aucun autre détails =\n\n{{ $json.text }}\n\n\n\n",
+        "options": {
+          "systemMessage": "=Tu es un assistant expert en rédaction éditoriale et mise en forme HTML pour génération de PDF.  Voici un bloc de contenu structuré avec des titres, des sous-titres et des paragraphes. |Tu répond uniquement le HTML sans aucun autre détailsTa mission est : 1. D’analyser le contenu et d’**enlever tout ce qui est incohérent, non pertinent ou hors sujet** (par exemple des messages sur l’impossibilité d'accéder à un lien, erreurs techniques, mentions de sites tiers non pertinents, etc.). 2. De **garder uniquement le contenu qui est en lien avec le sujet principal**. 3. De **générer un bloc HTML clair et élégant**, en :    - Utilisant **la police “Poppins”** (via Google Fonts)    - Stylisant avec une **palette bleue sobre** (#2c3e50 ou #3498db)    - Structurant avec `<section>`, `<h1>`, `<h2>`, `<p>` de manière sémantique    - Ajoutant du **CSS inline minimal et propre** (pas besoin de fichier externe)  Voici le contenu :  --- [Ton bloc JSON converti en texte ou markdown structuré ici] ---  Et voici ce que je veux en sortie :  ```html <html>   <head>     <link href=\"https://fonts.googleapis.com/css2?family=Poppins&display=swap\" rel=\"stylesheet\">     <style>       body {         font-family: 'Poppins', sans-serif;         color: #2c3e50;         margin: 2cm;         line-height: 1.6;       }       h1, h2 {         color: #3498db;       }       h1 {         font-size: 28px;         margin-top: 40px;       }       h2 {         font-size: 20px;         margin-top: 20px;       }       p {         font-size: 16px;         margin-bottom: 12px;       }       section {         margin-bottom: 32px;       }     </style>   </head>   <body>     <!-- Ici tu insères dynamiquement le contenu nettoyé et formaté -->   </body> </html>"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        3360,
+        140
+      ],
+      "id": "22331cf5-2959-46fb-a58e-8a292162539a",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        300,
+        800
+      ],
+      "id": "3474b4c6-13af-4e28-b943-dad66ee69f5e",
+      "name": "Telegram Trigger",
+      "webhookId": "3f3a6018-c07a-464d-a0b7-1855aad32849",
+      "credentials": {
+        "telegramApi": {
+          "id": "1KysjgvAHZD0NkJk",
+          "name": "Telegram account catafs.si"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Voici le contenue à structurer : \n\n {{ $json.output }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Tu es un agent IA expert en structuration de contenu de rapport professionnel.  À partir du texte brut fourni, génère un contenu HTML épuré et bien organisé, selon les règles suivantes :  ✅ Règles à respecter Génère un seul <h1> qui résume clairement le sujet global.  Crée 3 à 5 balises <h2> maximum, en regroupant intelligemment les idées proches pour éviter la surcharge.  Chaque <h2> introduit une grande section logique ou thématique.  Structure les paragraphes avec des balises <p> sous chaque <h2>. Découpe les idées longues en plusieurs <p> si nécessaire.  Ne pas inclure de <div>, <section>, <style>, <html>, ou tout autre élément décoratif.  Tu ne génères aucune introduction ou conclusion ajoutée : utilise uniquement le contenu original fourni.  Le style du texte (phrases, tournures) doit rester fidèle à l’original. Tu ne fais pas de reformulation.  Si le texte est déjà bien découpé, respecte ses paragraphes naturels."
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        2960,
+        140
+      ],
+      "id": "4fccaaf2-4afe-4a6c-927a-a861812bfc34",
+      "name": "Basic LLM Chain1"
+    },
+    {
+      "parameters": {
+        "operation": "sendDocument",
+        "chatId": "={{ $('Telegram Trigger').first().json.message.chat.id }}",
+        "binaryData": true,
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        4280,
+        380
+      ],
+      "id": "a8dd34ed-a57d-46df-bb61-1b8fd1a03627",
+      "name": "Telegram",
+      "webhookId": "86c877cf-ba80-45b6-85d3-b383e5133355",
+      "credentials": {
+        "telegramApi": {
+          "id": "1KysjgvAHZD0NkJk",
+          "name": "Telegram account catafs.si"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## La question est envoyée via Telegram\n",
+        "height": 260,
+        "width": 440
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        140,
+        720
+      ],
+      "typeVersion": 1,
+      "id": "c4bf35e8-83b4-4328-a13d-cfe45d873724",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Génère un plan\n",
+        "height": 560,
+        "width": 520,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        640,
+        720
+      ],
+      "typeVersion": 1,
+      "id": "9db91ddc-ed53-4eed-ae75-8f1c2b0d503d",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        440,
+        1200
+      ],
+      "id": "21644373-5a5b-4137-9e04-44a19f67b1f5",
+      "name": "OpenAI Chat Model1",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1900,
+        1480
+      ],
+      "id": "c6668cc9-565d-4302-a03d-b782a1c3853e",
+      "name": "OpenAI Chat Model2",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1840,
+        560
+      ],
+      "id": "69dae200-e1fb-4c78-9dd4-d76a326109be",
+      "name": "OpenAI Chat Model4",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        3180,
+        780
+      ],
+      "id": "83cf96b7-6c6a-4f33-91b7-269770e00016",
+      "name": "OpenAI Chat Model5",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "## Structure le plan + cherche les sources\n\n",
+        "height": 640,
+        "width": 1400,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1220,
+        740
+      ],
+      "typeVersion": 1,
+      "id": "8dc77e72-daec-48e8-ab8d-08c52559c424",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Structure le plan + cherche les sources\n\n",
+        "height": 700,
+        "width": 1400,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1220,
+        0
+      ],
+      "typeVersion": 1,
+      "id": "46431c12-696c-47b7-86f0-48d0220b0af4",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "## Génère le HTML\n\n",
+        "height": 700,
+        "width": 1020,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2680,
+        0
+      ],
+      "typeVersion": 1,
+      "id": "e551625c-6eb4-4113-b82f-55da96604adb",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## Génère le doc et l'envoie\n\n",
+        "height": 340,
+        "width": 580
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        3740,
+        260
+      ],
+      "typeVersion": 1,
+      "id": "4771c496-d7bb-469d-a15e-e2bc5b1c0694",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "content": "## TOOL RECHERCHE WEB",
+        "height": 580,
+        "width": 1180,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        0
+      ],
+      "typeVersion": 1,
+      "id": "c4632314-8b19-487d-add7-883c8013e195",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "model": "mistral:7b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmOllama",
+      "typeVersion": 1,
+      "position": [
+        900,
+        1080
+      ],
+      "id": "7ddb73a7-90b4-4ec3-a866-54385db616b9",
+      "name": "Ollama Model",
+      "credentials": {
+        "ollamaApi": {
+          "id": "3FwwA6QURhqJpQaZ",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "mistral:7b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        2180,
+        1220
+      ],
+      "id": "c8b67fdc-0a6e-484d-aeba-5a1a98c1ea10",
+      "name": "Ollama Chat Model",
+      "credentials": {
+        "ollamaApi": {
+          "id": "3FwwA6QURhqJpQaZ",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "deepseek-r1:1.5b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        2240,
+        500
+      ],
+      "id": "edf64dec-e4f4-4487-93cd-1fee0304cb99",
+      "name": "Ollama Chat Model1",
+      "credentials": {
+        "ollamaApi": {
+          "id": "3FwwA6QURhqJpQaZ",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "deepseek-r1:1.5b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        2980,
+        380
+      ],
+      "id": "3311533b-722e-4b04-ab71-3076ed988e7c",
+      "name": "Ollama Chat Model2",
+      "credentials": {
+        "ollamaApi": {
+          "id": "3FwwA6QURhqJpQaZ",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        2700,
+        740
+      ],
+      "id": "d09cab51-0256-42c6-94d3-b3e8b898f453",
+      "name": "OpenAI Chat Model3",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "model": "deepseek-r1:1.5b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        3360,
+        400
+      ],
+      "id": "ddd93284-70f9-4218-a78d-b5db994cb192",
+      "name": "Ollama Chat Model3",
+      "credentials": {
+        "ollamaApi": {
+          "id": "3FwwA6QURhqJpQaZ",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "formTitle": "Demande",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Sujet"
+            },
+            {
+              "fieldLabel": "Brouillon / Intentions"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        80,
+        980
+      ],
+      "id": "bb44b238-bf60-481b-b35e-8bdd358a886e",
+      "name": "On form submission",
+      "webhookId": "b9bb0ae0-b02e-4d8a-9604-9ef98aeced8e"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1bde5510-4351-4db0-9fa5-ee3474e68859",
+              "name": "message.text",
+              "value": "={{ $json[\"Brouillon / Intentions\"] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        300,
+        980
+      ],
+      "id": "17e1bde9-80f0-408f-96d7-dd5e070844f1",
+      "name": "Intention"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolThink",
+      "typeVersion": 1,
+      "position": [
+        2280,
+        1120
+      ],
+      "id": "33c9fbad-b2c6-4d66-8a35-50d000b8f1cf",
+      "name": "Think"
+    },
+    {
+      "parameters": {
+        "content": "## Prompt \ntu es un agent expert en création de sous partie dans le but de générer des rapport hyper détaillé, tu reçois une partie et tu dois définir 5 sous partie intéressante la dedans en utilisant ton tool \"search\" qui te permet de faire des recherche sur internet, utilise le pour trouver toutes les sous partie nécessaire, n'hésite pas à l'utiliser avec plusieurs requete différentes que tu remplace le placeholder {prompt}\n\nSoit précis dans le prompt et parle du sujet par exemple si c'est un exposé pour les pandas tu met pas \"menaces pour leurs survie\" mais \"menace pour la survie des pandas\"\n\nutilise le format demandé pour l'output, dans \"source\" tu renseigne tout les sites qui sont dans le champ \"citations\" de ton tool à chaque prend bien tout les urls",
+        "height": 320
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2120,
+        1380
+      ],
+      "typeVersion": 1,
+      "id": "c66b78be-5989-464c-b6e5-35e766197cde",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openrouter.ai/api/v1/chat/completions",
+        "sendHeaders": true,
+        "parametersHeaders": {
+          "values": [
+            {
+              "name": "Content-Type",
+              "valueProvider": "fieldValue",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "valueProvider": "fieldValue",
+              "value": "Bearer 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"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"perplexity/sonar-pro\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"{prompt}\"\n    }\n  ]\n  \n}",
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "{prompt}",
+              "description": "La recherche à faire"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        2540,
+        1220
+      ],
+      "id": "faeb0564-f631-4c75-89d0-a68bef1ae22b",
+      "name": "Recherche_Perplexity"
+    }
+  ],
+  "pinData": {
+    "On form submission": [
+      {
+        "json": {
+          "Sujet": "IA",
+          "Brouillon / Intentions": "les nouvelles informations sur n8n",
+          "submittedAt": "2025-05-17T10:15:00.879-04:00",
+          "formMode": "test"
+        }
+      }
+    ],
+    "Basic LLM Chain": [
+      {
+        "json": {
+          "text": "1. \"Introduction to n8n: An Overview\""
+        }
+      },
+      {
+        "json": {
+          "text": "- Description of what n8n is and its purpose"
+        }
+      },
+      {
+        "json": {
+          "text": "- Key features and benefits of using n8n"
+        }
+      }
+    ]
+  },
+  "repo_name": "CanigouIA",
+  "repo_owner": "terryble66",
+  "repo_path": "2025/05/pt7e0XftEsu1jv9m.json",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-05-17T17:39:42.977Z",
+  "versionId": "ac207c18-a51e-4151-beda-3cdd59d63a40"
+}
