@@ -3,13 +3,7 @@
   "connections": {
     "When clicking 'Test workflow'": {
       "main": [
-        [
-          {
-            "node": "Générer liste de groupes",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Générer liste de groupes": {
@@ -114,7 +108,13 @@
     },
     "Mise à jour hebdomadaire": {
       "main": [
-        []
+        [
+          {
+            "node": "Générer liste de groupes",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Préparer émail": {
@@ -568,8 +568,8 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -240,
-        420
+        -280,
+        400
       ],
       "id": "4af044b8-de85-43f2-a448-5300084e1e27",
       "name": "When clicking 'Test workflow'"
@@ -733,6 +733,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-05-17T14:06:19.370Z",
-  "versionId": "1e9f9121-ba67-4f7d-9cc0-a9a465bd5512"
+  "updatedAt": "2025-05-21T15:49:26.803Z",
+  "versionId": "cd6c52fe-e061-40c8-bf8c-39858e59b080"
 }
