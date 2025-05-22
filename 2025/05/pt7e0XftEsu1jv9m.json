@@ -1242,11 +1242,13 @@
   "repo_owner": "terryble66",
   "repo_path": "2025/05/pt7e0XftEsu1jv9m.json",
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "hYt10qucorpB2UbQ"
   },
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-05-17T17:39:42.977Z",
-  "versionId": "ac207c18-a51e-4151-beda-3cdd59d63a40"
+  "updatedAt": "2025-05-21T15:45:11.603Z",
+  "versionId": "df9e7549-bc43-4ae0-8bf8-703240f6235a"
 }
