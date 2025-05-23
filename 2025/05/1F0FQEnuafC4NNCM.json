@@ -769,7 +769,25 @@
       }
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Déclencheur quotidien 9h00": [
+      {
+        "json": {
+          "timestamp": "2025-05-22T14:00:19.014+02:00",
+          "Readable date": "May 22nd 2025, 2:00:19 pm",
+          "Readable time": "2:00:19 pm",
+          "Day of week": "Thursday",
+          "Year": "2025",
+          "Month": "May",
+          "Day of month": "22",
+          "Hour": "14",
+          "Minute": "00",
+          "Second": "19",
+          "Timezone": "Europe/Paris (UTC+02:00)"
+        }
+      }
+    ]
+  },
   "repo_name": "CanigouIA",
   "repo_owner": "terryble66",
   "repo_path": "2025/05/1F0FQEnuafC4NNCM.json",
@@ -786,6 +804,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-05-12T16:30:08.721Z",
-  "versionId": "1d05415c-cbcd-43c3-9cef-e44ec4c227da"
+  "updatedAt": "2025-05-22T12:05:32.073Z",
+  "versionId": "d42cda94-ac1c-4b2b-826b-e666ac84f8b9"
 }
